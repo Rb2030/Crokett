@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "531236727453",
+    "project_id": "crokett-9f9d8",
+    "storage_bucket": "crokett-9f9d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531236727453:android:b9a607157172736d9f4274",
+        "android_client_info": {
+          "package_name": "de.crokett"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531236727453-b1etu9087u4rp7pc2m2svs5gnbppeqg5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.crokett",
+            "certificate_hash": "060789d8fabd9b2755f9a83dc2e8e7df8ee5f6dd"
+          }
+        },
+        {
+          "client_id": "531236727453-9283d7ur0cjckqd2rr55k7epq48qiasd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHDsdW6XVVSUuGzf9xXd0_cRnjaOlBURE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531236727453-9283d7ur0cjckqd2rr55k7epq48qiasd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "531236727453-08lqunrnv83obq14omnsd1p1rhlq6ddj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "de.crokett"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

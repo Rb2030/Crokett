@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   dartz: ^0.10.0-nullsafety.1
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^6.0.0
   firebase_core: ^1.0.0
   firebase_auth: ^1.0.0
   google_sign_in: ^5.0.0
@@ -43,6 +43,7 @@ dependencies:
   dots_indicator: ^1.2.0
   profanity_filter: ^1.0.4
   audioplayers: ^0.18.0
+  flutter_native_splash: ^1.1.4+1 
 
 dev_dependencies:
   flutter_test:
@@ -87,4 +88,5 @@ flutter:
         - asset: assets/fonts/CarinoSansBold.ttf
         - asset: assets/fonts/CarinoSansRegular.ttf
         - asset: assets/fonts/CarinoSansSemiBold.ttf
+    - family: Jost
         - asset: assets/fonts/Jost-VariableFont_wght.ttf

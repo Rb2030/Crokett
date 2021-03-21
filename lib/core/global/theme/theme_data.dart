@@ -63,19 +63,19 @@ TextTheme textTheme() {
     //
     headline5: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 28, fontWeight: FontWeight.w400, letterSpacing: 0.25),
     //
-    headline6: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 23, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+    headline6: TextStyle(fontFamily: Constants.jostFont, fontSize: 23, fontWeight: FontWeight.w500, letterSpacing: 0.15),
     // Used for inside textFields
-    subtitle1: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+    subtitle1: TextStyle(fontFamily: Constants.jostFont, fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     // Used for sub titles errors, notifications etc
-    subtitle2: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 20, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+    subtitle2: TextStyle(fontFamily: Constants.jostFont, fontSize: 20, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     // Text buttons e.g Forgotten sign in details?, Labelling above textFields, main text size
-    bodyText1: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+    bodyText1: TextStyle(fontFamily: Constants.jostFont, fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     // Information & large bodies of text
-    bodyText2: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+    bodyText2: TextStyle(fontFamily: Constants.jostFont, fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     //
-    button: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 16, fontWeight: FontWeight.w600, letterSpacing: 0.15),
+    button: TextStyle(fontFamily: Constants.jostFont, fontSize: 16, fontWeight: FontWeight.w600, letterSpacing: 0.15),
     //
-    caption: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+    caption: TextStyle(fontFamily: Constants.jostFont, fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.15),
     //
     overline: TextStyle(fontFamily: Constants.carinoSansFont, fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.15),
   );

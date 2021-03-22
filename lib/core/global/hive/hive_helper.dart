@@ -11,7 +11,7 @@ class HiveHelper {
     final box = await Hive.openBox(Constants.hiveFirstLaunchOfApp);
     bool value = box.get(Constants.hiveShowOnboarding);
     box.close();
-    return value;
+    return Future.value(value); // Might be able to just use ......  "return value"
   }
 
   static Future<void> setShowOnBoarding() async {
@@ -26,6 +26,7 @@ class HiveHelper {
     await Hive.openBox(Constants.hiveUserToken).then((t) {
       t.deleteAt(0);
     });
+    Hive.close();
     return;
   }
 
@@ -33,6 +34,7 @@ class HiveHelper {
     await Hive.openBox(Constants.hiveUserToken).then((t) {
       t.put(0, token);
     });
+    Hive.close();
     return;
   }
 
@@ -41,6 +43,7 @@ class HiveHelper {
     await Hive.openBox(Constants.hiveUserToken).then((mp) {
       token = mp.get(0); // This could be 2 associated with hive type?
     });
+    Hive.close();
     return token;
   }
 

@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:audioplayers/audio_cache.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/hive/hive_helper.dart';
-import 'package:crokett/routes/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../../routes/router_delegate.dart';
+import '../../../../routes/ui_pages.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,6 +15,10 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+
+  bool showOnBoarding = true;
+  String loggedInToken = '';
+
   final player = AudioCache();
   AnimationController bouncingAnimationController;
   AnimationController spinAnimationController1;
@@ -30,6 +35,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    // First launch of app?
+    HiveHelper.showOnBoarding().then((value) {
+      if (value != null) showOnBoarding = value;
+    });
+    // Logged In?
+    HiveHelper.getToken().then((value) {
+      if (value != null) loggedInToken = value;
+    });
 
     bouncingAnimationController = AnimationController(
       vsync: this,
@@ -55,8 +68,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       curve: Curves.easeIn,
     );
 
-    Future<bool> showOnBoarding = HiveHelper.showOnBoarding();
-
     // Starting the animations
     bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
@@ -78,7 +89,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
                 fadeAnimationController.forward().then((_) {
-                  showOnBoarding != null ? route(false) : route(true);
+                  bool loggedIn = loggedInToken != '' ? true : false;
+                  route(showOnBoarding, loggedIn);
                 });
               });
             });
@@ -88,11 +100,15 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     });
   }
 
-  route(bool showOnboarding) {
+  route(bool showOnboarding, bool loggedIn) {
+    final delegate = Get.find<CrokettRouterDelegate>();
+
     if (showOnboarding) {
-      ExtendedNavigator.of(context).push(Routes.onBoardingPage);
+      delegate.replace(OnBoardingPageConfig);
+    } else if (loggedIn) {
+      delegate.replace(MainMenuPageConfig);
     } else {
-      ExtendedNavigator.of(context).push(Routes.loginPage);
+      delegate.replace(LoginPageConfig);
     }
   }
 

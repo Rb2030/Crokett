@@ -3,14 +3,16 @@ import 'ui_pages.dart';
 
 class RouteParser extends RouteInformationParser<PageConfiguration> {
   @override
-  Future<PageConfiguration> parseRouteInformation(
-      RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location);
+  Future<PageConfiguration> parseRouteInformation(RouteInformation routeInformation) async {
+
+    final uri = Uri.parse(routeInformation.location!);
+
     if (uri.pathSegments.isEmpty) {
       return SplashPageConfig;
     }
 
     final path = uri.pathSegments[0];
+    
     switch (path) {
       case SplashPath:
         return SplashPageConfig;
@@ -38,8 +40,8 @@ class RouteParser extends RouteInformationParser<PageConfiguration> {
         return const RouteInformation(location: SignUpPath);
       case Pages.MainMenu:
         return const RouteInformation(location: MainMenuPath);
-      default: return const RouteInformation(location: SplashPath);
-
+      default:
+        return const RouteInformation(location: SplashPath);
     }
   }
 }

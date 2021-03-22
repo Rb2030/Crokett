@@ -39,7 +39,7 @@ class HiveHelper {
   }
 
   static Future<String> getToken() async {
-    String token;
+    String token = '';
     await Hive.openBox(Constants.hiveUserToken).then((mp) {
       token = mp.get(0); // This could be 2 associated with hive type?
     });

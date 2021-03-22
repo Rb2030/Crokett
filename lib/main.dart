@@ -12,7 +12,7 @@ import 'package:injectable/injectable.dart';
 
 final delegate = CrokettRouterDelegate();
 final parser = RouteParser();
-CrokettBackButtonDispatcher backButtonDispatcher;
+CrokettBackButtonDispatcher? backButtonDispatcher;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection(Environment.dev);

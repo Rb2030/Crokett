@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 const String SplashPath = '/splash';
 const String OnBoardingPath = '/on_boarding';
@@ -20,7 +19,7 @@ class PageConfiguration {
   final Pages uiPage;
 
   const PageConfiguration(
-      {@required this.key, @required this.path, @required this.uiPage});
+      {required this.key, required this.path, required this.uiPage});
 }
 
 const PageConfiguration SplashPageConfig =

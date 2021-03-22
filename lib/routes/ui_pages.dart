@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 const String SplashPath = '/splash';
-const String OnBoardingPath = '/onBoarding';
+const String OnBoardingPath = '/on_boarding';
 const String LoginPath = '/login';
-const String SignUpPath = '/signUp';
+const String SignUpPath = '/sign_up';
 const String MainMenuPath = '/details';
 
 enum Pages {

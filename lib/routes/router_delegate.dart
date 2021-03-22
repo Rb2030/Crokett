@@ -137,7 +137,7 @@ class CrokettRouterDelegate extends RouterDelegate<PageConfiguration> with Chang
         (element.arguments as PageConfiguration).uiPage == routeName);
   }
 
-  void parseRoute(Uri uri) {
+  void parseRoute(Uri uri) { //This is to be used for URI links (perhaps web?)
     if (uri.pathSegments.isEmpty) {
       setNewRoutePath(SplashPageConfig);
       return;
@@ -145,8 +145,8 @@ class CrokettRouterDelegate extends RouterDelegate<PageConfiguration> with Chang
 
     // Handle navapp://deeplinks/details/#
     if (uri.pathSegments.length == 2) {
-      if (uri.pathSegments[0] == 'details') {
-        pushWidget(Details(int.parse(uri.pathSegments[1])), DetailsPageConfig);
+      if (uri.pathSegments[0] == 'cooking_utensils_details') {
+     //   pushWidget(CookingUtensilsDetails(int.parse(uri.pathSegments[1])), CookingUtensilsDetailsPageConfig);
       }
     } else if (uri.pathSegments.length == 1) {
       final path = uri.pathSegments[0];
@@ -157,33 +157,33 @@ class CrokettRouterDelegate extends RouterDelegate<PageConfiguration> with Chang
         case 'login':
           replaceAll(LoginPageConfig);
           break;
-        case 'createAccount':
+        case 'sign_up':
           setPath([
-            _createPage(Login(), LoginPageConfig),
-            _createPage(CreateAccount(), CreateAccountPageConfig)
+            _createPage(LoginPage(), LoginPageConfig),
+            _createPage(SignUpPage(), SignUpPageConfig)
           ]);
           break;
-        case 'listItems':
-          replaceAll(ListItemsPageConfig);
-          break;
-        case 'cart':
-          setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Cart(), CartPageConfig)
-          ]);
-          break;
-        case 'checkout':
-          setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Checkout(), CheckoutPageConfig)
-          ]);
-          break;
-        case 'settings':
-          setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Settings(), SettingsPageConfig)
-          ]);
-          break;
+        // case 'cooking_utensils_list':
+        //   replaceAll(CookingUtensilsPageConfig);
+        //   break;
+        // case 'cart':
+        //   setPath([
+        //     _createPage(CookingUtensilsItems(), CookingUtensilsPageConfig),
+        //     _createPage(Cart(), CartPageConfig)
+        //   ]);
+        //   break;
+        // case 'checkout':
+        //   setPath([
+        //     _createPage(ListItems(), ListItemsPageConfig),
+        //     _createPage(Checkout(), CheckoutPageConfig)
+        //   ]);
+        //   break;
+        // case 'settings':
+        //   setPath([
+        //     _createPage(ListItems(), ListItemsPageConfig),
+        //     _createPage(Settings(), SettingsPageConfig)
+        //   ]);
+        //   break;
       }
     }
   }

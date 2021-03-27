@@ -12,15 +12,16 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+  
   bool showOnBoarding = true;
   String loggedInToken = '';
 
   final player = AudioCache();
-  AnimationController? bouncingAnimationController;
-  AnimationController? spinAnimationController1;
-  AnimationController? spinAnimationController2;
-  AnimationController? fadeAnimationController;
-  Animation<double>? fadeAnimation;
+  late AnimationController bouncingAnimationController;
+  late AnimationController spinAnimationController1;
+  late AnimationController spinAnimationController2;
+  late AnimationController fadeAnimationController;
+  late Animation<double> fadeAnimation;
 
   double responsiveBoxSize = 6;
   Color bgColor = Colors.white;
@@ -61,23 +62,23 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 1000),
     );
     fadeAnimation = CurvedAnimation(
-      parent: fadeAnimationController!,
+      parent: fadeAnimationController,
       curve: Curves.easeIn,
     );
 
     // Starting the animations
-    bouncingAnimationController!.forward().then((value) {
+    bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
       setState(() {});
       player.play(Constants.soundHobClick);
       Future<void>.delayed(const Duration(milliseconds: 600), () {
-        spinAnimationController1!.forward(from: 0).then((value) {
+        spinAnimationController1.forward(from: 0).then((value) {
           setState(() {
             _secondButtonVisible = true;
             _firstButtonVisible = false;
           });
           Future<void>.delayed(const Duration(milliseconds: 1600), () {
-            spinAnimationController2!.forward(from: 0).then((value) {
+            spinAnimationController2.forward(from: 0).then((value) {
               setState(() {
                 animationFinished = true;
               });
@@ -85,7 +86,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 responsiveBoxSize = 2.6;
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
-                fadeAnimationController!.forward().then((_) {
+                fadeAnimationController.forward().then((_) {
                   bool loggedIn = loggedInToken != '' ? true : false;
                   /// MARK: ----------------------------------------------------------------- In here should be the move to either the login page, the onboarding video, or the main menu
                 });
@@ -117,7 +118,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     children: [
                       const Spacer(),
                       FadeTransition(
-                        opacity: fadeAnimationController!,
+                        opacity: fadeAnimationController,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                           child: Text(
@@ -137,7 +138,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                               visible: _firstButtonVisible,
                               child: RotationTransition(
                                 turns: Tween(begin: 0.0, end: 0.4)
-                                    .animate(spinAnimationController1!),
+                                    .animate(spinAnimationController1),
                                 child: Image.asset(Constants.imageHobPower1),
                               ),
                             ),
@@ -150,7 +151,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                               visible: _secondButtonVisible,
                               child: RotationTransition(
                                 turns: Tween(begin: 0.4, end: 0.1)
-                                    .animate(spinAnimationController2!),
+                                    .animate(spinAnimationController2),
                                 child: Image.asset(Constants.imageHobPower2),
                               ),
                             ),
@@ -159,7 +160,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       ),
                       const SizedBox(width: 1),
                       FadeTransition(
-                        opacity: fadeAnimationController!,
+                        opacity: fadeAnimationController,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                           child: Text(

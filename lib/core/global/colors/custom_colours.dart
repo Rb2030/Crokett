@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomColours extends InheritedWidget {
-  static CustomColours of(BuildContext context) => context. dependOnInheritedWidgetOfExactType<CustomColours>();
+  static CustomColours? of(BuildContext context) => context. dependOnInheritedWidgetOfExactType<CustomColours>();
 
-  const CustomColours({Widget child, Key key}): super(key: key, child: child);
+  CustomColours({Widget? child, Key? key}): super(key: key, child: child!);
 
 // Main Colours
 

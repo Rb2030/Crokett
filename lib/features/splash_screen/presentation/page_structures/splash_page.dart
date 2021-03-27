@@ -5,9 +5,6 @@ import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/hive/hive_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../routes/router_delegate.dart';
-import '../../../../routes/ui_pages.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -90,7 +87,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 setState(() {});
                 fadeAnimationController!.forward().then((_) {
                   bool loggedIn = loggedInToken != '' ? true : false;
-                  route(showOnBoarding, loggedIn);
+                  /// MARK: ----------------------------------------------------------------- In here should be the move to either the login page, the onboarding video, or the main menu
                 });
               });
             });
@@ -98,18 +95,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         });
       });
     });
-  }
-
-  route(bool showOnboarding, bool loggedIn) {
-    final delegate = Get.find<CrokettRouterDelegate>();
-
-    if (showOnboarding) {
-      delegate.replace(OnBoardingPageConfig);
-    } else if (loggedIn) {
-      delegate.replace(MainMenuPageConfig);
-    } else {
-      delegate.replace(LoginPageConfig);
-    }
   }
 
   @override

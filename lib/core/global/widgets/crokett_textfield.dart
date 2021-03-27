@@ -11,23 +11,23 @@ class CrokettTextField extends StatefulWidget {
   final Function validator;
   final Function onChanged;
 
-  CrokettTextField({
+  CrokettTextField(
       this.hint,
       this.controller,
       this.onChanged,
       this.baseColor,
       this.borderColor,
       this.errorColor,
-      this.inputType = TextInputType.text,
-      this.obscureText = false,
+      this.inputType,
+      this.obscureText,
       this.validator
-  });
+  );
 
   _CrokettTextFieldState createState() => _CrokettTextFieldState();
 }
 
 class _CrokettTextFieldState extends State<CrokettTextField> {
-  Color currentColor;
+  late Color currentColor;
 
   @override
   void initState() {
@@ -49,9 +49,7 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
         child: TextField(
           obscureText: widget.obscureText,
           onChanged: (text) {
-            if (widget.onChanged != null) {
               widget.onChanged(text);
-            }
             setState(() {
               if (!widget.validator(text) || text.length == 0) {
                 currentColor = widget.errorColor;

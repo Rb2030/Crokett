@@ -8,7 +8,7 @@ class MenuItem {
 }
 
 class AppState extends ChangeNotifier {
-  int _selectedIndex;
+  bool _mainMenuSelected;
   late MenuItem _selectedMenuItem;
 
   final List<MenuItem> menuItems = [
@@ -20,16 +20,14 @@ class AppState extends ChangeNotifier {
     MenuItem(Help),
   ];
   
-  AppState() : _selectedIndex = 0;
+  AppState() : _mainMenuSelected = false;
 
-  int get selectedIndex => _selectedIndex;
+  bool get ifMenuSelected => _mainMenuSelected;
 
-  set selectedIndex(int idx) {
-    _selectedIndex = idx;
-    if (_selectedIndex == 1) {
-      // Remove this line if you want to keep the selected menu section when navigating
-      // between "settings" and "main menu" which menu section was selected when Settings is
-      // tapped.
+  set ifMenuSelected(bool menuSelected) {
+    _mainMenuSelected = menuSelected;
+    if (_mainMenuSelected == false) { // May need to remove this?
+
       selectedMenuItem = MenuItem('');
     }
     notifyListeners();

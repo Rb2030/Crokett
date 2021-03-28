@@ -42,7 +42,8 @@ dependencies:
   profanity_filter: ^2.0.0-nullsafety.0 
   audioplayers: ^0.18.0
   flutter_native_splash: ^1.1.4+1
-  #uni_links: ^0.4.0
+  bouncing_widget:
+  font_awesome_flutter: ^9.0.0
 
 dev_dependencies:
   flutter_test:

@@ -8,6 +8,9 @@ class CrokettRouterDelegate extends RouterDelegate<RoutePath>
   final GlobalKey<NavigatorState> navigatorKey;
 
   AppState appState = AppState();
+  bool mainMenuSelected = false;
+  bool showBackButton = false;
+  String title = '';
 
   CrokettRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>() {
     appState.addListener(notifyListeners);
@@ -23,7 +26,11 @@ class CrokettRouterDelegate extends RouterDelegate<RoutePath>
       key: navigatorKey,
       pages: [
         MaterialPage(
-          child: AppShell(appState: appState),
+          child: AppShell(
+              appState: appState,
+              mainMenuSelected: mainMenuSelected,
+              showBackButton: showBackButton,
+              title: title),
         ),
       ],
       onPopPage: (route, result) {

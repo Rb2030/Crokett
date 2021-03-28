@@ -17,8 +17,6 @@ class MainMenuPath extends RoutePath { // '/main_menu'
   MainMenuPath({required this.id});
 }
 
-class SettingsPath extends RoutePath {} // '/settings'
-
 // Main Menu Items
 
 const String Profile = 'Profile';
@@ -27,4 +25,5 @@ const String Recipes = 'Recipes';
 const String Cookshop = 'Cook Shop';
 const String TipsAndTricks = 'Tips & Tricks';
 const String Help = 'Help';
+const String Settings = 'Settings';
 

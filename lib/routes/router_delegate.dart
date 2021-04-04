@@ -27,10 +27,8 @@ class CrokettRouterDelegate extends RouterDelegate<RoutePath>
       pages: [
         MaterialPage(
           child: AppShell(
-              appState: appState,
-              mainMenuSelected: mainMenuSelected,
-              showBackButton: showBackButton,
-              title: title),
+              appState: appState
+          ),
         ),
       ],
       onPopPage: (route, result) {

@@ -1,4 +1,3 @@
-import 'package:crokett/core/global/widgets/fade_animation_page.dart';
 import 'package:crokett/features/main_menu/page_structures/boxes_page.dart';
 import 'package:crokett/features/main_menu/page_structures/cookshop_page.dart';
 import 'package:crokett/features/main_menu/page_structures/help_page.dart';
@@ -27,7 +26,7 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
 
   @override
   Widget build(BuildContext context) {
-    
+
    Widget getPage(MenuItem menuItem) {
       switch (menuItem.title) {
         case Boxes:

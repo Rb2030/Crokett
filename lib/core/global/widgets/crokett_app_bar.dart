@@ -4,7 +4,6 @@ import 'package:crokett/routes/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:io' show Platform;
 
 class CrokettAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool showBackButton;
@@ -30,10 +29,9 @@ class CrokettAppBar extends StatelessWidget with PreferredSizeWidget {
 
     return Container(
       height: 400,
-      color: Colors.transparent,
+      color: Colors.yellow,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, UIHelper.paddingBetweenElements, 0,
-            UIHelper.paddingBetweenElements),
+        padding: EdgeInsets.fromLTRB(0, 0, 0, UIHelper.paddingBetweenElements),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -55,11 +53,15 @@ class CrokettAppBar extends StatelessWidget with PreferredSizeWidget {
                     }),
               ),
             ),
+            const Spacer(),
+            Container(
+                child: Text(title, style: TextStyle(color: Colors.white))),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.fromLTRB(
                   UIHelper.paddingBetweenElements,
-                  UIHelper.paddingBetweenElements * 4,
-                  0,
+                  UIHelper.paddingBetweenElements * 2,
+                  UIHelper.paddingBetweenElements,
                   UIHelper.paddingBetweenElements),
               child: BouncingWidget(
                   duration: animationLength,
@@ -70,11 +72,6 @@ class CrokettAppBar extends StatelessWidget with PreferredSizeWidget {
                     appState.ifMenuSelected = true;
                   }),
             ),
-            const Spacer(),
-            Container(
-                child: Text(title, style: TextStyle(color: Colors.white))),
-            const Spacer(),
-            SizedBox(width: UIHelper.paddingBetweenElements),
           ],
         ),
       ),

@@ -10,8 +10,9 @@ class LoginPath extends RoutePath {} // '/login'
 
 class SignUpPath extends RoutePath {} // '/sign_up'
 
-class MainMenuPath extends RoutePath { // '/main_menu'
-  
+class MainMenuPath extends RoutePath {
+  // '/main_menu'
+
   final int id; // Parameter to be added to route
 
   MainMenuPath({required this.id});
@@ -19,11 +20,12 @@ class MainMenuPath extends RoutePath { // '/main_menu'
 
 // Main Menu Items
 
-const String Profile = 'Profile';
-const String Boxes = 'Boxes';
-const String Recipes = 'Recipes';
-const String Cookshop = 'Cook Shop';
-const String TipsAndTricks = 'Tips & Tricks';
-const String Help = 'Help';
-const String Settings = 'Settings';
+const String Profile = 'profile';
+const String Boxes = 'boxes';
+const String Recipes = 'recipes';
+const String Cookshop = 'cookshop';
+const String TipsAndTricks = 'tips&tricks';
+const String Help = 'help';
+const String Settings = 'settings';
 
+List<String> mainMenuArray = [Boxes, Cookshop, Help, Profile, Recipes, Settings, TipsAndTricks];

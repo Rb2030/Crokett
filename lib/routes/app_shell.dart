@@ -1,7 +1,14 @@
-import 'package:crokett/core/global/widgets/crokett_app_bar.dart';
+import 'package:bouncing_widget/bouncing_widget.dart';
+import 'package:crokett/core/global/colors/custom_colours.dart';
+import 'package:crokett/core/global/constants/constants.dart';
+import 'package:crokett/core/global/helpers/button_delay_helper.dart';
+import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
+import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/routes/app_state.dart';
 import 'package:crokett/routes/inner_router_delegate.dart';
+import 'package:crokett/routes/route_path.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppShell extends StatefulWidget {
   AppState appState;
@@ -13,8 +20,7 @@ class AppShell extends StatefulWidget {
       {required this.appState,
       required this.mainMenuSelected,
       required this.showBackButton,
-      required this.title
-  });
+      required this.title});
 
   @override
   _AppShellState createState() => _AppShellState();
@@ -46,6 +52,7 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
+    final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
     var appState = widget.appState;
     var mainMenuSelected = widget.mainMenuSelected;
     var showBackButton = widget.showBackButton;
@@ -56,14 +63,62 @@ class _AppShellState extends State<AppShell> {
     _backButtonDispatcher.takePriority();
 
     return Scaffold(
-      appBar: CrokettAppBar(
-          appState: appState,
-          mainMenuSelected: mainMenuSelected,
-          showBackButton: showBackButton,
-          title: title),
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: Router(
         routerDelegate: _routerDelegate,
         backButtonDispatcher: _backButtonDispatcher,
+      ),
+      drawer: Container(
+        width: rsc.rW(60),
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                height: rsc.rHP(16),
+                child: DrawerHeader(
+                  padding: EdgeInsets.zero,
+                  child: ListTile(
+                    leading: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200], shape: BoxShape.circle),
+                        child: Padding(
+                          padding: EdgeInsets.all(UIHelper.paddingBetweenElements / 1.5),
+                          child: Text('JS', textAlign: TextAlign.center),
+                        )),
+                    title: Text('Joe'),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.boxes),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.recipes),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.cookshop),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.tipsAndTricks),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.help),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(Constants.settings),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

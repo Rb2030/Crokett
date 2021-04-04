@@ -40,6 +40,16 @@ class Constants extends InheritedWidget {
   static const String usernameInformation = "Please select a username which is unique. This will be linked to your account so please refrain from using any profanity.";
   static const String unableToRegister = "Unable to register";
 
+  // Main Menu
+
+  static const String profile = "Profile";
+  static const String boxes = "Boxes";
+  static const String recipes = "Recipes";
+  static const String cookshop = "Cookshop";
+  static const String tipsAndTricks = "Tips and Tricks";
+  static const String help = "Help";
+  static const String settings = "Settings";
+
 // Font
 
   static const String carinoSansFont = 'CarinoSans';

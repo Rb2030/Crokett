@@ -12,12 +12,13 @@ class AppState extends ChangeNotifier { // Class that selects the menu item in t
   MenuItem _selectedMenuItem = MenuItem('');
 
   final List<MenuItem> menuItems = [
-    MenuItem(Boxes),
-    MenuItem(Cookshop),
-    MenuItem(Help),
     MenuItem(Profile),
+    MenuItem(Boxes),
     MenuItem(Recipes),
+    MenuItem(Cookshop),
     MenuItem(TipsAndTricks),
+    MenuItem(Help),
+    MenuItem(Settings),
   ];
   
   AppState() : _mainMenuSelected = false;

@@ -7,12 +7,14 @@ class CrokettRouteInformationParser extends RouteInformationParser<RoutePath> {
       RouteInformation routeInformation) async {
     final uri = Uri.parse(routeInformation.location!);
 
-      if (uri.pathSegments.length >= 2) {
-        if (uri.pathSegments[0] == 'main_menu') {
+    if (uri.pathSegments.length >= 2) {
+      for (String p in mainMenuArray) {
+        if (uri.pathSegments[0] == p) {
           return MainMenuPath(id: int.tryParse(uri.pathSegments[1])!);
         }
+      }
     }
-    throw Error(); // Not sure about this?
+    return MainMenuPath(id: 4); // 4 should represent the recipes section
   }
 
   @override

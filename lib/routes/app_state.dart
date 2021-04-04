@@ -7,17 +7,17 @@ class MenuItem {
   MenuItem(this.title);
 }
 
-class AppState extends ChangeNotifier {
+class AppState extends ChangeNotifier { // Class that selects the menu item in the burger menu
   bool _mainMenuSelected;
-  late MenuItem _selectedMenuItem;
+  MenuItem _selectedMenuItem = MenuItem('');
 
   final List<MenuItem> menuItems = [
-    MenuItem(Profile),
     MenuItem(Boxes),
-    MenuItem(Recipes),
     MenuItem(Cookshop),
-    MenuItem(TipsAndTricks),
     MenuItem(Help),
+    MenuItem(Profile),
+    MenuItem(Recipes),
+    MenuItem(TipsAndTricks),
   ];
   
   AppState() : _mainMenuSelected = false;

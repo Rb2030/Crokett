@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:audioplayers/audio_cache.dart';
+// import 'package:audioplayers/audio_cache.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   bool showOnBoarding = true;
   String loggedInToken = '';
 
-  final player = AudioCache();
+ // final player = AudioCache();
   late AnimationController bouncingAnimationController;
   late AnimationController spinAnimationController1;
   late AnimationController spinAnimationController2;
@@ -70,7 +70,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
       setState(() {});
-      player.play(Constants.soundHobClick);
+   //   player.play(Constants.soundHobClick);
       Future<void>.delayed(const Duration(milliseconds: 600), () {
         spinAnimationController1.forward(from: 0).then((value) {
           setState(() {

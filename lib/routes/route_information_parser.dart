@@ -14,7 +14,7 @@ class CrokettRouteInformationParser extends RouteInformationParser<RoutePath> {
         }
       }
     }
-    return MainMenuPath(id: 4); // 4 should represent the recipes section
+    return MainMenuPath(id: 1); // 1 brings us to the Boxes section by default
   }
 
   @override

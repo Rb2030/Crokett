@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FadeAnimationPage extends Page {
-  final Widget child;
+  final Widget? child;
 
-  FadeAnimationPage({required this.child}) : super();
+  FadeAnimationPage({LocalKey? key, this.child}) : super(key: key);
 
   Route createRoute(BuildContext context) {
     return PageRouteBuilder(

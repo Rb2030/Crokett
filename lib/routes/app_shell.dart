@@ -50,11 +50,22 @@ class _AppShellState extends State<AppShell> {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
     var appState = widget.appState;
 
+    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+    toggleDrawer() async {
+      if (_scaffoldKey.currentState!.isDrawerOpen) {
+        _scaffoldKey.currentState!.openEndDrawer();
+      } else {
+        _scaffoldKey.currentState!.openDrawer();
+      }
+    }
+
     // Claim priority, If there are parallel sub router, you will need
     // to pick which one should take priority;
     _backButtonDispatcher.takePriority();
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0,
       ),
@@ -64,6 +75,7 @@ class _AppShellState extends State<AppShell> {
       ),
       drawer: InkWell(
         onTap: () {
+          toggleDrawer();
           appState.ifMenuSelected = true;
         },
         child: Container(
@@ -101,31 +113,36 @@ class _AppShellState extends State<AppShell> {
                   title: Text(Constants.recipes),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Recipes);
-                  },                ),
+                  },
+                ),
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text(Constants.cookshop),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Cookshop);
-                  },                ),
+                  },
+                ),
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(TipsAndTricks);
-                  },                ),
+                  },
+                ),
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text(Constants.help),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Help);
-                  },                ),
+                  },
+                ),
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text(Constants.settings),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Settings);
-                  },                ),
+                  },
+                ),
               ],
             ),
           ),

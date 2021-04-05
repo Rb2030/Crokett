@@ -1,8 +1,10 @@
+import 'package:crokett/core/global/widgets/fade_animation_page.dart';
 import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
 import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
 import 'package:crokett/features/help/page_structures/help_page.dart';
 import 'package:crokett/features/profile/page_structures/profile_page.dart';
 import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
+import 'package:crokett/features/settings/page_structures/settings_page.dart';
 import 'package:crokett/features/tips_and_tricks/page_structures/tips_and_tricks_page.dart';
 import 'package:crokett/routes/app_state.dart';
 import 'package:crokett/routes/route_path.dart';
@@ -29,27 +31,29 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
 
    Widget getPage(MenuItem menuItem) {
       switch (menuItem.title) {
-        case Boxes:
-          return BoxesPage();
-        case Cookshop:
-          return CookShopPage();
-        case Help:
-          return HelpPage();
         case Profile:
           return ProfilePage();
+        case Boxes:
+          return BoxesPage();
         case Recipes:
           return RecipesPage();
+        case Cookshop:
+          return CookShopPage();
         case TipsAndTricks:
           return TipsAndTricksPage();
+        case Help:
+          return HelpPage();
+        case Settings:
+          return SettingsPage();
         default:
-          return RecipesPage();
+          return BoxesPage();
       }
     }
 
     return Navigator(
       key: navigatorKey,
       pages: [
-        MaterialPage(
+        FadeAnimationPage(
             key: ValueKey(appState.selectedMenuItem.title), 
             child: getPage(appState.selectedMenuItem),
         ),
@@ -82,8 +86,13 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
   }
 
   @override
-  Future<void> setNewRoutePath(RoutePath path) async { // WHERE SHOULD THIS BE CALLED?
+  Future<void> setNewRoutePath(RoutePath path) async {
     // We may need this to drill down into each main menu section. E.g drill down into the
     assert(false);
+  }
+
+  void _handleMenuOptionTapped(MenuItem menuItem) {
+    appState.selectedMenuItem = menuItem;
+    notifyListeners();
   }
 }

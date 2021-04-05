@@ -7,7 +7,8 @@ class MenuItem {
   MenuItem(this.title);
 }
 
-class AppState extends ChangeNotifier { // Class that selects the menu item in the burger menu
+class AppState extends ChangeNotifier {
+  // Class that selects the menu item in the burger menu
   bool _mainMenuSelected;
   MenuItem _selectedMenuItem = MenuItem('');
 
@@ -20,14 +21,15 @@ class AppState extends ChangeNotifier { // Class that selects the menu item in t
     MenuItem(Help),
     MenuItem(Settings),
   ];
-  
+
   AppState() : _mainMenuSelected = false;
 
   bool get ifMenuSelected => _mainMenuSelected;
 
   set ifMenuSelected(bool menuSelected) {
     _mainMenuSelected = menuSelected;
-    if (_mainMenuSelected == false) { // May need to remove this?
+    if (_mainMenuSelected == false) {
+      // May need to remove this?
 
       selectedMenuItem = MenuItem('');
     }

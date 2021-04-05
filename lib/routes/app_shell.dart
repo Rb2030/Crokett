@@ -4,7 +4,7 @@ import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/button_delay_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
-import 'package:crokett/features/main_menu/page_structures/cookshop_page.dart';
+import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
 import 'package:crokett/routes/app_state.dart';
 import 'package:crokett/routes/inner_router_delegate.dart';
 import 'package:crokett/routes/route_path.dart';

@@ -6,6 +6,6 @@ class TipsAndTricksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Container(color: Colors.blue, child: Text('Tips & Tricks PAGE')));
+    return Center(child: Container(color: Colors.blue, child: Text('TIPS & TRICKS PAGE')));
   }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="44px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>streamline-icon-upload-thick-box@140x140</title>
+    <g id="📱Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="iPhone-12-Copy-4" transform="translate(-67.000000, -140.000000)" stroke="#000000" stroke-width="1.833333">
+            <g id="streamline-icon-upload-thick-box@140x140" transform="translate(68.000000, 141.000000)">
+                <path d="M39.3254545,7.43582609 C39.7344668,8.56612436 39.9621511,9.75449093 40,10.9565217 L40,40.173913 C40,41.182433 39.1859723,42 38.1818182,42 L1.81818182,42 C0.814027728,42 0,41.182433 0,40.173913 L0,10.9565217 C0.0378488503,9.75449093 0.265533191,8.56612436 0.674545455,7.43582609 L2.96181818,1.6946087 C3.41456004,0.708339499 4.37462579,0.0556665018 5.45454545,0 L34.5454545,0 C35.6253742,0.0556665018 36.58544,0.708339499 37.0381818,1.6946087 L39.3254545,7.43582609 Z" id="Path"></path>
+                <line x1="20" y1="10" x2="20" y2="0" id="Path"></line>
+                <line x1="0" y1="10" x2="39" y2="10" id="Path"></line>
+            </g>
+        </g>
+    </g>
+</svg>

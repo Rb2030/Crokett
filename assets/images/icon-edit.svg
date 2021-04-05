@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>streamline-icon-pencil-1@140x140</title>
+    <g id="📱Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="iPhone-12-Copy-4" transform="translate(-329.000000, -342.000000)" stroke="#000000" stroke-width="1.833333">
+            <g id="streamline-icon-pencil-1@140x140" transform="translate(330.000000, 343.000000)">
+                <path d="M7.02793302,23.3510922 L0,25 L1.64883613,17.9728484 L18.9817232,0.637033777 C19.3894173,0.229156795 19.9424682,-1.13686838e-13 20.5191515,-1.13686838e-13 C21.0958348,-1.13686838e-13 21.6488857,0.229156795 22.0565798,0.637033777 L24.3629939,2.94246125 C24.7708532,3.35017302 25,3.90324802 25,4.47995637 C25,5.05666473 24.7708532,5.60973972 24.3629939,6.0174515 L7.02793302,23.3510922 Z" id="Path"></path>
+                <line x1="22" y1="8" x2="17" y2="3" id="Path"></line>
+                <line x1="7" y1="23" x2="2" y2="18" id="Path"></line>
+            </g>
+        </g>
+    </g>
+</svg>

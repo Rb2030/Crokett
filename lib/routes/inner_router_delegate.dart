@@ -1,9 +1,9 @@
-import 'package:crokett/features/main_menu/page_structures/boxes_page.dart';
-import 'package:crokett/features/main_menu/page_structures/cookshop_page.dart';
-import 'package:crokett/features/main_menu/page_structures/help_page.dart';
-import 'package:crokett/features/main_menu/page_structures/profile_page.dart';
-import 'package:crokett/features/main_menu/page_structures/recipes_page.dart';
-import 'package:crokett/features/main_menu/page_structures/tips_and_tricks_page.dart';
+import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
+import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
+import 'package:crokett/features/help/page_structures/help_page.dart';
+import 'package:crokett/features/profile/page_structures/profile_page.dart';
+import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
+import 'package:crokett/features/tips_and_tricks/page_structures/tips_and_tricks_page.dart';
 import 'package:crokett/routes/app_state.dart';
 import 'package:crokett/routes/route_path.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,9 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
       key: navigatorKey,
       pages: [
         MaterialPage(
-            key: ValueKey(appState.selectedMenuItem.title), child: getPage(appState.selectedMenuItem))
+            key: ValueKey(appState.selectedMenuItem.title), 
+            child: getPage(appState.selectedMenuItem),
+        ),
 
         // if (appState.selectedIndex == 0) ...[ // This is for after pressing burger menu/drawer button
         //   FadeAnimationPage(
@@ -80,13 +82,8 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
   }
 
   @override
-  Future<void> setNewRoutePath(RoutePath path) async {
+  Future<void> setNewRoutePath(RoutePath path) async { // WHERE SHOULD THIS BE CALLED?
     // We may need this to drill down into each main menu section. E.g drill down into the
     assert(false);
-  }
-
-  void _handleMenuOptionTapped(MenuItem menuItem) {
-    appState.selectedMenuItem = menuItem;
-    notifyListeners();
   }
 }

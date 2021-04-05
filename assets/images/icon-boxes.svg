@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>streamline-icon-shipment-package@140x140</title>
+    <g id="📱Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Create-Account" transform="translate(-26.000000, -124.000000)" stroke="#000000" stroke-width="1.833333">
+            <g id="streamline-icon-shipment-package@140x140" transform="translate(27.000000, 125.000000)">
+                <path d="M31,7.56107215 C31,7.02068195 30.6827055,6.53152654 30.1913042,6.3153705 L16.0391304,0.112672883 C15.6951638,-0.0375576278 15.3048362,-0.0375576278 14.9608696,0.112672883 L0.808695803,6.3153705 C0.317294469,6.53152654 0,7.02068195 0,7.56107215 L0,23.423731 C0,23.9719749 0.326888037,24.4665094 0.828913194,24.6775833 L15.6347826,30.8952239 C15.9809801,31.0408293 16.3717227,31.0344297 16.7130435,30.877564 L30.2101738,24.6911679 C30.6910734,24.470727 31,23.9874413 31,23.4549754 L31,7.56107215 Z" id="Path"></path>
+                <line x1="16" y1="14" x2="0" y2="7" id="Path"></line>
+                <line x1="16" y1="14" x2="31" y2="7" id="Path"></line>
+                <line x1="9" y1="3" x2="24" y2="10" id="Path"></line>
+                <line x1="16.5" y1="31" x2="16.5" y2="14.5" id="Path"></line>
+            </g>
+        </g>
+    </g>
+</svg>

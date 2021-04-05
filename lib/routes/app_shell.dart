@@ -98,6 +98,9 @@ class _AppShellState extends State<AppShell> {
                             child: Text('JS', textAlign: TextAlign.center),
                           )),
                       title: Text('Joe'),
+                      onTap: () {
+                        appState.selectedMenuItem = MenuItem(Profile);
+                      },
                     ),
                   ),
                 ),

@@ -8,9 +8,6 @@ class CrokettRouterDelegate extends RouterDelegate<RoutePath>
   final GlobalKey<NavigatorState> navigatorKey;
 
   AppState appState = AppState();
-  bool mainMenuSelected = false;
-  bool showBackButton = false;
-  String title = '';
 
   CrokettRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>() {
     appState.addListener(notifyListeners);
@@ -25,6 +22,8 @@ class CrokettRouterDelegate extends RouterDelegate<RoutePath>
     return Navigator(
       key: navigatorKey,
       pages: [
+        // Auth Bloc + Splash Page etc
+        // Need to have the if else here for if signed in, if not go to login/signup
         MaterialPage(
           child: AppShell(
               appState: appState

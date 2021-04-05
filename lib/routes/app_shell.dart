@@ -1,16 +1,12 @@
-import 'package:bouncing_widget/bouncing_widget.dart';
-import 'package:crokett/core/global/colors/custom_colours.dart';
+import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart.dart';
 import 'package:crokett/core/global/constants/constants.dart';
-import 'package:crokett/core/global/helpers/button_delay_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
-import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
 import 'package:crokett/routes/app_state.dart';
 import 'package:crokett/routes/inner_router_delegate.dart';
 import 'package:crokett/routes/route_path.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AppShell extends StatefulWidget {
   AppState appState;
@@ -105,42 +101,71 @@ class _AppShellState extends State<AppShell> {
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageBoxes),
+                  ),
                   title: Text(Constants.boxes),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Boxes);
                   },
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageRecipes),
+                  ),
                   title: Text(Constants.recipes),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Recipes);
                   },
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageCookshop),
+                  ),
                   title: Text(Constants.cookshop),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Cookshop);
                   },
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageTipsAndTricks),
+                  ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(TipsAndTricks);
                   },
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageHelp),
+                  ),
                   title: Text(Constants.help),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Help);
                   },
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
-                  leading: Icon(Icons.settings),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageSettings),
+                  ),
                   title: Text(Constants.settings),
                   onTap: () {
                     appState.selectedMenuItem = MenuItem(Settings);

@@ -61,15 +61,6 @@ class Constants extends InheritedWidget {
   static const String hiveShowOnboarding = 'show_on_boarding';
   static const String hiveUserToken = 'hive_user_token';
 
-// Images
-
-  static const String imageHobPower1 = 'assets/images/power_1.png';
-  static const String imageHobPower2 = 'assets/images/power_2.png';
-
-// Sounds
-
-  static const String soundHobClick = 'click_click_click.mp3';
-
   @override
   bool updateShouldNotify(Constants oldWidget) => false;
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 // import 'package:audioplayers/audio_cache.dart';
+import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
@@ -70,7 +71,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
       setState(() {});
-   //   player.play(Constants.soundHobClick);
+   //   player.play(Sounds.soundHobClick);
       Future<void>.delayed(const Duration(milliseconds: 600), () {
         spinAnimationController1.forward(from: 0).then((value) {
           setState(() {
@@ -139,7 +140,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                               child: RotationTransition(
                                 turns: Tween(begin: 0.0, end: 0.4)
                                     .animate(spinAnimationController1),
-                                child: Image.asset(Constants.imageHobPower1),
+                                child: Image.asset(Images.imageHobPower1),
                               ),
                             ),
                           ),
@@ -152,7 +153,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                               child: RotationTransition(
                                 turns: Tween(begin: 0.4, end: 0.1)
                                     .animate(spinAnimationController2),
-                                child: Image.asset(Constants.imageHobPower2),
+                                child: Image.asset(Images.imageHobPower2),
                               ),
                             ),
                           ),

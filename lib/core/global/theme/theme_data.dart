@@ -51,79 +51,79 @@ TextTheme textTheme() {
   return TextTheme(
     // Used for the Crokett title
     headline1: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.vorkursFont,
         fontSize: 70,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.5),
     // Main title
     headline2: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.vorkursFont,
         fontSize: 39,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25),
-    //
+    // Poppins
     headline3: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 32,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25),
-    //
+    // Poppins
     headline4: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 30,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25),
-    //
+    // Poppins
     headline5: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 28,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25),
-    //
+    // Poppins
     headline6: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 23,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.15),
     // Used for inside textFields
     subtitle1: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 18,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     // Used for sub titles errors, notifications etc
     subtitle2: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 20,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     // Text buttons e.g Forgotten sign in details?, Labelling above textFields, main text size
     bodyText1: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     // Information & large bodies of text
     bodyText2: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 14,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     //
     button: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 16,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.15),
     //
     caption: TextStyle(
-        fontFamily: Constants.jostFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 12,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     //
     overline: TextStyle(
-        fontFamily: Constants.carinoSansFont,
+        fontFamily: Constants.poppinsFont,
         fontSize: 10,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),

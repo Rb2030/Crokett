@@ -7,7 +7,7 @@ class Images extends InheritedWidget {
 
   // Images
 
-  static const String imageCrokettLogo = 'assets/images/logo.svg';
+  static const String imageCrokettLogo = 'assets/images/crokett_logo.svg';
   static const String imageHobPower1 = 'assets/images/power_1.png';
   static const String imageHobPower2 = 'assets/images/power_2.png';
   static const String imageHome = 'assets/images/icon-home.svg';

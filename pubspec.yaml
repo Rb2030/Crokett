@@ -81,11 +81,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: CarinoSans
+    - family: Vorkurs
       fonts:
-        - asset: assets/fonts/CarinoSansBold.ttf
-        - asset: assets/fonts/CarinoSansRegular.ttf
-        - asset: assets/fonts/CarinoSansSemiBold.ttf
-    - family: Jost
+        - asset: assets/fonts/II_Vorkurs_Bold_Oblique.otf
+        - asset: assets/fonts/II_Vorkurs_Bold.otf
+        - asset: assets/fonts/II_Vorkurs_Light_Oblique.otf
+        - asset: assets/fonts/II_Vorkurs_Light.otf
+        - asset: assets/fonts/II_Vorkurs_Medium_Oblique.otf
+        - asset: assets/fonts/II_Vorkurs_Medium.otf
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/Jost-VariableFont_wght.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf

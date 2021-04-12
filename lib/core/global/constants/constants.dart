@@ -53,8 +53,8 @@ class Constants extends InheritedWidget {
 
 // Font
 
-  static const String carinoSansFont = 'CarinoSans';
-  static const String jostFont = 'Jost';
+  static const String vorkursFont = 'Vorkurs';
+  static const String poppinsFont = 'Poppins';
 
 // Hive Boxes
 

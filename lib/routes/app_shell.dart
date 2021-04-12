@@ -75,7 +75,7 @@ class _AppShellState extends State<AppShell> {
           appState.ifMenuSelected = true;
         },
         child: Container(
-          width: rsc.rW(60),
+          width: rsc.rW(70),
           child: Drawer(
             child: ListView(
               padding: EdgeInsets.zero,

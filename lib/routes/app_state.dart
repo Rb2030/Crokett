@@ -13,6 +13,7 @@ class AppState extends ChangeNotifier {
   MenuItem _selectedMenuItem = MenuItem('');
 
   final List<MenuItem> menuItems = [
+    MenuItem(Home),
     MenuItem(Profile),
     MenuItem(Boxes),
     MenuItem(Recipes),

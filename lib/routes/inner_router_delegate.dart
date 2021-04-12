@@ -2,6 +2,7 @@ import 'package:crokett/core/global/widgets/fade_animation_page.dart';
 import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
 import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
 import 'package:crokett/features/help/page_structures/help_page.dart';
+import 'package:crokett/features/home/page_structures/home_page.dart';
 import 'package:crokett/features/profile/page_structures/profile_page.dart';
 import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
 import 'package:crokett/features/settings/page_structures/settings_page.dart';
@@ -31,6 +32,8 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
 
    Widget getPage(MenuItem menuItem) {
       switch (menuItem.title) {
+        case Home:
+          return HomePage();
         case Profile:
           return ProfilePage();
         case Boxes:

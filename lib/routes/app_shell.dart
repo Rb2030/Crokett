@@ -85,14 +85,17 @@ class _AppShellState extends State<AppShell> {
                   child: DrawerHeader(
                     padding: EdgeInsets.zero,
                     child: ListTile(
-                      leading: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.grey[200], shape: BoxShape.circle),
-                          child: Padding(
-                            padding: EdgeInsets.all(
-                                UIHelper.paddingBetweenElements / 1.5),
-                            child: Text('JS', textAlign: TextAlign.center),
-                          )),
+                      leading: Padding(
+                        padding: const EdgeInsets.fromLTRB(UIHelper.paddingBetweenElements / 4, 0, 0, 0),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200], shape: BoxShape.circle),
+                            child: Padding(
+                              padding: EdgeInsets.all(
+                                  UIHelper.paddingBetweenElements / 1.5),
+                              child: Text('JS', textAlign: TextAlign.center),
+                            )),
+                      ),
                       title: Text('Joe'),
                       onTap: () {
                         appState.selectedMenuItem = MenuItem(Profile);
@@ -100,6 +103,19 @@ class _AppShellState extends State<AppShell> {
                     ),
                   ),
                 ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
+                ListTile(
+                  leading: Padding(
+                    padding: const EdgeInsets.all(
+                        UIHelper.paddingBetweenElements / 3),
+                    child: SvgPicture.asset(Images.imageHome),
+                  ),
+                  title: Text(Constants.home),
+                  onTap: () {
+                    appState.selectedMenuItem = MenuItem(Home);
+                  },
+                ),
+                const SizedBox(height: UIHelper.paddingBetweenElements / 2),
                 ListTile(
                   leading: Padding(
                     padding: const EdgeInsets.all(

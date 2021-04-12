@@ -20,6 +20,7 @@ class MainMenuPath extends RoutePath {
 
 // Main Menu Items
 
+const String Home = 'home';
 const String Profile = 'profile';
 const String Boxes = 'boxes';
 const String Recipes = 'recipes';
@@ -28,4 +29,4 @@ const String TipsAndTricks = 'tips&tricks';
 const String Help = 'help';
 const String Settings = 'settings';
 
-List<String> mainMenuArray = [Boxes, Cookshop, Help, Profile, Recipes, Settings, TipsAndTricks];
+List<String> mainMenuArray = [Home, Profile, Boxes, Recipes, Cookshop, TipsAndTricks, Help, Settings];

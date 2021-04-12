@@ -42,6 +42,7 @@ class Constants extends InheritedWidget {
 
   // Main Menu
 
+  static const String home = "Home";
   static const String profile = "Profile";
   static const String boxes = "Boxes";
   static const String recipes = "Recipes";

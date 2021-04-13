@@ -22,9 +22,6 @@ class Constants extends InheritedWidget {
   static const String logIn = 'Log In';
   static const String register = 'Register';
   static const String forgottenSigninDetails = 'Forgotten sign In details?';
-  static const String invalidEmail = 'Invalid Email';
-  static const String invalidPassword = 'Invalid Password';
-  static const String invalidUsername = 'Invalid Username';
   static const String emailAlreadyInUseTextFieldError = 'Email Already In Use';
 
   static const String cancelledByUser = 'Cancelled by user';
@@ -61,6 +58,17 @@ class Constants extends InheritedWidget {
   static const String hiveFirstLaunchOfApp = 'first_launch';
   static const String hiveShowOnboarding = 'show_on_boarding';
   static const String hiveUserToken = 'hive_user_token';
+
+// Errors
+ 
+  static const String errorServer = 'There was an error with the server. Please try again later';
+  static const String errorCache = 'There was an error with the local storage. Please try again later';
+  static const String errorInvalidEmail = 'Invalid email format.';
+  static const String errorInvalidPassword = 'Invalid password format';
+  static const String errorInvalidUsername = 'Invalid username format';
+  static const String errorExceedingLength = 'Exceeded length';
+  static const String errorContainsProfanity = 'Contains profanity';
+  static const String errorEmptyField = 'Empty field';
 
   @override
   bool updateShouldNotify(Constants oldWidget) => false;

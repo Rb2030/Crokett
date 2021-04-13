@@ -1,4 +1,4 @@
-import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart.dart';
+import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';

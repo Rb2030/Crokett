@@ -1,6 +1,6 @@
 import 'dart:async';
 // import 'package:audioplayers/audio_cache.dart';
-import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart.dart';
+import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
@@ -123,7 +123,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                           child: Text(
-                            'CR',
+                            'cr',
                             style: Theme.of(context).textTheme.headline5,
                           ),
                         ),
@@ -165,7 +165,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                           child: Text(
-                            'KETT',
+                            'kett',
                             style: Theme.of(context).textTheme.headline5,
                           ),
                         ),

@@ -1,4 +1,3 @@
-import 'package:crokett/core/global/errors/auth_failures.dart';
 import 'package:crokett/core/global/errors/failures.dart';
 import 'package:crokett/features/login_and_sign_up/domain/entities/email_address.dart';
 import 'package:crokett/features/login_and_sign_up/domain/entities/password.dart';
@@ -22,7 +21,7 @@ abstract class IAuthFacade {
 
   Future<Option<CurrentUser>> getSignedInUser();
 
-  Future<Either<Failure, Unit>> uniqueUsernameCheck({
+  Future<Either<Failure, Unit>> uniqueUsernameCheck({  // Unit is the same as void
     @required Username username,
   });
 

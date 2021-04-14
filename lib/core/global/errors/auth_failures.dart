@@ -35,3 +35,10 @@ class InvalidEmailAndPasswordCombination extends AuthFailure {
 
   InvalidEmailAndPasswordCombination() : super(Constants.failureExceedingLength);
 }
+
+//
+
+class NotAuthenticated extends AuthFailure {
+
+  NotAuthenticated() : super(Constants.failureNotAuthenticated);
+}

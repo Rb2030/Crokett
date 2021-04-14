@@ -69,6 +69,7 @@ class Constants extends InheritedWidget {
   static const String failureExceedingLength = 'Exceeded length';
   static const String failureEmptyField = 'Empty field';
   static const String failureContainsProfanity = 'Contains profanity';
+  static const String failureNotAuthenticated = 'Not Authenticated';
   static const String failureCancelledByUser = 'Cancelled By User';
   static const String failureServerError = 'Server Error';
   static const String failureEmailAlreadyInUse = 'Email Already In Use';

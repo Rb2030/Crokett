@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class EntryScreenPage extends StatelessWidget {
 
-  const LoginPage();
+  const EntryScreenPage();
 
   @override
   Widget build(BuildContext context) {

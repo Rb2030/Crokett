@@ -1,6 +1,8 @@
 import 'package:crokett/core/global/errors/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
+@immutable
 abstract class ValueObject<T> {
   const ValueObject();
   Either<Failure, T> get value;

@@ -10,56 +10,56 @@ abstract class Failure extends Error {
 
 class ServerFailure extends Failure {
 
-  ServerFailure() : super(Constants.errorServer);
+  ServerFailure() : super(Constants.failureServer);
 }
 
 //
 
 class CacheFailure extends Failure {
 
-  CacheFailure() : super(Constants.errorCache);
+  CacheFailure() : super(Constants.failureCache);
 }
 
 //
 
 class InvalidEmail extends Failure {
 
-  InvalidEmail() : super(Constants.errorInvalidEmail);
+  InvalidEmail() : super(Constants.failureInvalidEmail);
 }
 
 //
 
 class InvalidPassword extends Failure {
 
-  InvalidPassword() : super(Constants.errorInvalidPassword);
+  InvalidPassword() : super(Constants.failureInvalidPassword);
 }
 
 //
 
 class InvalidUsername extends Failure {
 
-  InvalidUsername() : super(Constants.errorInvalidUsername);
+  InvalidUsername() : super(Constants.failureInvalidUsername);
 }
 
 //
 
 class ExceedingLength extends Failure {
 
-  ExceedingLength() : super(Constants.errorExceedingLength);
+  ExceedingLength() : super(Constants.failureExceedingLength);
 }
 
 //
 
 class EmptyField extends Failure {
 
-  EmptyField() : super(Constants.errorEmptyField);
+  EmptyField() : super(Constants.failureEmptyField);
 }
 
 //
 
 class ContainsProfanity extends Failure {
 
-  ContainsProfanity() : super(Constants.errorContainsProfanity);
+  ContainsProfanity() : super(Constants.failureContainsProfanity);
 }
 
 //

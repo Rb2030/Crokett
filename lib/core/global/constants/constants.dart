@@ -59,16 +59,21 @@ class Constants extends InheritedWidget {
   static const String hiveShowOnboarding = 'show_on_boarding';
   static const String hiveUserToken = 'hive_user_token';
 
-// Errors
+// Failures
  
-  static const String errorServer = 'There was an error with the server. Please try again later';
-  static const String errorCache = 'There was an error with the local storage. Please try again later';
-  static const String errorInvalidEmail = 'Invalid email format.';
-  static const String errorInvalidPassword = 'Invalid password format';
-  static const String errorInvalidUsername = 'Invalid username format';
-  static const String errorExceedingLength = 'Exceeded length';
-  static const String errorContainsProfanity = 'Contains profanity';
-  static const String errorEmptyField = 'Empty field';
+  static const String failureServer = 'There was an error with the server. Please try again later';
+  static const String failureCache = 'There was an error with the local storage. Please try again later';
+  static const String failureInvalidEmail = 'Invalid email format.';
+  static const String failureInvalidPassword = 'Invalid password format';
+  static const String failureInvalidUsername = 'Invalid username format';
+  static const String failureExceedingLength = 'Exceeded length';
+  static const String failureEmptyField = 'Empty field';
+  static const String failureContainsProfanity = 'Contains profanity';
+  static const String failureCancelledByUser = 'Cancelled By User';
+  static const String failureServerError = 'Server Error';
+  static const String failureEmailAlreadyInUse = 'Email Already In Use';
+  static const String failureUsernameAlreadyInUse = 'Username Already In Use';
+  static const String failureInvalidEmailAndPasswordCombination = 'Invalid Email and Password Combination';
 
   @override
   bool updateShouldNotify(Constants oldWidget) => false;

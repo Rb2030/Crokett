@@ -16,17 +16,5 @@ class EmailAddress extends ValueObject<String> {
   }
 
   const EmailAddress._(this.value);
-
-  @override
-  String toString() => 'EmailAddress(value: $value)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is EmailAddress && other.value == value;
-  }
-
-  @override
-  int get hashCode => value.hashCode;
+  
 }

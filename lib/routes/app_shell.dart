@@ -98,6 +98,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
+                        appState.ifMenuSelected = true;
                         appState.selectedMenuItem = MenuItem(Profile);
                       },
                     ),
@@ -112,6 +113,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Home);
                   },
                 ),
@@ -124,6 +126,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Boxes);
                   },
                 ),
@@ -136,6 +139,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Recipes);
                   },
                 ),
@@ -148,6 +152,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Cookshop);
                   },
                 ),
@@ -160,6 +165,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(TipsAndTricks);
                   },
                 ),
@@ -172,6 +178,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Help);
                   },
                 ),
@@ -184,6 +191,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
+                    appState.ifMenuSelected = true;
                     appState.selectedMenuItem = MenuItem(Settings);
                   },
                 ),

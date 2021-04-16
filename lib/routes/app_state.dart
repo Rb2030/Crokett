@@ -32,7 +32,7 @@ class AppState extends ChangeNotifier {
     if (_mainMenuSelected == false) {
       // May need to remove this?
 
-      selectedMenuItem = MenuItem('');
+      selectedMenuItem = MenuItem(Home);
     }
     notifyListeners();
   }

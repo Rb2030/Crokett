@@ -14,7 +14,6 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   
-  bool showOnBoarding = true;
   String loggedInToken = '';
 
  // final player = AudioCache();
@@ -34,14 +33,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    // First launch of app?
-    HiveHelper.showOnBoarding().then((value) {
-      if (value == true) showOnBoarding = value;
-    });
     // Logged In?
-    HiveHelper.getToken().then((value) {
-      if (value != '') loggedInToken = value;
-    });
+    // HiveHelper.getToken().then((value) {
+    //   if (value != '') loggedInToken = value;
+    // });
 
     bouncingAnimationController = AnimationController(
       vsync: this,

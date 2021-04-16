@@ -57,8 +57,8 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
       key: navigatorKey,
       pages: [
         FadeAnimationPage(
-            key: ValueKey(appState.selectedMenuItem.title), 
-            child: getPage(appState.selectedMenuItem),
+            key: ValueKey(_appState.selectedMenuItem.title), 
+            child: getPage(_appState.selectedMenuItem),
         ),
 
         // if (appState.selectedIndex == 0) ...[ // This is for after pressing burger menu/drawer button
@@ -81,7 +81,7 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
         //   ),
       ],
       onPopPage: (route, result) {
-        appState.selectedMenuItem.title = '';
+        _appState.selectedMenuItem.title = '';
         notifyListeners();
         return route.didPop(result);
       },
@@ -95,7 +95,7 @@ class InnerRouterDelegate extends RouterDelegate<RoutePath>
   }
 
   void _handleMenuOptionTapped(MenuItem menuItem) {
-    appState.selectedMenuItem = menuItem;
+    _appState.selectedMenuItem = menuItem;
     notifyListeners();
   }
 }

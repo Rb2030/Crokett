@@ -7,10 +7,10 @@ class EntryScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => getIt<EntryScreenBloc>(),
-        child: //TODO: Put entry screen UI in here,
-    )
-    );
+        body: BlocProvider(
+            create: (context) => getIt<EntryScreenBloc>(),
+            child: Container() //TODO: Put entry screen UI in here,
+            ),
+        );
   }
 }

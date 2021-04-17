@@ -1,6 +1,9 @@
-enum MainMenuOption {
+enum MainMenuOption { // All the options in the drawer menu
   profile,
   home,
+  homeFeatured,
+  homeUpcomingBox,
+  homeSelectedForYou,
   boxes,
   recipes,
   cookshop,
@@ -14,230 +17,135 @@ class CrokettConfiguration {
   final bool splashPageFinished;
   final bool loggedIn;
   final MainMenuOption mainMenuOption;
-  final String featuredId;
-  final String selectedForYouId;
-  final String recipeId;
-  final String boxOrderId;
-  final String cookshopItemId;
-  final String tipsAndTrickId;
+  final String selectedItemId;
 
   CrokettConfiguration.splash()
       : unknown = false,
         splashPageFinished = false,
         loggedIn = false,
         mainMenuOption = MainMenuOption.home,
-        featuredId = '',
-        selectedForYouId = '',
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.loginSignUp() // This will have the sign up and the google login on the same page
       : unknown = false,
         splashPageFinished = true,
         loggedIn = false,
         mainMenuOption = MainMenuOption.home,
-        featuredId = '',
-        selectedForYouId = '',
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.home()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.home,
-        featuredId = '',
-        selectedForYouId = '',
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.homeFeatured(String featuredId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.home,
-        featuredId = featuredId,
-        selectedForYouId = '',
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = featuredId;
 
   CrokettConfiguration.homeUpcomingBox(String boxOrderId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.home,
-        featuredId = '',
-        selectedForYouId = '',
-        boxOrderId = boxOrderId,
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = boxOrderId;
 
-    CrokettConfiguration.homeSelectedForYou(String selectedForYouId)
+  CrokettConfiguration.homeSelectedForYou(String selectedForYouId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.home,
-        featuredId = '',
-        selectedForYouId = selectedForYouId,
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = selectedForYouId;
 
   CrokettConfiguration.profile()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.profile,
-        featuredId = '',
-        selectedForYouId = '',        
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.boxes()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.boxes,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.selectedBox(String boxOrderId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.boxes,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = boxOrderId;
 
   CrokettConfiguration.recipes()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.recipes,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
-  CrokettConfiguration.oldRecipes() // When an old recipe is selected it will just use the selectedRecipe route below
-      : unknown = false,
-        splashPageFinished = true,
-        loggedIn = true,
-        mainMenuOption = MainMenuOption.recipes,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+  // CrokettConfiguration.oldRecipes() // When an old recipe is selected it will just use the selectedRecipe route below
+  //     : unknown = false,
+  //       splashPageFinished = true,
+  //       loggedIn = true,
+  //       mainMenuOption = MainMenuOption.recipes,
+  //       selectedItemId = '';
 
   CrokettConfiguration.selectedRecipe(String recipeId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.recipes,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = recipeId,
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = recipeId;
 
   CrokettConfiguration.cookshop()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.cookshop,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.selectedCookshopItem(String cookshopItem)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.cookshop,
-        featuredId = '',
-        selectedForYouId = '',
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = cookshopItem,
-        tipsAndTrickId = '';
+        selectedItemId = cookshopItem;
 
   CrokettConfiguration.tipsAndTricks()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.tipsAndTricks,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.selectedTipsAndTricks(String tipOrTrick)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.tipsAndTricks,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = tipOrTrick;
+        selectedItemId = tipOrTrick;
 
   CrokettConfiguration.help()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.help,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
   CrokettConfiguration.settings()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
         mainMenuOption = MainMenuOption.settings,
-        featuredId = '',
-        selectedForYouId = '',  
-        boxOrderId = '',
-        recipeId = '',
-        cookshopItemId = '',
-        tipsAndTrickId = '';
+        selectedItemId = '';
 
-  bool get isUnknown => unknown == true;
+  bool get isUnknownPage => unknown == true;
 
   bool get isSplashPage =>
       unknown == false && loggedIn == false && splashPageFinished == false;
@@ -246,21 +154,76 @@ class CrokettConfiguration {
       unknown == false && loggedIn == false && splashPageFinished == true;
 
   bool get isHomePage =>
-      unknown == false &&
-      mainMenuOption == MainMenuOption.home;
+      unknown == false && mainMenuOption == MainMenuOption.home;
 
-  bool get isColorPage =>
+  bool get isHomeFeaturedPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      boxOrderId == '' &&
-      recipeId == '' &&
-      cookshopItemId == '' &&
-      tipsAndTrickId == '';
+      mainMenuOption == MainMenuOption.homeFeatured &&
+      selectedItemId != '';
 
-  bool get isShapePage =>
+  bool get isHomeUpcomingBoxPage =>
       unknown == false &&
+      splashPageFinished == true &&
       loggedIn == true &&
-      colorCode != null &&
-      shapeBorderType != null;
+      mainMenuOption == MainMenuOption.homeUpcomingBox &&
+      selectedItemId != '';
+  
+  bool get isHomeSelectedForYouPage =>
+    unknown == false &&
+    splashPageFinished == true &&
+    loggedIn == true &&
+    mainMenuOption == MainMenuOption.homeSelectedForYou &&
+    selectedItemId != '';
+
+  bool get isProfilePage =>
+      unknown == false && mainMenuOption == MainMenuOption.profile;
+
+  bool get isBoxesPage =>
+      unknown == false && mainMenuOption == MainMenuOption.boxes;
+
+  bool get isSelectedBoxPage =>
+    unknown == false &&
+    splashPageFinished == true &&
+    loggedIn == true &&
+    mainMenuOption == MainMenuOption.boxes &&
+    selectedItemId != '';
+
+  bool get isRecipePage =>
+      unknown == false && mainMenuOption == MainMenuOption.recipes;
+
+  bool get isSelectedRecipePage =>
+    unknown == false &&
+    splashPageFinished == true &&
+    loggedIn == true &&
+    mainMenuOption == MainMenuOption.recipes &&
+    selectedItemId != '';
+
+  bool get isCookshopPage =>
+      unknown == false && mainMenuOption == MainMenuOption.cookshop;
+
+  bool get isSelectedCookshopPage =>
+    unknown == false &&
+    splashPageFinished == true &&
+    loggedIn == true &&
+    mainMenuOption == MainMenuOption.cookshop &&
+    selectedItemId != '';
+
+  bool get isTipsAndTricksPage =>
+      unknown == false && mainMenuOption == MainMenuOption.tipsAndTricks;
+
+  bool get isSelectedTipsAndTricksPage =>
+    unknown == false &&
+    splashPageFinished == true &&
+    loggedIn == true &&
+    mainMenuOption == MainMenuOption.tipsAndTricks &&
+    selectedItemId != '';
+
+  bool get isHelpPage =>
+      unknown == false && mainMenuOption == MainMenuOption.help;
+
+  bool get isSettingsPage =>
+      unknown == false && mainMenuOption == MainMenuOption.settings;
 }
+

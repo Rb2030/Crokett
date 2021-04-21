@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends Page {
 
   const ProfilePage();
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(color: Colors.teal, child: Text('PROFILE PAGE')));
+  Route createRoute(BuildContext context) {
+    // TODO: implement createRoute
+    throw UnimplementedError();
   }
 }

@@ -1,11 +1,13 @@
+import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 
-class HelpPage extends StatelessWidget {
+class HelpPage extends Page {
 
-  const HelpPage();
+  HelpPage() : super(key: ValueKey(HELP));
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(color: Colors.yellow, child: Text('HELP PAGE')));
+  Route createRoute(BuildContext context) {
+    // TODO: homeScreen child
+    throw UnimplementedError();
   }
 }

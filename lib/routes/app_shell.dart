@@ -2,51 +2,49 @@ import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
-import 'package:crokett/routes/app_state.dart';
-import 'package:crokett/routes/inner_router_delegate.dart';
-import 'package:crokett/routes/route_path.dart';
+import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
+import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
+import 'package:crokett/features/help/page_structures/help_page.dart';
+import 'package:crokett/features/home/page_structures/home_page.dart';
+import 'package:crokett/features/profile/page_structures/profile_page.dart';
+import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
+import 'package:crokett/features/settings/page_structures/settings_page.dart';
+import 'package:crokett/features/tips_and_tricks/page_structures/tips_and_tricks_page.dart';
+import 'package:crokett/routes/crokett_router_delegate.dart';
+import 'package:crokett/routes/router_bloc/router_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppShell extends StatefulWidget {
-  AppState appState;
+  final Page page;
 
-  AppShell({required this.appState});
+  AppShell(this.page);
 
   @override
   _AppShellState createState() => _AppShellState();
 }
 
 class _AppShellState extends State<AppShell> {
-  late InnerRouterDelegate _routerDelegate;
   late ChildBackButtonDispatcher _backButtonDispatcher;
+  Page? page;
 
   void initState() {
     super.initState();
-    _routerDelegate = InnerRouterDelegate(widget.appState);
-  }
-
-  @override
-  void didUpdateWidget(covariant AppShell oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _routerDelegate.appState = widget.appState;
+    page = widget.page;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Defer back button dispatching to the child router
-    _backButtonDispatcher = Router.of(context)
-        .backButtonDispatcher!
-        .createChildBackButtonDispatcher();
   }
 
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-    var appState = widget.appState;
 
     GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    CrokettRouterDelegate? _routerDelegate;
 
     toggleDrawer() async {
       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -56,23 +54,17 @@ class _AppShellState extends State<AppShell> {
       }
     }
 
-    // Claim priority, If there are parallel sub router, you will need
-    // to pick which one should take priority;
-    _backButtonDispatcher.takePriority();
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0,
       ),
       body: Router(
-        routerDelegate: _routerDelegate,
-        backButtonDispatcher: _backButtonDispatcher,
+        routerDelegate: _routerDelegate!,
       ),
       drawer: InkWell(
         onTap: () {
           toggleDrawer();
-          appState.ifMenuSelected = true;
         },
         child: Container(
           width: rsc.rW(70),
@@ -98,8 +90,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
-                        appState.ifMenuSelected = true;
-                        appState.selectedMenuItem = MenuItem(Profile);
+                        BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: ProfilePage())));
                       },
                     ),
                   ),
@@ -113,8 +104,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Home);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: HomePage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -126,8 +116,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Boxes);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: BoxesPage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -139,8 +128,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Recipes);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: RecipesPage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -152,8 +140,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Cookshop);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: CookshopPage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -165,8 +152,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(TipsAndTricks);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: TipsAndTricksPage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -178,8 +164,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Help);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: HelpPage())));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -191,8 +176,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
-                    appState.ifMenuSelected = true;
-                    appState.selectedMenuItem = MenuItem(Settings);
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: SettingsPage())));
                   },
                 ),
               ],

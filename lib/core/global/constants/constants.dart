@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Constants extends InheritedWidget {
-  static Constants? of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<Constants>();
+  static Constants? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<Constants>();
 
   Constants({Widget? child, Key? key}) : super(key: key, child: child!);
 
@@ -25,16 +26,22 @@ class Constants extends InheritedWidget {
   static const String emailAlreadyInUseTextFieldError = 'Email Already In Use';
 
   static const String cancelledByUser = 'Cancelled by user';
-  static const String emailAlreadyInUse = 'Email already registered. Please sign in by pressing back, or if you wish to reset your password press "Forgotten sign in details?".';
-  static const String invalidUsernameAndPasswordCombo = 'Invalid username and password combination';
+  static const String emailAlreadyInUse =
+      'Email already registered. Please sign in by pressing back, or if you wish to reset your password press "Forgotten sign in details?".';
+  static const String invalidUsernameAndPasswordCombo =
+      'Invalid username and password combination';
   static const String pleaseTryAgain = 'Please try again';
-  static const String usernameTaken = 'This username has already been taken, please choose another unique one';
+  static const String usernameTaken =
+      'This username has already been taken, please choose another unique one';
 
 // Register Screen
 
-  static const String emailInformation = 'Please ensure that you do not leave any blank spaces and your email is in the correct format e.g crokett@mail.com.';
-  static const String passwordInformation = 'Please ensure that the password has at least one capital letter, one number, one special character, no blank spaces and is at least 6 characters long.';
-  static const String usernameInformation = "Please select a username which is unique. This will be linked to your account so please refrain from using any profanity.";
+  static const String emailInformation =
+      'Please ensure that you do not leave any blank spaces and your email is in the correct format e.g crokett@mail.com.';
+  static const String passwordInformation =
+      'Please ensure that the password has at least one capital letter, one number, one special character, no blank spaces and is at least 6 characters long.';
+  static const String usernameInformation =
+      "Please select a username which is unique. This will be linked to your account so please refrain from using any profanity.";
   static const String unableToRegister = "Unable to register";
 
   // Main Menu
@@ -60,9 +67,11 @@ class Constants extends InheritedWidget {
   static const String hiveUserToken = 'hive_user_token';
 
 // Failures
- 
-  static const String failureServer = 'There was an error with the server. Please try again later';
-  static const String failureCache = 'There was an error with the local storage. Please try again later';
+
+  static const String failureServer =
+      'There was an error with the server. Please try again later';
+  static const String failureCache =
+      'There was an error with the local storage. Please try again later';
   static const String failureInvalidEmail = 'Invalid email format.';
   static const String failureInvalidPassword = 'Invalid password format';
   static const String failureInvalidUsername = 'Invalid username format';
@@ -74,7 +83,10 @@ class Constants extends InheritedWidget {
   static const String failureServerError = 'Server Error';
   static const String failureEmailAlreadyInUse = 'Email Already In Use';
   static const String failureUsernameAlreadyInUse = 'Username Already In Use';
-  static const String failureInvalidEmailAndPasswordCombination = 'Invalid Email and Password Combination';
+  static const String failureInvalidEmailAndPasswordCombination =
+      'Invalid Email and Password Combination';
+  static const String failureCouldNotSetRoute = 'Could not set new route';
+
 
   @override
   bool updateShouldNotify(Constants oldWidget) => false;

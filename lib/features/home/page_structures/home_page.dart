@@ -1,11 +1,14 @@
+import 'package:crokett/core/global/constants/constants.dart';
+import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends Page {
 
-  const HomePage();
+  HomePage() : super(key: ValueKey(HOME));
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(color: Colors.amber, child: Text('HOME PAGE')));
+  Route createRoute(BuildContext context) {
+    // TODO: homeScreen child
+    throw UnimplementedError();
   }
 }

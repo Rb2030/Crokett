@@ -1,11 +1,13 @@
+import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 
-class RecipesPage extends StatelessWidget {
+class RecipesPage extends Page {
 
-  const RecipesPage();
+  RecipesPage() : super(key: ValueKey(RECIPES));
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(color: Colors.purple, child: Text('RECIPES PAGE')));
+  Route createRoute(BuildContext context) {
+    // TODO: homeScreen child
+    throw UnimplementedError();
   }
 }

@@ -1,148 +1,196 @@
-enum MainMenuOption { // All the options in the drawer menu
-  profile,
-  home,
-  homeFeatured,
-  homeUpcomingBox,
-  homeSelectedForYou,
-  boxes,
-  recipes,
-  cookshop,
-  tipsAndTricks,
-  help,
-  settings
-}
+// URL params + configuration reference
+
+const String UNKNOWN = "unknown";
+const String SPLASH = "splash";
+const String LOGIN = "login";
+const String SIGN_UP = "sign_up";
+const String GOOGLE_SIGN_IN = "google_sign_in";
+const String DO_WE_DELIVER = "do_we_deliver";
+const String FOOD_PREFERENCES = "food_preferences";
+const String PROFILE = "profile";
+const String HOME = "home";
+const String FEATURED = "featured"; // Option in the home screen
+const String UPCOMING_BOX = "upcoming_box"; // Option in the home screen
+const String SELECTED_FOR_YOU = "selected_for_you"; // Option in the home screen
+const String BOXES = "boxes";
+const String SELECTED_BOX = "selected_box";
+const String RECIPES = "recipes";
+const String SELECTED_RECIPE = "selected_recipe";
+const String COOKSHOP = "cookshop";
+const String SELECTED_COOKSHOP_ITEM = "selected_cookshop_item";
+const String TIPS_AND_TRICKS = "tips_and_tricks";
+const String SELECTED_TIPS_AND_TRICKS = "selected_tips_and_tricks";
+const String HELP = "help";
+const String SETTINGS = "settings";
+
+// Config
 
 class CrokettConfiguration {
   final bool unknown;
   final bool splashPageFinished;
   final bool loggedIn;
-  final MainMenuOption mainMenuOption;
+  final String screen;
   final String selectedItemId;
+
+  CrokettConfiguration.unknown()
+      : unknown = true,
+        splashPageFinished = false,
+        loggedIn = true,
+        screen = UNKNOWN,
+        selectedItemId = '';
 
   CrokettConfiguration.splash()
       : unknown = false,
         splashPageFinished = false,
         loggedIn = false,
-        mainMenuOption = MainMenuOption.home,
+        screen = SPLASH,
         selectedItemId = '';
 
-  CrokettConfiguration.loginSignUp() // This will have the sign up and the google login on the same page
+  CrokettConfiguration.login()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = false,
-        mainMenuOption = MainMenuOption.home,
+        screen = LOGIN,
+        selectedItemId = '';
+
+  CrokettConfiguration.signUp()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = false,
+        screen = SIGN_UP,
+        selectedItemId = '';
+
+  CrokettConfiguration.googleSignIn()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = false,
+        screen = GOOGLE_SIGN_IN,
+        selectedItemId = '';
+
+  CrokettConfiguration.doWeDeliver()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = true,
+        screen = DO_WE_DELIVER,
+        selectedItemId = '';
+
+  CrokettConfiguration.foodPreferences()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = true,
+        screen = FOOD_PREFERENCES,
         selectedItemId = '';
 
   CrokettConfiguration.home()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.home,
+        screen = HOME,
         selectedItemId = '';
 
   CrokettConfiguration.homeFeatured(String featuredId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.home,
+        screen = FEATURED,
         selectedItemId = featuredId;
 
   CrokettConfiguration.homeUpcomingBox(String boxOrderId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.home,
+        screen = UPCOMING_BOX,
         selectedItemId = boxOrderId;
 
   CrokettConfiguration.homeSelectedForYou(String selectedForYouId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.home,
+        screen = SELECTED_FOR_YOU,
         selectedItemId = selectedForYouId;
 
   CrokettConfiguration.profile()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.profile,
+        screen = PROFILE,
         selectedItemId = '';
 
   CrokettConfiguration.boxes()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.boxes,
+        screen = BOXES,
         selectedItemId = '';
 
   CrokettConfiguration.selectedBox(String boxOrderId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.boxes,
+        screen = SELECTED_BOX,
         selectedItemId = boxOrderId;
 
   CrokettConfiguration.recipes()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.recipes,
+        screen = RECIPES,
         selectedItemId = '';
 
   // CrokettConfiguration.oldRecipes() // When an old recipe is selected it will just use the selectedRecipe route below
   //     : unknown = false,
   //       splashPageFinished = true,
   //       loggedIn = true,
-  //       mainMenuOption = MainMenuOption.recipes,
+  //       screen = OLD_RECIPES,
   //       selectedItemId = '';
 
   CrokettConfiguration.selectedRecipe(String recipeId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.recipes,
+        screen = SELECTED_RECIPE,
         selectedItemId = recipeId;
 
   CrokettConfiguration.cookshop()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.cookshop,
+        screen = COOKSHOP,
         selectedItemId = '';
 
   CrokettConfiguration.selectedCookshopItem(String cookshopItem)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.cookshop,
+        screen = SELECTED_COOKSHOP_ITEM,
         selectedItemId = cookshopItem;
 
   CrokettConfiguration.tipsAndTricks()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.tipsAndTricks,
+        screen = TIPS_AND_TRICKS,
         selectedItemId = '';
 
   CrokettConfiguration.selectedTipsAndTricks(String tipOrTrick)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.tipsAndTricks,
+        screen = SELECTED_TIPS_AND_TRICKS,
         selectedItemId = tipOrTrick;
 
   CrokettConfiguration.help()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.help,
+        screen = HELP,
         selectedItemId = '';
 
   CrokettConfiguration.settings()
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        mainMenuOption = MainMenuOption.settings,
+        screen = SETTINGS,
         selectedItemId = '';
 
   bool get isUnknownPage => unknown == true;
@@ -150,80 +198,139 @@ class CrokettConfiguration {
   bool get isSplashPage =>
       unknown == false && loggedIn == false && splashPageFinished == false;
 
-  bool get isLoginSignUpPage =>
+  bool get isLoginPage =>
       unknown == false && loggedIn == false && splashPageFinished == true;
 
+  bool get isSignUpPage =>
+      unknown == false &&
+      loggedIn == false &&
+      splashPageFinished == true &&
+      screen == SIGN_UP &&
+      selectedItemId == '';
+
+  bool get isGoogleSignInPage =>
+      unknown == false &&
+      loggedIn == false &&
+      splashPageFinished == true &&
+      screen == GOOGLE_SIGN_IN &&
+      selectedItemId == '';
+
+  bool get isDoWeDeliverPage =>
+      unknown == false &&
+      loggedIn == true &&
+      splashPageFinished == true &&
+      screen == DO_WE_DELIVER &&
+      selectedItemId == '';
+
+  bool get isFoodPreferencesPage =>
+      unknown == false &&
+      loggedIn == true &&
+      splashPageFinished == true &&
+      screen == FOOD_PREFERENCES &&
+      selectedItemId == '';
+
   bool get isHomePage =>
-      unknown == false && mainMenuOption == MainMenuOption.home;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == HOME &&
+      selectedItemId == '';
 
   bool get isHomeFeaturedPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      mainMenuOption == MainMenuOption.homeFeatured &&
+      screen == FEATURED &&
       selectedItemId != '';
 
   bool get isHomeUpcomingBoxPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      mainMenuOption == MainMenuOption.homeUpcomingBox &&
+      screen == UPCOMING_BOX &&
       selectedItemId != '';
-  
+
   bool get isHomeSelectedForYouPage =>
-    unknown == false &&
-    splashPageFinished == true &&
-    loggedIn == true &&
-    mainMenuOption == MainMenuOption.homeSelectedForYou &&
-    selectedItemId != '';
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SELECTED_FOR_YOU &&
+      selectedItemId != '';
 
   bool get isProfilePage =>
-      unknown == false && mainMenuOption == MainMenuOption.profile;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == PROFILE &&
+      selectedItemId == '';
 
   bool get isBoxesPage =>
-      unknown == false && mainMenuOption == MainMenuOption.boxes;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == BOXES &&
+      selectedItemId == '';
 
   bool get isSelectedBoxPage =>
-    unknown == false &&
-    splashPageFinished == true &&
-    loggedIn == true &&
-    mainMenuOption == MainMenuOption.boxes &&
-    selectedItemId != '';
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == UPCOMING_BOX &&
+      selectedItemId != '';
 
-  bool get isRecipePage =>
-      unknown == false && mainMenuOption == MainMenuOption.recipes;
+  bool get isRecipesPage =>
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == RECIPES &&
+      selectedItemId == '';
 
   bool get isSelectedRecipePage =>
-    unknown == false &&
-    splashPageFinished == true &&
-    loggedIn == true &&
-    mainMenuOption == MainMenuOption.recipes &&
-    selectedItemId != '';
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SELECTED_RECIPE &&
+      selectedItemId != '';
 
   bool get isCookshopPage =>
-      unknown == false && mainMenuOption == MainMenuOption.cookshop;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == COOKSHOP &&
+      selectedItemId == '';
 
   bool get isSelectedCookshopPage =>
-    unknown == false &&
-    splashPageFinished == true &&
-    loggedIn == true &&
-    mainMenuOption == MainMenuOption.cookshop &&
-    selectedItemId != '';
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SELECTED_COOKSHOP_ITEM &&
+      selectedItemId != '';
 
   bool get isTipsAndTricksPage =>
-      unknown == false && mainMenuOption == MainMenuOption.tipsAndTricks;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == TIPS_AND_TRICKS &&
+      selectedItemId == '';
 
   bool get isSelectedTipsAndTricksPage =>
-    unknown == false &&
-    splashPageFinished == true &&
-    loggedIn == true &&
-    mainMenuOption == MainMenuOption.tipsAndTricks &&
-    selectedItemId != '';
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SELECTED_TIPS_AND_TRICKS &&
+      selectedItemId != '';
 
   bool get isHelpPage =>
-      unknown == false && mainMenuOption == MainMenuOption.help;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == HELP &&
+      selectedItemId == '';
 
   bool get isSettingsPage =>
-      unknown == false && mainMenuOption == MainMenuOption.settings;
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SETTINGS &&
+      selectedItemId == '';
 }
-

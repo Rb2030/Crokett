@@ -16,10 +16,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-class AppShell extends StatefulWidget {
-  final Page page;
+import 'crokett_configuration.dart';
 
-  AppShell(this.page);
+class AppShell extends StatefulWidget {
+  final Navigator navigator;
+
+  AppShell(this.navigator);
 
   @override
   _AppShellState createState() => _AppShellState();
@@ -27,11 +29,11 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   late ChildBackButtonDispatcher _backButtonDispatcher;
-  Page? page;
+  Navigator? navigator;
 
   void initState() {
     super.initState();
-    page = widget.page;
+    navigator = widget.navigator;
   }
 
   @override
@@ -44,7 +46,7 @@ class _AppShellState extends State<AppShell> {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
 
     GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    CrokettRouterDelegate? _routerDelegate;
+    CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
 
     toggleDrawer() async {
       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -60,7 +62,7 @@ class _AppShellState extends State<AppShell> {
         elevation: 0,
       ),
       body: Router(
-        routerDelegate: _routerDelegate!,
+        routerDelegate: _routerDelegate,
       ),
       drawer: InkWell(
         onTap: () {
@@ -90,7 +92,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
-                        BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: ProfilePage())));
+                        BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [ProfilePage()])));
                       },
                     ),
                   ),
@@ -104,7 +106,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: HomePage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [HomePage(HOME)])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -116,7 +118,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: BoxesPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [BoxesPage()])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -128,7 +130,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: RecipesPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [RecipesPage()])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -140,7 +142,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: CookshopPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [CookshopPage()])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -152,7 +154,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: TipsAndTricksPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [TipsAndTricksPage()])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -164,7 +166,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: HelpPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [HelpPage()])));
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -176,7 +178,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(page: SettingsPage())));
+                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [SettingsPage()])));
                   },
                 ),
               ],

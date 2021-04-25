@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends Page {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container()
-    );
-  }
+  final String pageValueKey;
+
+  LoginPage(this.pageValueKey) : super(key: ValueKey(pageValueKey));  
 
   @override
   Route createRoute(BuildContext context) {
-    // TODO: implement createRoute
-    throw UnimplementedError();
+    return MaterialPageRoute(
+      settings: this,
+      builder: (BuildContext context) {
+        return Container(
+          height: 20,
+          width: 20,
+          color: Colors.green,
+        );
+      },
+    );
   }
 }

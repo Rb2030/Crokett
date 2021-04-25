@@ -8,12 +8,10 @@ class CrokettRouteInformationParser
   Future<CrokettConfiguration> parseRouteInformation(RouteInformation? routeInformation) async {
     final uri = Uri.parse(routeInformation!.location!);
     if (uri.pathSegments.length == 0) {
-      return CrokettConfiguration.login();
+      return CrokettConfiguration.splash();
     } else if (uri.pathSegments.length == 1) {
-      final first = uri.pathSegments[0].toLowerCase();
-      if (first == SPLASH) {
-        return CrokettConfiguration.login();
-      } else if (first == LOGIN) {
+      final first = uri.pathSegments[1].toLowerCase();
+      if (first == LOGIN) {
         return CrokettConfiguration.login();
       } else if (first == SIGN_UP) {
         return CrokettConfiguration.signUp();

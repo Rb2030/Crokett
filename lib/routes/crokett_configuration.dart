@@ -2,7 +2,7 @@
 
 const String UNKNOWN = "unknown";
 const String SPLASH = "splash";
-const String LOGIN = "login";
+const String LOGIN = "/";
 const String SIGN_UP = "sign_up";
 const String GOOGLE_SIGN_IN = "google_sign_in";
 const String DO_WE_DELIVER = "do_we_deliver";

@@ -33,7 +33,7 @@ class _CrokettAppState extends State<CrokettApp> {
       providers: [
         BlocProvider(
           lazy: false,
-          create: (context) => getIt<AuthBloc>()..add(AppStarted()),
+          create: (context) => getIt<AuthBloc>()//..add(AppStarted()), This should be called after the splash screen animation has finished
         ),
         BlocProvider(
           lazy: false,
@@ -43,8 +43,8 @@ class _CrokettAppState extends State<CrokettApp> {
       child: MaterialApp.router(
       title: 'Crokett',
       theme: globalAppThemeData,
-        routerDelegate: _routerDelegate,
-        routeInformationParser: _routeInformationParser,
+      routerDelegate: _routerDelegate,
+      routeInformationParser: _routeInformationParser,
       ),
     );
   }

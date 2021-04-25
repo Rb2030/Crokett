@@ -8,3 +8,17 @@ abstract class RouterState extends Equatable {
 }
 
 class RouterInitial extends RouterState {}
+
+class ChangingRoute extends RouterState {}
+
+class ChangedRoute extends RouterState {
+
+  final List<Page> pages;
+
+  ChangedRoute({required this.pages});
+
+  @override
+  List<Object> get props => [pages];
+}
+
+// Should have the page param passed in changing route

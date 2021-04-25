@@ -3,8 +3,9 @@ import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends Page {
+  final String pageValueKey;
 
-  HomePage() : super(key: ValueKey(HOME));
+  HomePage(this.pageValueKey) : super(key: ValueKey(pageValueKey));
 
   @override
   Route createRoute(BuildContext context) {

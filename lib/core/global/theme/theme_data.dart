@@ -49,22 +49,22 @@ final globalAppThemeData = ThemeData(
 
 TextTheme textTheme() {
   return TextTheme(
-    // Used for the Crokett title
+    // Used for the Crokett splash title
     headline1: TextStyle(
         fontFamily: Constants.vorkursFont,
-        fontSize: 70,
+        fontSize: 62,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.5),
     // Main title
     headline2: TextStyle(
         fontFamily: Constants.vorkursFont,
-        fontSize: 39,
+        fontSize: 42,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0.25),
+        letterSpacing: -0.5),
     // Poppins
     headline3: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 32,
+        fontSize: 36,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25),
     // Poppins

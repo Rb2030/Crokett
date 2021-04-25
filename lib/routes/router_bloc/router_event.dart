@@ -8,10 +8,10 @@ abstract class RouterEvent extends Equatable {
 }
 
 class RouterEventNewPage extends RouterEvent {
-  final Page page;
-  
-  RouterEventNewPage({required this.page});
+  final List<Page> pages;
+
+  RouterEventNewPage({required this.pages});
 
   @override
-  List<Object> get props => [page];
+  List<Object> get props => [pages];
 }

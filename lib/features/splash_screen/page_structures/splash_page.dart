@@ -1,19 +1,18 @@
 import 'package:crokett/features/splash_screen/page_widgets/splash_animation.dart';
-import 'package:crokett/injection.dart';
+import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends Page {
-  final String pageValueKey;
+  final Function(String) nextScreen;
 
-  SplashPage(this.pageValueKey) : super(key: ValueKey(pageValueKey)); 
+  SplashPage({required this.nextScreen}) : super(key: ValueKey(SPLASH)); 
 
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
       builder: (BuildContext context) {
-        return SplashAnimation();
+        return SplashAnimation(nextScreen: nextScreen);
       },
     );
   }

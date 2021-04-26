@@ -12,6 +12,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    // TODO: Add getUserSignedIn check which was in the authbloc (SourceTree)
   }
 }

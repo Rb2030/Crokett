@@ -3,7 +3,6 @@ import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dar
 import 'package:crokett/injection.dart';
 import 'package:crokett/routes/crokett_route_info_parser.dart';
 import 'package:crokett/routes/crokett_router_delegate.dart';
-import 'package:crokett/routes/router_bloc/router_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,10 +33,6 @@ class _CrokettAppState extends State<CrokettApp> {
         BlocProvider(
           lazy: false,
           create: (context) => getIt<AuthBloc>()//..add(AppStarted()), This should be called after the splash screen animation has finished
-        ),
-        BlocProvider(
-          lazy: false,
-          create: (context) => getIt<RouterBloc>(),
         ),
       ],
       child: MaterialApp.router(

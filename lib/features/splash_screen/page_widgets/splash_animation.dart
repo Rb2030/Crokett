@@ -2,24 +2,26 @@ import 'dart:async';
 // import 'package:audioplayers/audio_cache.dart';
 import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
-import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
-import 'package:crokett/core/global/hive/hive_helper.dart';
-import 'package:crokett/features/home/page_structures/home_page.dart';
-import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart';
-import 'package:crokett/routes/router_bloc/router_bloc.dart';
+import 'package:crokett/features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart';
+import 'package:crokett/features/login_and_sign_up/domain/entities/user.dart';
+import 'package:crokett/routes/crokett_configuration.dart';
+import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashAnimation extends StatefulWidget {
+  final Function(String) nextScreen;
+
+  const SplashAnimation({required this.nextScreen}) : super();
+
   @override
   _SplashAnimationState createState() => _SplashAnimationState();
 }
 
 class _SplashAnimationState extends State<SplashAnimation>
     with TickerProviderStateMixin {
-  String loggedInToken = '';
-
+  late Function(String) nextScreen;
+  late IAuthFacade _authRepo;
   // final player = AudioCache();
   late AnimationController bouncingAnimationController;
   late AnimationController spinAnimationController1;
@@ -37,6 +39,8 @@ class _SplashAnimationState extends State<SplashAnimation>
   @override
   void initState() {
     super.initState();
+    _authRepo.getSignedInUser();
+    nextScreen = widget.nextScreen;
     bouncingAnimationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
@@ -81,13 +85,13 @@ class _SplashAnimationState extends State<SplashAnimation>
                 responsiveBoxSize = 2.6;
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
-                fadeAnimationController.forward().then((_) {
-                  bool loggedIn = loggedInToken != '' ? true : false;
-                  // Logged In?
-                  // HiveHelper.getToken().then((value) {
-                  //   if (value != '') loggedInToken = value;
-                  // });
-                  BlocProvider.of<AuthBloc>(context).add((AppStarted()));
+                fadeAnimationController.forward().then((_) async {
+                  dartz.Option<CurrentUser> user = await _authRepo.getSignedInUser();
+                  user.fold(() {
+                    nextScreen(LOGIN);
+                  }, (user) {
+                    nextScreen(HOME);
+                  });
                 });
               });
             });

@@ -10,15 +10,13 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'core/global/firebase/firebase_injectable_module.dart' as _i11;
+import 'core/global/firebase/firebase_injectable_module.dart' as _i10;
 import 'core/global/hive/hive_helper.dart' as _i6;
-import 'features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart' as _i10;
+import 'features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart' as _i9;
 import 'features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart'
     as _i7;
 import 'features/login_and_sign_up/infrastructure/firebase_auth_facade.dart'
-    as _i8;
-import 'routes/router_bloc/router_bloc.dart'
-    as _i9; // ignore_for_file: unnecessary_lambdas
+    as _i8; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -35,10 +33,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i6.HiveHelper>(() => _i6.HiveHelper());
   gh.lazySingleton<_i7.IAuthFacade>(() =>
       _i8.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i5.GoogleSignIn>()));
-  gh.factory<_i9.RouterBloc>(() => _i9.RouterBloc());
-  gh.factory<_i10.AuthBloc>(
-      () => _i10.AuthBloc(get<_i7.IAuthFacade>(), get<_i9.RouterBloc>()));
+  gh.factory<_i9.AuthBloc>(() => _i9.AuthBloc(get<_i7.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i11.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i10.FirebaseInjectableModule {}

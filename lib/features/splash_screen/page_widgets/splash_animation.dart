@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
+import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart';
 import 'package:crokett/features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart';
-import 'package:crokett/features/login_and_sign_up/domain/entities/user.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
-import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashAnimation extends StatefulWidget {
   final Function(String) nextScreen;
 
-  const SplashAnimation({required this.nextScreen}) : super();
+  SplashAnimation({required this.nextScreen}) : super();
 
   @override
   _SplashAnimationState createState() => _SplashAnimationState();
@@ -21,7 +21,6 @@ class SplashAnimation extends StatefulWidget {
 class _SplashAnimationState extends State<SplashAnimation>
     with TickerProviderStateMixin {
   late Function(String) nextScreen;
-  late IAuthFacade _authRepo;
   // final player = AudioCache();
   late AnimationController bouncingAnimationController;
   late AnimationController spinAnimationController1;
@@ -39,7 +38,6 @@ class _SplashAnimationState extends State<SplashAnimation>
   @override
   void initState() {
     super.initState();
-    _authRepo.getSignedInUser();
     nextScreen = widget.nextScreen;
     bouncingAnimationController = AnimationController(
       vsync: this,
@@ -86,12 +84,11 @@ class _SplashAnimationState extends State<SplashAnimation>
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
                 fadeAnimationController.forward().then((_) async {
-                  dartz.Option<CurrentUser> user = await _authRepo.getSignedInUser();
-                  user.fold(() {
-                    nextScreen(LOGIN);
-                  }, (user) {
+                  if (BlocProvider.of<AuthBloc>(context).userSignedIn == true) {
                     nextScreen(HOME);
-                  });
+                  } else {
+                    nextScreen(LOGIN);
+                  }
                 });
               });
             });

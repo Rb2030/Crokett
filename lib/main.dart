@@ -32,7 +32,7 @@ class _CrokettAppState extends State<CrokettApp> {
       providers: [
         BlocProvider(
           lazy: false,
-          create: (context) => getIt<AuthBloc>()//..add(AppStarted()), This should be called after the splash screen animation has finished
+          create: (context) => getIt<AuthBloc>()..add(AppStarted()),
         ),
       ],
       child: MaterialApp.router(

@@ -2,38 +2,30 @@ import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
-import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
-import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
-import 'package:crokett/features/help/page_structures/help_page.dart';
-import 'package:crokett/features/home/page_structures/home_page.dart';
-import 'package:crokett/features/profile/page_structures/profile_page.dart';
-import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
-import 'package:crokett/features/settings/page_structures/settings_page.dart';
-import 'package:crokett/features/tips_and_tricks/page_structures/tips_and_tricks_page.dart';
+import 'package:crokett/features/splash_screen/page_structures/splash_page.dart';
 import 'package:crokett/routes/crokett_router_delegate.dart';
-import 'package:crokett/routes/router_bloc/router_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'crokett_configuration.dart';
 
 class AppShell extends StatefulWidget {
-  final Navigator navigator;
+  final Function(String) chosenScreen;
 
-  AppShell(this.navigator);
+  AppShell(this.chosenScreen);
 
   @override
   _AppShellState createState() => _AppShellState();
 }
 
 class _AppShellState extends State<AppShell> {
-  late ChildBackButtonDispatcher _backButtonDispatcher;
-  Navigator? navigator;
+  Function(String)? chosenScreen;
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  Page? currentPage;
 
   void initState() {
     super.initState();
-    navigator = widget.navigator;
+    chosenScreen = widget.chosenScreen;
   }
 
   @override
@@ -44,8 +36,6 @@ class _AppShellState extends State<AppShell> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-
-    GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
 
     toggleDrawer() async {
@@ -61,9 +51,7 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: Router(
-        routerDelegate: _routerDelegate,
-      ),
+      body: Center(child: _routerDelegate.build(context)),
       drawer: InkWell(
         onTap: () {
           toggleDrawer();
@@ -80,10 +68,12 @@ class _AppShellState extends State<AppShell> {
                     padding: EdgeInsets.zero,
                     child: ListTile(
                       leading: Padding(
-                        padding: const EdgeInsets.fromLTRB(UIHelper.paddingBetweenElements / 4, 0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(
+                            UIHelper.paddingBetweenElements / 4, 0, 0, 0),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.grey[200], shape: BoxShape.circle),
+                                color: Colors.grey[200],
+                                shape: BoxShape.circle),
                             child: Padding(
                               padding: EdgeInsets.all(
                                   UIHelper.paddingBetweenElements / 1.5),
@@ -92,7 +82,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
-                        BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [ProfilePage()])));
+                        chosenScreen!(PROFILE);
                       },
                     ),
                   ),
@@ -106,7 +96,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [HomePage(HOME)])));
+                    chosenScreen!(HOME);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -118,7 +108,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [BoxesPage()])));
+                    chosenScreen!(BOXES);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -130,7 +120,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [RecipesPage()])));
+                    chosenScreen!(RECIPES);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -142,7 +132,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [CookshopPage()])));
+                    chosenScreen!(COOKSHOP);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -154,7 +144,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [TipsAndTricksPage()])));
+                    chosenScreen!(TIPS_AND_TRICKS);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -166,7 +156,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [HelpPage()])));
+                    chosenScreen!(HELP);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -178,7 +168,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
-                    BlocProvider.of<RouterBloc>(context).add((RouterEventNewPage(pages: [SettingsPage()])));
+                    chosenScreen!(SETTINGS);
                   },
                 ),
               ],

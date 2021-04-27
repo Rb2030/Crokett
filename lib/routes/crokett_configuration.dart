@@ -1,36 +1,39 @@
 // URL params + configuration reference
-
 const String UNKNOWN = "unknown";
 const String SPLASH = "splash";
 const String LOGIN = "/";
 const String SIGN_UP = "sign_up";
 const String GOOGLE_SIGN_IN = "google_sign_in";
+const String ONBOARDING = "on_boarding";
 const String DO_WE_DELIVER = "do_we_deliver";
 const String FOOD_PREFERENCES = "food_preferences";
 const String PROFILE = "profile";
 const String HOME = "home";
-const String FEATURED = "featured"; // Option in the home screen
-const String UPCOMING_BOX = "upcoming_box"; // Option in the home screen
-const String SELECTED_FOR_YOU = "selected_for_you"; // Option in the home screen
+const String HOME_FEATURED = "featured"; // Option in the home screen
+const String HOME_UPCOMING_BOX = "upcoming_box"; // Option in the home screen
+const String HOME_SELECTED_FOR_YOU = "selected_for_you"; // Option in the home screen
 const String BOXES = "boxes";
 const String SELECTED_BOX = "selected_box";
 const String RECIPES = "recipes";
+const String RECIPE_TYPE = "recipe_type";
 const String SELECTED_RECIPE = "selected_recipe";
 const String COOKSHOP = "cookshop";
+const String COOKSHOP_CATEGORIES = "cookshop_categories";
 const String SELECTED_COOKSHOP_ITEM = "selected_cookshop_item";
 const String TIPS_AND_TRICKS = "tips_and_tricks";
 const String SELECTED_TIPS_AND_TRICKS = "selected_tips_and_tricks";
 const String HELP = "help";
+const String SELECTED_HELP_ITEM = "selected_help_item";
 const String SETTINGS = "settings";
 
 // Config
 
 class CrokettConfiguration {
-  final bool unknown;
-  final bool splashPageFinished;
-  final bool loggedIn;
-  final String screen;
-  final String selectedItemId;
+  bool unknown;
+  bool splashPageFinished;
+  bool loggedIn;
+  String screen;
+  String selectedItemId;
 
   CrokettConfiguration.unknown()
       : unknown = true,
@@ -67,6 +70,13 @@ class CrokettConfiguration {
         screen = GOOGLE_SIGN_IN,
         selectedItemId = '';
 
+  CrokettConfiguration.onBoarding()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = true,
+        screen = ONBOARDING,
+        selectedItemId = '';
+
   CrokettConfiguration.doWeDeliver()
       : unknown = false,
         splashPageFinished = true,
@@ -92,21 +102,21 @@ class CrokettConfiguration {
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        screen = FEATURED,
+        screen = HOME_FEATURED,
         selectedItemId = featuredId;
 
   CrokettConfiguration.homeUpcomingBox(String boxOrderId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        screen = UPCOMING_BOX,
+        screen = HOME_UPCOMING_BOX,
         selectedItemId = boxOrderId;
 
   CrokettConfiguration.homeSelectedForYou(String selectedForYouId)
       : unknown = false,
         splashPageFinished = true,
         loggedIn = true,
-        screen = SELECTED_FOR_YOU,
+        screen = HOME_SELECTED_FOR_YOU,
         selectedItemId = selectedForYouId;
 
   CrokettConfiguration.profile()
@@ -143,6 +153,12 @@ class CrokettConfiguration {
   //       loggedIn = true,
   //       screen = OLD_RECIPES,
   //       selectedItemId = '';
+  CrokettConfiguration.recipeType(String recipeType)
+    : unknown = false,
+      splashPageFinished = true,
+      loggedIn = true,
+      screen = RECIPE_TYPE,
+      selectedItemId = recipeType;
 
   CrokettConfiguration.selectedRecipe(String recipeId)
       : unknown = false,
@@ -156,6 +172,13 @@ class CrokettConfiguration {
         splashPageFinished = true,
         loggedIn = true,
         screen = COOKSHOP,
+        selectedItemId = '';
+
+  CrokettConfiguration.cookshopCategories()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = true,
+        screen = COOKSHOP_CATEGORIES,
         selectedItemId = '';
 
   CrokettConfiguration.selectedCookshopItem(String cookshopItem)
@@ -184,6 +207,13 @@ class CrokettConfiguration {
         splashPageFinished = true,
         loggedIn = true,
         screen = HELP,
+        selectedItemId = '';
+
+  CrokettConfiguration.selectedHelpItem(String helpItem)
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = true,
+        screen = SELECTED_HELP_ITEM,
         selectedItemId = '';
 
   CrokettConfiguration.settings()
@@ -215,6 +245,13 @@ class CrokettConfiguration {
       screen == GOOGLE_SIGN_IN &&
       selectedItemId == '';
 
+  bool get isOnboardingPage =>
+    unknown == false &&
+    loggedIn == true &&
+    splashPageFinished == true &&
+    screen == ONBOARDING &&
+    selectedItemId == '';
+
   bool get isDoWeDeliverPage =>
       unknown == false &&
       loggedIn == true &&
@@ -240,21 +277,21 @@ class CrokettConfiguration {
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      screen == FEATURED &&
+      screen == HOME_FEATURED &&
       selectedItemId != '';
 
   bool get isHomeUpcomingBoxPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      screen == UPCOMING_BOX &&
+      screen == HOME_UPCOMING_BOX &&
       selectedItemId != '';
 
   bool get isHomeSelectedForYouPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      screen == SELECTED_FOR_YOU &&
+      screen == HOME_SELECTED_FOR_YOU &&
       selectedItemId != '';
 
   bool get isProfilePage =>
@@ -275,7 +312,7 @@ class CrokettConfiguration {
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
-      screen == UPCOMING_BOX &&
+      screen == HOME_UPCOMING_BOX &&
       selectedItemId != '';
 
   bool get isRecipesPage =>
@@ -283,6 +320,13 @@ class CrokettConfiguration {
       splashPageFinished == true &&
       loggedIn == true &&
       screen == RECIPES &&
+      selectedItemId == '';
+
+  bool get isSelectedRecipeType =>
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == RECIPE_TYPE &&
       selectedItemId == '';
 
   bool get isSelectedRecipePage =>
@@ -299,7 +343,14 @@ class CrokettConfiguration {
       screen == COOKSHOP &&
       selectedItemId == '';
 
-  bool get isSelectedCookshopPage =>
+  bool get isSelectedCookshopCategoriesPage =>
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == COOKSHOP_CATEGORIES &&
+      selectedItemId != '';
+
+  bool get isSelectedCookshopItemPage =>
       unknown == false &&
       splashPageFinished == true &&
       loggedIn == true &&
@@ -326,6 +377,13 @@ class CrokettConfiguration {
       loggedIn == true &&
       screen == HELP &&
       selectedItemId == '';
+
+  bool get isSelectedHelpItemPage =>
+      unknown == false &&
+      splashPageFinished == true &&
+      loggedIn == true &&
+      screen == SELECTED_HELP_ITEM &&
+      selectedItemId != '';
 
   bool get isSettingsPage =>
       unknown == false &&

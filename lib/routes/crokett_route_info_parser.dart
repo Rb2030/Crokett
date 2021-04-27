@@ -43,11 +43,11 @@ class CrokettRouteInformationParser
     } else if (uri.pathSegments.length == 2) {
       final first = uri.pathSegments[0].toLowerCase();
       final second = uri.pathSegments[1].toLowerCase();
-      if (first == FEATURED) {
+      if (first == HOME_FEATURED) {
         return CrokettConfiguration.homeFeatured(second);
-      } else if (first == UPCOMING_BOX) {
+      } else if (first == HOME_UPCOMING_BOX) {
         return CrokettConfiguration.homeUpcomingBox(second);
-      } else if (first == SELECTED_FOR_YOU) {
+      } else if (first == HOME_SELECTED_FOR_YOU) {
         return CrokettConfiguration.homeSelectedForYou(second);
       } else if (first == SELECTED_BOX) {
         return CrokettConfiguration.selectedBox(second);
@@ -101,7 +101,7 @@ class CrokettRouteInformationParser
       return RouteInformation(location: '/recipes/${configuration.selectedItemId}');
     } else if (configuration.isCookshopPage) {
       return RouteInformation(location: '/cookshop');
-    } else if (configuration.isSelectedCookshopPage) {
+    } else if (configuration.isSelectedCookshopItemPage) {
       return RouteInformation(location: '/cookshop/${configuration.selectedItemId}');
     } else if (configuration.isTipsAndTricksPage) {
       return RouteInformation(location: '/tips_and_tricks');

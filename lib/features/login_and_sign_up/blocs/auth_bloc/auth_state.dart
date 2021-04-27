@@ -1,10 +1,8 @@
 part of 'auth_bloc.dart';
 
 abstract class AuthState extends Equatable {
-
   @override
   List<Object> get props => [];
-
 }
 
 //
@@ -22,3 +20,8 @@ class Unauthenticated extends AuthState {}
 //
 class AuthenticationLoading extends AuthState {}
 
+//
+class AuthStateSplashAnimationFinished extends AuthState {
+  final bool loggedIn;
+  AuthStateSplashAnimationFinished(this.loggedIn);
+}

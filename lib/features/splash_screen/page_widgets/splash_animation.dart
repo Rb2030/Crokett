@@ -4,7 +4,6 @@ import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart';
-import 'package:crokett/features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +32,6 @@ class _SplashAnimationState extends State<SplashAnimation>
 
   bool _firstButtonVisible = true;
   bool _secondButtonVisible = false;
-  bool animationFinished = false;
 
   @override
   void initState() {
@@ -76,19 +74,14 @@ class _SplashAnimationState extends State<SplashAnimation>
           });
           Future<void>.delayed(const Duration(milliseconds: 1600), () {
             spinAnimationController2.forward(from: 0).then((value) {
-              setState(() {
-                animationFinished = true;
-              });
+              setState(() {});
               Future<void>.delayed(const Duration(milliseconds: 200), () {
                 responsiveBoxSize = 2.6;
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
                 fadeAnimationController.forward().then((_) async {
-                  if (BlocProvider.of<AuthBloc>(context).userSignedIn == true) {
-                    nextScreen(HOME);
-                  } else {
-                    nextScreen(LOGIN);
-                  }
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(SplashAnimationFinished());
                 });
               });
             });
@@ -101,90 +94,100 @@ class _SplashAnimationState extends State<SplashAnimation>
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-    return AnimatedContainer(
-      duration: const Duration(seconds: 1),
-      color: bgColor,
-      child: SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Align(
-              child: AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                width: rsc.rWP(100),
-                height: rsc.rHP(100),
-                color: bgColor,
-                child: Center(
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      FadeTransition(
-                        opacity: fadeAnimationController,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'cr',
-                            style: Theme.of(context).textTheme.headline1,
+    return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+      if (state is AuthStateSplashAnimationFinished) {
+        if (state.loggedIn == true) {
+          nextScreen(HOME);
+        } else {
+          nextScreen(LOGIN);
+        }
+      }
+    }, builder: (context, state) {
+      return AnimatedContainer(
+        duration: const Duration(seconds: 1),
+        color: bgColor,
+        child: SafeArea(
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Align(
+                child: AnimatedContainer(
+                  duration: const Duration(seconds: 1),
+                  width: rsc.rWP(100),
+                  height: rsc.rHP(100),
+                  color: bgColor,
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        FadeTransition(
+                          opacity: fadeAnimationController,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            child: Text(
+                              'cr',
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 1),
-                      Column(
-                        children: [
-                          const Spacer(),
-                          SizedBox(height: 8),
-                          Stack(
-                            children: [
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 700),
-                                height: rsc.rH(responsiveBoxSize),
-                                width: rsc.rH(responsiveBoxSize),
-                                child: Visibility(
-                                  visible: _firstButtonVisible,
-                                  child: RotationTransition(
-                                    turns: Tween(begin: 0.0, end: 0.4)
-                                        .animate(spinAnimationController1),
-                                    child: Image.asset(Images.imageHobPower1),
+                        const SizedBox(width: 1),
+                        Column(
+                          children: [
+                            const Spacer(),
+                            SizedBox(height: 8),
+                            Stack(
+                              children: [
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 700),
+                                  height: rsc.rH(responsiveBoxSize),
+                                  width: rsc.rH(responsiveBoxSize),
+                                  child: Visibility(
+                                    visible: _firstButtonVisible,
+                                    child: RotationTransition(
+                                      turns: Tween(begin: 0.0, end: 0.4)
+                                          .animate(spinAnimationController1),
+                                      child: Image.asset(Images.imageHobPower1),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(seconds: 1),
-                                height: rsc.rH(responsiveBoxSize),
-                                width: rsc.rH(responsiveBoxSize),
-                                child: Visibility(
-                                  visible: _secondButtonVisible,
-                                  child: RotationTransition(
-                                    turns: Tween(begin: 0.4, end: 0.1)
-                                        .animate(spinAnimationController2),
-                                    child: Image.asset(Images.imageHobPower2),
+                                AnimatedContainer(
+                                  duration: const Duration(seconds: 1),
+                                  height: rsc.rH(responsiveBoxSize),
+                                  width: rsc.rH(responsiveBoxSize),
+                                  child: Visibility(
+                                    visible: _secondButtonVisible,
+                                    child: RotationTransition(
+                                      turns: Tween(begin: 0.4, end: 0.1)
+                                          .animate(spinAnimationController2),
+                                      child: Image.asset(Images.imageHobPower2),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Spacer()
-                        ],
-                      ),
-                      const SizedBox(width: 1),
-                      FadeTransition(
-                        opacity: fadeAnimationController,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'kett',
-                            style: Theme.of(context).textTheme.headline1,
+                              ],
+                            ),
+                            const Spacer()
+                          ],
+                        ),
+                        const SizedBox(width: 1),
+                        FadeTransition(
+                          opacity: fadeAnimationController,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            child: Text(
+                              'kett',
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
                           ),
                         ),
-                      ),
-                      const Spacer()
-                    ],
+                        const Spacer()
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

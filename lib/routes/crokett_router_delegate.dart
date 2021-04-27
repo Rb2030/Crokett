@@ -49,10 +49,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     notifyListeners();
   }
 
-  List<String> _currentPages = ['splash']; // This will be passed through from the Page class when navigating to a new screen
-  String get currentPage => _currentPages.last;
+  String _currentPage = 'splash'; // This will be passed through from the Page class when navigating to a new screen
+  String get currentPage => _currentPage;
   set currentPage(String value) {
-    _currentPages.add(value);
+    _currentPage = value;
     notifyListeners();
   }
 
@@ -190,7 +190,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       onPopPage: (route, result) {
         if (!route.didPop(result)) return false;
         selectedItemCode = '';
-        _currentPages.removeLast();
+        _currentPage = '';
         return true;
       },
     );

@@ -12,3 +12,6 @@ class AppStarted extends AuthEvent {}
 
 //
 class AuthEventLoggedOut extends AuthEvent {}
+
+//
+class SplashAnimationFinished extends AuthEvent {}

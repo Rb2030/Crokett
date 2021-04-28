@@ -8,8 +8,8 @@ class Images extends InheritedWidget {
   // Images
 
   static const String imageCrokettLogo = 'assets/images/crokett_logo.svg';
-  static const String imageHobPower1 = 'assets/images/power_1.png';
-  static const String imageHobPower2 = 'assets/images/power_2.png';
+  static const String imageHobPower1 = 'assets/images/crokett_symbol_1.svg';
+  static const String imageHobPower2 = 'assets/images/crokett_symbol_2.svg';
   static const String imageHome = 'assets/images/icon-home.svg';
   static const String imageBoxes = 'assets/images/icon-boxes.svg';
   static const String imageCookshop = 'assets/images/icons-cookshop.svg';
@@ -38,7 +38,7 @@ class Sounds extends InheritedWidget {
 
   // Sounds
 
-  static const String soundHobClick = 'click_click_click.mp3';
+  static const String soundHobClick = 'audio/click_click_click.mp3';
 
   @override
   bool updateShouldNotify(Sounds oldWidget) => false;

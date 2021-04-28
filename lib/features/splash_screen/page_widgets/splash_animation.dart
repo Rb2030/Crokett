@@ -1,5 +1,5 @@
 import 'dart:async';
-// import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
@@ -7,6 +7,7 @@ import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dar
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashAnimation extends StatefulWidget {
   final Function(String) nextScreen;
@@ -20,7 +21,7 @@ class SplashAnimation extends StatefulWidget {
 class _SplashAnimationState extends State<SplashAnimation>
     with TickerProviderStateMixin {
   late Function(String) nextScreen;
-  // final player = AudioCache();
+  final player = AudioCache();
   late AnimationController bouncingAnimationController;
   late AnimationController spinAnimationController1;
   late AnimationController spinAnimationController2;
@@ -39,22 +40,22 @@ class _SplashAnimationState extends State<SplashAnimation>
     nextScreen = widget.nextScreen;
     bouncingAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 600),
     );
     spinAnimationController1 = AnimationController(
       vsync: this,
       value: 0,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     );
     spinAnimationController2 = AnimationController(
       vsync: this,
       value: 0,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     );
     fadeAnimationController = AnimationController(
       vsync: this,
       value: 0,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 700),
     );
     fadeAnimation = CurvedAnimation(
       parent: fadeAnimationController,
@@ -65,21 +66,22 @@ class _SplashAnimationState extends State<SplashAnimation>
     bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
       setState(() {});
-      //   player.play(Sounds.soundHobClick);
-      Future<void>.delayed(const Duration(milliseconds: 600), () {
+      player.play(Sounds.soundHobClick);
+      Future<void>.delayed(const Duration(milliseconds: 200), () {
         spinAnimationController1.forward(from: 0).then((value) {
           setState(() {
             _secondButtonVisible = true;
-            _firstButtonVisible = false;
           });
-          Future<void>.delayed(const Duration(milliseconds: 1600), () {
+          Future<void>.delayed(const Duration(milliseconds: 800), () {
+            _firstButtonVisible = false;
+            setState(() {});
             spinAnimationController2.forward(from: 0).then((value) {
               setState(() {});
-              Future<void>.delayed(const Duration(milliseconds: 200), () {
-                responsiveBoxSize = 2.6;
+              Future<void>.delayed(const Duration(milliseconds: 300), () {
+                responsiveBoxSize = 3.4;
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
-                fadeAnimationController.forward().then((_) async {
+                fadeAnimationController.forward().then((_) {
                   BlocProvider.of<AuthBloc>(context)
                       .add(SplashAnimationFinished());
                 });
@@ -106,14 +108,13 @@ class _SplashAnimationState extends State<SplashAnimation>
       return AnimatedContainer(
         duration: const Duration(seconds: 1),
         color: bgColor,
-        child: SafeArea(
           child: Scaffold(
             body: SingleChildScrollView(
               child: Align(
                 child: AnimatedContainer(
-                  duration: const Duration(seconds: 1),
+                  duration: const Duration(milliseconds: 400),
                   width: rsc.rWP(100),
-                  height: rsc.rHP(100),
+                  height: rsc.rH(100),
                   color: bgColor,
                   child: Center(
                     child: Row(
@@ -133,7 +134,7 @@ class _SplashAnimationState extends State<SplashAnimation>
                         Column(
                           children: [
                             const Spacer(),
-                            SizedBox(height: 8),
+                            SizedBox(height: 15),
                             Stack(
                               children: [
                                 AnimatedContainer(
@@ -145,12 +146,13 @@ class _SplashAnimationState extends State<SplashAnimation>
                                     child: RotationTransition(
                                       turns: Tween(begin: 0.0, end: 0.4)
                                           .animate(spinAnimationController1),
-                                      child: Image.asset(Images.imageHobPower1),
+                                      child: SvgPicture.asset(
+                                          Images.imageHobPower1),
                                     ),
                                   ),
                                 ),
                                 AnimatedContainer(
-                                  duration: const Duration(seconds: 1),
+                                  duration: const Duration(milliseconds: 700),
                                   height: rsc.rH(responsiveBoxSize),
                                   width: rsc.rH(responsiveBoxSize),
                                   child: Visibility(
@@ -158,7 +160,8 @@ class _SplashAnimationState extends State<SplashAnimation>
                                     child: RotationTransition(
                                       turns: Tween(begin: 0.4, end: 0.1)
                                           .animate(spinAnimationController2),
-                                      child: Image.asset(Images.imageHobPower2),
+                                      child: SvgPicture.asset(
+                                          Images.imageHobPower2),
                                     ),
                                   ),
                                 ),
@@ -185,7 +188,6 @@ class _SplashAnimationState extends State<SplashAnimation>
                 ),
               ),
             ),
-          ),
         ),
       );
     });

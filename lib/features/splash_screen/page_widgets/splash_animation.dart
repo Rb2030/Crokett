@@ -61,12 +61,11 @@ class _SplashAnimationState extends State<SplashAnimation>
       parent: fadeAnimationController,
       curve: Curves.easeIn,
     );
-
+    player.play(Sounds.soundHobClick);
     // Starting the animations
     bouncingAnimationController.forward().then((value) {
       responsiveBoxSize = 5.5;
       setState(() {});
-      player.play(Sounds.soundHobClick);
       Future<void>.delayed(const Duration(milliseconds: 200), () {
         spinAnimationController1.forward(from: 0).then((value) {
           setState(() {
@@ -113,7 +112,7 @@ class _SplashAnimationState extends State<SplashAnimation>
               child: Align(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 400),
-                  width: rsc.rWP(100),
+                  width: rsc.rW(100),
                   height: rsc.rH(100),
                   color: bgColor,
                   child: Center(

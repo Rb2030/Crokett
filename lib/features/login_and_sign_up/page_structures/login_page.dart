@@ -1,3 +1,5 @@
+import 'package:crokett/core/global/widgets/fade_animation_page.dart';
+import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/login_screen.dart';
 import 'package:crokett/injection.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +12,21 @@ class LoginPage extends Page {
 
   @override
   Route createRoute(BuildContext context) {
-    return MaterialPageRoute(
+    return PageRouteBuilder(
       settings: this,
-      builder: (BuildContext context) {
-        return Container( // This will be loginscreen instead of container passing next screen func with provider
-          height: 20,
-          width: 20,
-          color: Colors.pink,
+      pageBuilder: (context, animation, animation2) {
+        var curveTween = CurveTween(curve: Curves.easeIn);
+        return FadeTransition(
+          opacity: animation.drive(curveTween),
+          child: LoginScreen(),
         );
       },
     );
   }
 }
+    // return PageRouteBuilder(
+    //   settings: RouteSettings(name: LOGIN, arguments: nextScreen),
+    //   pageBuilder: (_, a1, a2) =>
+    //       FadeTransition(opacity: a1, child: LoginScreen()),
+    //   transitionDuration: Duration(seconds: 5),
+    // );

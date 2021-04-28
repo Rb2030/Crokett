@@ -49,7 +49,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     notifyListeners();
   }
 
-  String _currentPage = 'splash'; // This will be passed through from the Page class when navigating to a new screen
+  String _currentPage =
+      'splash'; // This will be passed through from the Page class when navigating to a new screen
   String get currentPage => _currentPage;
   set currentPage(String value) {
     _currentPage = value;
@@ -218,9 +219,9 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     LoginPage(nextScreen: (String selectedPage) {
       currentPage = selectedPage;
     }),
-
-    SignUpPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
+    if (currentPage == SIGN_UP)
+      SignUpPage(nextScreen: (String selectedPage) {
+        currentPage = selectedPage;
     })
   ];
 
@@ -229,9 +230,9 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     LoginPage(nextScreen: (String selectedPage) {
       currentPage = selectedPage;
     }),
-
-    GoogleSignInPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
+    if (currentPage == GOOGLE_SIGN_IN)
+      GoogleSignInPage(nextScreen: (String selectedPage) {
+        currentPage = selectedPage;
     })
   ];
 
@@ -254,7 +255,6 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     DoWeDeliverPage(nextScreen: (String selectedPage) {
       currentPage = selectedPage;
     }),
-
     FoodPreferencesPage(nextScreen: (String selectedPage) {
       currentPage = selectedPage;
     })
@@ -272,163 +272,151 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Home Featured
   List<Page> get _homeFeaturedStack => [
-    HomePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    HomeFeaturedPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        HomePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        HomeFeaturedPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Home Up Coming Box
   List<Page> get _homeUpcomingBoxStack => [
-    HomePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    HomeUpcomingBoxPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        HomePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        HomeUpcomingBoxPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Home Selected For You
   List<Page> get _homeSelectedForYouStack => [
-    HomePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    HomeSelectedForYouPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        HomePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        HomeSelectedForYouPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Boxes
   List<Page> get _boxesStack => [
-    BoxesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        BoxesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Selected Box
   List<Page> get _selectedBoxStack => [
-    BoxesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    SelectedBoxPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        BoxesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        SelectedBoxPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Recipes
   List<Page> get _recipesStack => [
-    RecipesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        RecipesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Recipe Type
   List<Page> get _recipeTypeStack => [
-    RecipesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    RecipeTypePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        RecipesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        RecipeTypePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Selected Recipe
   List<Page> get _selectedRecipeStack => [
-    RecipesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    RecipeTypePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    SelectedRecipePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        RecipesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        RecipeTypePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        SelectedRecipePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Cookshop
   List<Page> get _cookshopStack => [
-    CookshopPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        CookshopPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Cookshop Categories
   List<Page> get _cookshopCategoriesStack => [
-    CookshopPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    CookshopCategoriesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        CookshopPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        CookshopCategoriesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Selected Cookshop Item
   List<Page> get _selectedCookshopItemStack => [
-    CookshopPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    CookshopCategoriesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    SelectedCookshopItemPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        CookshopPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        CookshopCategoriesPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        SelectedCookshopItemPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Tips & Tricks
   List<Page> get _tipsAndTricksStack => [
-    TipsAndTricksPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        TipsAndTricksPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Selected Tips & Tricks
   List<Page> get _selectedTipsAndTricksStack => [
-    TipsAndTricksPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    SelectedTipsAndTricksPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        TipsAndTricksPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        SelectedTipsAndTricksPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Help
   List<Page> get _helpStack => [
-    HelpPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        HelpPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Selected Tips & Tricks
   List<Page> get _selectedHelpItemStack => [
-    HelpPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-
-    SelectedHelpItemPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        HelpPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        SelectedHelpItemPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Settings
   List<Page> get _settingsStack => [
-    SettingsPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        SettingsPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   @override
   Future<void> setNewRoutePath(CrokettConfiguration configuration) async {

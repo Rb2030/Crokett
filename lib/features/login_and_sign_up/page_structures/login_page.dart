@@ -1,4 +1,5 @@
 import 'package:crokett/core/global/widgets/fade_animation_page.dart';
+import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/login_screen.dart';
 import 'package:crokett/injection.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
@@ -18,15 +19,13 @@ class LoginPage extends Page {
         var curveTween = CurveTween(curve: Curves.easeIn);
         return FadeTransition(
           opacity: animation.drive(curveTween),
+          child: BlocProvider(
+          lazy: false,
+          create: (context) => getIt<LoginBloc>(),            
           child: LoginScreen(),
+          ),
         );
       },
     );
   }
 }
-    // return PageRouteBuilder(
-    //   settings: RouteSettings(name: LOGIN, arguments: nextScreen),
-    //   pageBuilder: (_, a1, a2) =>
-    //       FadeTransition(opacity: a1, child: LoginScreen()),
-    //   transitionDuration: Duration(seconds: 5),
-    // );

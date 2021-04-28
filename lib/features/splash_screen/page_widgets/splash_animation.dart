@@ -81,8 +81,10 @@ class _SplashAnimationState extends State<SplashAnimation>
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
                 fadeAnimationController.forward().then((_) {
-                  BlocProvider.of<AuthBloc>(context)
-                      .add(SplashAnimationFinished());
+                  Future<void>.delayed(const Duration(milliseconds: 300), () {
+                    BlocProvider.of<AuthBloc>(context)
+                        .add(SplashAnimationFinished());
+                  });
                 });
               });
             });
@@ -107,86 +109,86 @@ class _SplashAnimationState extends State<SplashAnimation>
       return AnimatedContainer(
         duration: const Duration(seconds: 1),
         color: bgColor,
-          child: Scaffold(
-            body: SingleChildScrollView(
-              child: Align(
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 400),
-                  width: rsc.rW(100),
-                  height: rsc.rH(100),
-                  color: bgColor,
-                  child: Center(
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        FadeTransition(
-                          opacity: fadeAnimationController,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                            child: Text(
-                              'cr',
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Align(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
+                width: rsc.rW(100),
+                height: rsc.rH(100),
+                color: bgColor,
+                child: Center(
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      FadeTransition(
+                        opacity: fadeAnimationController,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                          child: Text(
+                            'cr',
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
-                        const SizedBox(width: 1),
-                        Column(
-                          children: [
-                            const Spacer(),
-                            SizedBox(height: 15),
-                            Stack(
-                              children: [
-                                AnimatedContainer(
-                                  duration: const Duration(milliseconds: 700),
-                                  height: rsc.rH(responsiveBoxSize),
-                                  width: rsc.rH(responsiveBoxSize),
-                                  child: Visibility(
-                                    visible: _firstButtonVisible,
-                                    child: RotationTransition(
-                                      turns: Tween(begin: 0.0, end: 0.4)
-                                          .animate(spinAnimationController1),
-                                      child: SvgPicture.asset(
-                                          Images.imageHobPower1),
-                                    ),
+                      ),
+                      const SizedBox(width: 1),
+                      Column(
+                        children: [
+                          const Spacer(),
+                          SizedBox(height: 15),
+                          Stack(
+                            children: [
+                              AnimatedContainer(
+                                duration: const Duration(milliseconds: 700),
+                                height: rsc.rH(responsiveBoxSize),
+                                width: rsc.rH(responsiveBoxSize),
+                                child: Visibility(
+                                  visible: _firstButtonVisible,
+                                  child: RotationTransition(
+                                    turns: Tween(begin: 0.0, end: 0.4)
+                                        .animate(spinAnimationController1),
+                                    child:
+                                        SvgPicture.asset(Images.imageHobPower1),
                                   ),
                                 ),
-                                AnimatedContainer(
-                                  duration: const Duration(milliseconds: 700),
-                                  height: rsc.rH(responsiveBoxSize),
-                                  width: rsc.rH(responsiveBoxSize),
-                                  child: Visibility(
-                                    visible: _secondButtonVisible,
-                                    child: RotationTransition(
-                                      turns: Tween(begin: 0.4, end: 0.1)
-                                          .animate(spinAnimationController2),
-                                      child: SvgPicture.asset(
-                                          Images.imageHobPower2),
-                                    ),
+                              ),
+                              AnimatedContainer(
+                                duration: const Duration(milliseconds: 700),
+                                height: rsc.rH(responsiveBoxSize),
+                                width: rsc.rH(responsiveBoxSize),
+                                child: Visibility(
+                                  visible: _secondButtonVisible,
+                                  child: RotationTransition(
+                                    turns: Tween(begin: 0.4, end: 0.1)
+                                        .animate(spinAnimationController2),
+                                    child:
+                                        SvgPicture.asset(Images.imageHobPower2),
                                   ),
                                 ),
-                              ],
-                            ),
-                            const Spacer()
-                          ],
-                        ),
-                        const SizedBox(width: 1),
-                        FadeTransition(
-                          opacity: fadeAnimationController,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                            child: Text(
-                              'kett',
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
+                              ),
+                            ],
+                          ),
+                          const Spacer()
+                        ],
+                      ),
+                      const SizedBox(width: 1),
+                      FadeTransition(
+                        opacity: fadeAnimationController,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                          child: Text(
+                            'kett',
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
-                        const Spacer()
-                      ],
-                    ),
+                      ),
+                      const Spacer()
+                    ],
                   ),
                 ),
               ),
             ),
+          ),
         ),
       );
     });

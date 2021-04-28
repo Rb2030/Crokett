@@ -54,7 +54,7 @@ TextTheme textTheme() {
         fontFamily: Constants.vorkursFont,
         fontSize: 62,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.25),
+        letterSpacing: -2),
     // Main title
     headline2: TextStyle(
         fontFamily: Constants.vorkursFont,

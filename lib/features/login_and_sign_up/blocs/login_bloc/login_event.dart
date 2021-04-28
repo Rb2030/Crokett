@@ -7,6 +7,12 @@ abstract class LoginEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class LoginSelected extends LoginEvent {}
+
+class GoogleSignInSelected extends LoginEvent {}
+
+class SignUpSelected extends LoginEvent {}
+
 // Email
 
 class EmailChanged extends LoginEvent {

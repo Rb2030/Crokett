@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: CustomColours.crokettYellow,
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(20)),
+            horizontal: getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(24)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -57,8 +57,8 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: 16),
                       Container(
-                        height: rsc.rH(3.4),
-                        width: rsc.rH(3.4),
+                        height: 32,
+                        width: 32,
                         child: RotationTransition(
                           turns: AlwaysStoppedAnimation(52 / 360),
                           child: SvgPicture.asset(Images.imageHobPower2),

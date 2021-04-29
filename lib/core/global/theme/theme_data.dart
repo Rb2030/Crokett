@@ -110,7 +110,7 @@ TextTheme textTheme() {
     //
     button: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     //

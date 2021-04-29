@@ -29,7 +29,7 @@ class _SplashAnimationState extends State<SplashAnimation>
   late Animation<double> fadeAnimation;
 
   double spacerToCentralizeHob = 0;
-  double responsiveBoxSize = 6;
+  double responsiveBoxSize = 66;
   Color bgColor = Colors.white;
 
   bool _firstButtonVisible = true;
@@ -65,7 +65,7 @@ class _SplashAnimationState extends State<SplashAnimation>
     player.play(Sounds.soundHobClick);
     // Starting the animations
     bouncingAnimationController.forward().then((value) {
-      responsiveBoxSize = 5.5;
+      responsiveBoxSize = 56;
       setState(() {});
       Future<void>.delayed(const Duration(milliseconds: 200), () {
         spinAnimationController1.forward(from: 0).then((value) {
@@ -79,7 +79,7 @@ class _SplashAnimationState extends State<SplashAnimation>
             spinAnimationController2.forward(from: 0).then((value) {
               setState(() {});
               Future<void>.delayed(const Duration(milliseconds: 300), () {
-                responsiveBoxSize = 3.4;
+                responsiveBoxSize = 32;
                 bgColor = CustomColours.crokettYellow;
                 setState(() {});
                 fadeAnimationController.forward().then((_) {
@@ -148,8 +148,8 @@ class _SplashAnimationState extends State<SplashAnimation>
                               children: [
                                 AnimatedContainer(
                                   duration: const Duration(milliseconds: 700),
-                                  height: rsc.rH(responsiveBoxSize),
-                                  width: rsc.rH(responsiveBoxSize),
+                                  height: responsiveBoxSize,
+                                  width: responsiveBoxSize,
                                   child: Visibility(
                                     visible: _firstButtonVisible,
                                     child: RotationTransition(
@@ -162,8 +162,8 @@ class _SplashAnimationState extends State<SplashAnimation>
                                 ),
                                 AnimatedContainer(
                                   duration: const Duration(milliseconds: 700),
-                                  height: rsc.rH(responsiveBoxSize),
-                                  width: rsc.rH(responsiveBoxSize),
+                                  height: responsiveBoxSize,
+                                  width: responsiveBoxSize,
                                   child: Visibility(
                                     visible: _secondButtonVisible,
                                     child: RotationTransition(

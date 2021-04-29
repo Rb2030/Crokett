@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import 'core/global/widgets/keyboard_dismisser.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection(Environment.dev);
@@ -28,18 +30,21 @@ class _CrokettAppState extends State<CrokettApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          lazy: false,
-          create: (context) => getIt<AuthBloc>()..add(AppStarted()),
+    return keyboardDismisser(
+      context: context,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            lazy: false,
+            create: (context) => getIt<AuthBloc>()..add(AppStarted()),
+          ),
+        ],
+        child: MaterialApp.router(
+        title: 'Crokett',
+        theme: globalAppThemeData,
+        routerDelegate: _routerDelegate,
+        routeInformationParser: _routeInformationParser,
         ),
-      ],
-      child: MaterialApp.router(
-      title: 'Crokett',
-      theme: globalAppThemeData,
-      routerDelegate: _routerDelegate,
-      routeInformationParser: _routeInformationParser,
       ),
     );
   }

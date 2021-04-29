@@ -20,11 +20,11 @@ class UnknownScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('ERROR!')),
-      body: _colorList(context),
+      body: _unknownView(context),
     );
   }
 
-  Widget _colorList(BuildContext context) {
+  Widget _unknownView(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Center(

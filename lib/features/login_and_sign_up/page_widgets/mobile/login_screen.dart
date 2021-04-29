@@ -1,6 +1,9 @@
 import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/colors/custom_colours.dart';
+import 'package:crokett/core/global/constants/constants.dart';
+import 'package:crokett/core/global/helpers/device_type_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
+import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
@@ -20,52 +23,68 @@ class LoginScreen extends StatelessWidget {
       // }
     }, builder: (context, state) {
       return Scaffold(
-        body: SingleChildScrollView(
-          child: Align(
-            child: Container(
-              width: rsc.rW(100),
-              height: rsc.rH(100),
-              color: CustomColours.crokettYellow,
-              child: Center(
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                      child: Text(
-                        'cr',
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                    ),
-                    const SizedBox(width: 1),
-                    Column(
-                      children: [
-                        const Spacer(),
-                        SizedBox(height: 15),
-                        Container(
-                          height: rsc.rH(3.4),
-                          width: rsc.rH(3.4),
-                          child: RotationTransition(
-                            turns: AlwaysStoppedAnimation(37 / 360),
-                            child: SvgPicture.asset(Images.imageHobPower2),
-                          ),
-                        ),
-                        const Spacer()
-                      ],
-                    ),
-                    const SizedBox(width: 1),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                      child: Text(
-                        'kett',
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                    ),
-                    const Spacer()
-                  ],
-                ),
+        backgroundColor: CustomColours.crokettYellow,
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(20)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: rsc.rH(16)),
+              Row(
+                children: [
+                  const Spacer(),
+                  Container(
+                      height: rsc.rH(30),
+                      width: rsc.rH(30),
+                      color: Colors.white),
+                  const Spacer(),
+                ],
               ),
-            ),
+              SizedBox(height: rsc.rH(8)),
+              Row(
+                children: [
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                    child: Text(
+                      'cr',
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ),
+                  const SizedBox(width: 1),
+                  Column(
+                    children: [
+                      SizedBox(height: 16),
+                      Container(
+                        height: rsc.rH(3.4),
+                        width: rsc.rH(3.4),
+                        child: RotationTransition(
+                          turns: AlwaysStoppedAnimation(52 / 360),
+                          child: SvgPicture.asset(Images.imageHobPower2),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 1),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                    child: Text(
+                      'kett',
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ),
+                  const Spacer(),
+                ],
+              ),
+              SizedBox(height: rsc.rH(8)),
+              ElevatedButton(
+                onPressed: () {
+                  debugPrint('LogIn pressed');
+                },
+                child: Text(Constants.logIn),
+              ),
+            ],
           ),
         ),
       );

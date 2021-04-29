@@ -2,7 +2,7 @@
 class UIHelper {
   // Spacing constants.
 
-  static const double spacer = 20.0;
+  static const double smallSpacer = 20.0;
 
   static const double lineCornerRadius = 5.0;
   static const double lineHeight = 0.8;
@@ -21,8 +21,9 @@ class UIHelper {
 
   /// Button
 
-  static const double buttonCornerRadius = 4;
-  static const double buttonMinHeight = 45;
-  static const double buttonMinWidth = 118;
+  static const double buttonCornerRadius = 6;
+  static const double buttonMinHeight = 58;
+  static const double buttonMinWidth = 90;
+  static const double maxButtonWidth = 200;
   static const double buttonPadding = 12;
 }

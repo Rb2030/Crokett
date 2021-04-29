@@ -13,18 +13,16 @@ final globalAppThemeData = ThemeData(
   canvasColor: Colors.white,
   buttonColor: Colors.black,
   buttonBarTheme: const ButtonBarThemeData(alignment: MainAxisAlignment.center),
-  buttonTheme: ButtonThemeData(
-      padding: const EdgeInsets.all(UIHelper.buttonPadding),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
-        // ignore: avoid_redundant_argument_values
-        /*side: const BorderSide(color: Colors.black)*/
-      ),
-      minWidth: UIHelper.buttonMinWidth,
-      height: UIHelper.buttonMinHeight,
-      buttonColor: Colors.black,
-      // colorScheme: ColorScheme(secondary: Colors.black), /// -------------- Need to check this to see if the text on white buttons is black
-      disabledColor: Colors.grey),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(UIHelper.buttonPadding),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
+        ),
+        minimumSize: Size(UIHelper.buttonMinWidth, UIHelper.buttonMinHeight),
+        primary: Colors.black,
+        onSurface: Colors.grey),
+  ),
   iconTheme: const IconThemeData(color: Colors.black),
   inputDecorationTheme: InputDecorationTheme(
       errorStyle: const TextStyle(color: Colors.black),
@@ -54,7 +52,7 @@ TextTheme textTheme() {
         fontFamily: Constants.vorkursFont,
         fontSize: 62,
         fontWeight: FontWeight.w400,
-        letterSpacing: -2),
+        letterSpacing: -3),
     // Main title
     headline2: TextStyle(
         fontFamily: Constants.vorkursFont,
@@ -112,8 +110,8 @@ TextTheme textTheme() {
     //
     button: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     //
     caption: TextStyle(

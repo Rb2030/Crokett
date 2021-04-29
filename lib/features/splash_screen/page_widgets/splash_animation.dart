@@ -28,6 +28,7 @@ class _SplashAnimationState extends State<SplashAnimation>
   late AnimationController fadeAnimationController;
   late Animation<double> fadeAnimation;
 
+  double spacerToCentralizeHob = 0;
   double responsiveBoxSize = 6;
   Color bgColor = Colors.white;
 
@@ -68,6 +69,7 @@ class _SplashAnimationState extends State<SplashAnimation>
       setState(() {});
       Future<void>.delayed(const Duration(milliseconds: 200), () {
         spinAnimationController1.forward(from: 0).then((value) {
+          spacerToCentralizeHob = 0;
           setState(() {
             _secondButtonVisible = true;
           });
@@ -97,6 +99,7 @@ class _SplashAnimationState extends State<SplashAnimation>
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
+    spacerToCentralizeHob = rsc.rW(1);
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
       if (state is AuthStateSplashAnimationFinished) {
         if (state.loggedIn == true) {
@@ -110,83 +113,88 @@ class _SplashAnimationState extends State<SplashAnimation>
         duration: const Duration(seconds: 1),
         color: bgColor,
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Align(
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 400),
-                width: rsc.rW(100),
-                height: rsc.rH(100),
-                color: bgColor,
-                child: Center(
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      FadeTransition(
-                        opacity: fadeAnimationController,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'cr',
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
+          body: AnimatedContainer(
+            duration: const Duration(milliseconds: 400),
+            color: bgColor,
+            width: rsc.rW(100),
+            height: rsc.rH(100),
+            child: Column(
+              children: [
+                SizedBox(height: rsc.rH(54)),
+                Row(
+                  children: [
+                    const Spacer(),
+                    FadeTransition(
+                      opacity: fadeAnimationController,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                        child: Text(
+                          'cr',
+                          style: Theme.of(context).textTheme.headline1,
                         ),
                       ),
-                      const SizedBox(width: 1),
-                      Column(
-                        children: [
-                          const Spacer(),
-                          SizedBox(height: 15),
-                          Stack(
-                            children: [
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 700),
-                                height: rsc.rH(responsiveBoxSize),
-                                width: rsc.rH(responsiveBoxSize),
-                                child: Visibility(
-                                  visible: _firstButtonVisible,
-                                  child: RotationTransition(
-                                    turns: Tween(begin: 0.0, end: 0.4)
-                                        .animate(spinAnimationController1),
-                                    child:
-                                        SvgPicture.asset(Images.imageHobPower1),
+                    ),
+                    const SizedBox(width: 1),
+                    Row(
+                      children: [
+                        // AnimatedContainer(
+                        //   duration: const Duration(milliseconds: 2700),
+                        //   width: rsc.rH(spacerToCentralizeHob),
+                        // ),
+                        Column(
+                          children: [
+                            SizedBox(height: 16),
+                            Stack(
+                              children: [
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 700),
+                                  height: rsc.rH(responsiveBoxSize),
+                                  width: rsc.rH(responsiveBoxSize),
+                                  child: Visibility(
+                                    visible: _firstButtonVisible,
+                                    child: RotationTransition(
+                                      turns: Tween(begin: 0.0, end: 0.4)
+                                          .animate(spinAnimationController1),
+                                      child: SvgPicture.asset(
+                                          Images.imageHobPower1),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 700),
-                                height: rsc.rH(responsiveBoxSize),
-                                width: rsc.rH(responsiveBoxSize),
-                                child: Visibility(
-                                  visible: _secondButtonVisible,
-                                  child: RotationTransition(
-                                    turns: Tween(begin: 0.4, end: 0.1)
-                                        .animate(spinAnimationController2),
-                                    child:
-                                        SvgPicture.asset(Images.imageHobPower2),
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 700),
+                                  height: rsc.rH(responsiveBoxSize),
+                                  width: rsc.rH(responsiveBoxSize),
+                                  child: Visibility(
+                                    visible: _secondButtonVisible,
+                                    child: RotationTransition(
+                                      turns: Tween(begin: 0.4, end: 0.15)
+                                          .animate(spinAnimationController2),
+                                      child: SvgPicture.asset(
+                                          Images.imageHobPower2),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Spacer()
-                        ],
-                      ),
-                      const SizedBox(width: 1),
-                      FadeTransition(
-                        opacity: fadeAnimationController,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'kett',
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 1),
+                    FadeTransition(
+                      opacity: fadeAnimationController,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                        child: Text(
+                          'kett',
+                          style: Theme.of(context).textTheme.headline1,
                         ),
                       ),
-                      const Spacer()
-                    ],
-                  ),
+                    ),
+                    const Spacer()
+                  ],
                 ),
-              ),
+              ],
             ),
           ),
         ),

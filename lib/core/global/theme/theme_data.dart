@@ -123,7 +123,7 @@ TextTheme textTheme() {
     button: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 18,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         letterSpacing: 0.15),
     //
     caption: TextStyle(

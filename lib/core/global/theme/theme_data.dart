@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../helpers/ui_helper.dart';
 
+Color getColor(Set<MaterialState> states) {
+  const Set<MaterialState> interactiveStates = <MaterialState>{
+    MaterialState.pressed,
+    MaterialState.hovered,
+    MaterialState.focused,
+  };
+  if (states.any(interactiveStates.contains)) {
+    return Colors.grey;
+  }
+  return Colors.black;
+}
+
 final globalAppThemeData = ThemeData(
   primaryColorLight: Colors.white,
   brightness: Brightness.light,
@@ -110,7 +122,7 @@ TextTheme textTheme() {
     //
     button: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15),
     //

@@ -26,7 +26,9 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: CustomColours.crokettYellow,
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(24)),
+              horizontal: getDeviceType() == DeviceType.Phone
+                  ? rsc.rW(10)
+                  : rsc.rW(24)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -41,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                   const Spacer(),
                 ],
               ),
-              SizedBox(height: rsc.rH(8)),
+              SizedBox(height: rsc.rH(7)),
               Row(
                 children: [
                   const Spacer(),
@@ -77,12 +79,55 @@ class LoginScreen extends StatelessWidget {
                   const Spacer(),
                 ],
               ),
-              SizedBox(height: rsc.rH(8)),
+              SizedBox(height: rsc.rH(7)),
               ElevatedButton(
                 onPressed: () {
                   debugPrint('LogIn pressed');
                 },
                 child: Text(Constants.logIn),
+              ),
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.black,
+                  primary: Colors.white,
+                ),
+                onPressed: () {
+                  debugPrint('SignUp pressed');
+                },
+                child: Text(Constants.signUp),
+              ),
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              Row(children: [
+                const Spacer(),
+                Container(
+                  height: 3,
+                  width: rsc.rW(12),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(2)),
+                  ),
+                ),
+                const Spacer()
+              ]),
+              SizedBox(height: UIHelper.paddingBetweenElements),
+                            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.black,
+                  primary: Colors.white,
+                ),
+                onPressed: () {
+                  debugPrint('Sign In with Google pressed');
+                },
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Container(height: UIHelper.iconSize, width: UIHelper.iconSize, child: SvgPicture.asset(Images.googleG)),
+                    SizedBox(width: UIHelper.buttonPadding),
+                    Text(Constants.signInWithGoogle),
+                    const Spacer(),
+                  ],
+                ),
               ),
             ],
           ),

@@ -19,7 +19,8 @@ class Constants extends InheritedWidget {
   static const String email = 'Email';
   static const String password = 'Password';
   static const String username = 'Username';
-  static const String signIn = 'Sign In';
+  static const String signUp = 'Sign Up';
+  static const String signInWithGoogle = 'Sign In with Google';
   static const String logIn = 'Log In';
   static const String register = 'Register';
   static const String forgottenSigninDetails = 'Forgotten sign In details?';

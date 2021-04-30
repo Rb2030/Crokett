@@ -36,23 +36,6 @@ final globalAppThemeData = ThemeData(
         onSurface: Colors.grey),
   ),
   iconTheme: const IconThemeData(color: Colors.black),
-  inputDecorationTheme: InputDecorationTheme(
-      errorStyle: const TextStyle(color: Colors.black),
-      contentPadding: const EdgeInsets.fromLTRB(
-          UIHelper.textFieldPadding * 2,
-          UIHelper.textFieldPadding,
-          UIHelper.textFieldPadding,
-          UIHelper.textFieldPadding),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(UIHelper.textFieldBorderRadius),
-          borderSide: const BorderSide(
-              color: Colors.black,
-              width: UIHelper.textFieldBorderWidthFocused)),
-      enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-              // ignore: avoid_redundant_argument_values
-              color: Colors.black,
-              width: UIHelper.textFieldBorderWidthDisabled))),
   textTheme:
       textTheme().apply(displayColor: Colors.black, bodyColor: Colors.black),
 );
@@ -76,66 +59,66 @@ TextTheme textTheme() {
         fontFamily: Constants.poppinsFont,
         fontSize: 36,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0.25),
+        letterSpacing: 0.2),
     // Poppins
     headline4: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 30,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0.25),
+        letterSpacing: 0.2),
     // Poppins
     headline5: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 28,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.25),
+        letterSpacing: 0.2),
     // Poppins
     headline6: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 23,
         fontWeight: FontWeight.w500,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     // Used for inside textFields
     subtitle1: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     // Used for sub titles errors, notifications etc
     subtitle2: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 20,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     // Text buttons e.g Forgotten sign in details?, Labelling above textFields, main text size
     bodyText1: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     // Information & large bodies of text
     bodyText2: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     //
     button: TextStyle(
         fontFamily: Constants.poppinsFont,
         fontSize: 18,
         fontWeight: FontWeight.w500,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     //
     caption: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 12,
+        fontSize: 16,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
     //
     overline: TextStyle(
         fontFamily: Constants.poppinsFont,
-        fontSize: 10,
+        fontSize: 14,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
+        letterSpacing: 0.1),
   );
 }

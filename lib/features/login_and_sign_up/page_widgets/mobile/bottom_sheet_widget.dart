@@ -1,61 +1,66 @@
+import 'package:crokett/core/global/constants/constants.dart';
+import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
+import 'package:crokett/core/global/widgets/crokett_textfield.dart';
+import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BottomSheetWidget extends StatefulWidget {
-  const BottomSheetWidget({Key? key}) : super(key: key);
+class LoginBottomSheetWidget extends StatefulWidget {
+  const LoginBottomSheetWidget({Key? key}) : super(key: key);
 
   @override
-  _BottomSheetWidgetState createState() => _BottomSheetWidgetState();
+  _LoginBottomSheetWidgetState createState() => _LoginBottomSheetWidgetState();
 }
 
-class _BottomSheetWidgetState extends State<BottomSheetWidget> {
+class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
-      height: 160,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Container(
-            height: 125,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10, color: Colors.grey[300]!, spreadRadius: 5)
-                ]),
-            child: Column(
-              children: <Widget>[
-                DecoratedTextField(),
-                SheetButton()
-              ],
+    final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
+    final _textViewController = TextEditingController(text: '');
+
+    return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
+      // if (state is LoggedIn) {
+      //     nextScreen(HOME);
+      // }
+    }, builder: (context, state) {
+      return Container(
+        margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+        height: rsc.rH(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: ListView(
+                shrinkWrap: true,
+                children: <Widget>[
+                  CrokettTextField(
+                    hint: Constants.email,
+                    controller: _textViewController,
+                    onChanged: (value) {
+                      _textViewController.text = value;
+                      _textViewController.selection =
+                          TextSelection.fromPosition(TextPosition(
+                              offset: _textViewController.text
+                                  .length)); // Puts the cursor at the end of the text
+                    },
+                    inputType: TextInputType.emailAddress,
+                    obscureText: false,
+                    validator: (text) {
+                      context
+                          .read<LoginBloc>()
+                          .add(EmailChanged(emailString: text));
+                    },
+                  ),
+                  // SheetButton()
+                ],
+              ),
             ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class DecoratedTextField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextField(
-        decoration:
-            InputDecoration.collapsed(hintText: 'Enter your reference number'),
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }
 
@@ -76,13 +81,13 @@ class _SheetButtonState extends State<SheetButton> {
             color: Colors.grey[800],
             onPressed: () async {
               setState(() {
-               checkingFlight = true; 
+                checkingFlight = true;
               });
 
-              await Future.delayed(Duration(seconds:1));
+              await Future.delayed(Duration(seconds: 1));
 
               setState(() {
-               success = true; 
+                success = true;
               });
 
               await Future.delayed(Duration(milliseconds: 500));

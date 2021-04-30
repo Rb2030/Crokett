@@ -18,14 +18,20 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-    final _emailTextViewController = TextEditingController(text: '');
-    final _passwordTextViewController = TextEditingController(text: '');
 
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       // if (state is LoggedIn) {
       //     nextScreen(HOME);
       // }
     }, builder: (context, state) {
+      final _emailTextViewController = TextEditingController(
+          text: context.read<LoginBloc>().emailAddressString);
+      _emailTextViewController.selection = TextSelection.fromPosition(
+          TextPosition(offset: _emailTextViewController.text.length));
+      final _passwordTextViewController =
+          TextEditingController(text: context.read<LoginBloc>().passwordString);
+      _passwordTextViewController.selection = TextSelection.fromPosition(
+          TextPosition(offset: _passwordTextViewController.text.length));
       return Padding(
         padding: EdgeInsets.symmetric(
             horizontal:

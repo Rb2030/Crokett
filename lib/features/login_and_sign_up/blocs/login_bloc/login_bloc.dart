@@ -13,6 +13,8 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginStateInitial());
   bool displayBottomSheet = false;
+  String emailAddressString = '';
+  String passwordString = '';
 
   @override
   Stream<LoginState> mapEventToState(
@@ -25,6 +27,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is RemoveBottomSheet) {
       displayBottomSheet = false;
       yield LoginStateInitial();
+    }
+    if (event is EmailChanged) {
+      emailAddressString = event.emailString;
+    }
+    if (event is PasswordChanged) {
+      passwordString = event.passwordString;
     }
   }
 }

@@ -14,10 +14,29 @@ import 'package:crokett/core/global/globals/globals.dart' as globals;
 
 bool modalViewOpened = false;
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen>
+    with TickerProviderStateMixin {
+  late AnimationController imageSizeAnimController;
+
+  @override
+  void initState() {
+    super.initState();
+    imageSizeAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
+    double responsiveSpacerSize = rsc.rH(6);
+    double responsiveBoxSize = rsc.rH(36);
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       // if (state is GoogleSignInSelected) {
       //     nextScreen(GOOGLE_SIGN_IN);
@@ -27,37 +46,61 @@ class LoginScreen extends StatelessWidget {
       // }
     }, builder: (context, state) {
       if (state is! GoogleSignInSelected || state is! SignUpSelected) {
+        if (state is! LoginStateInitial) {
+          responsiveSpacerSize = 0;
+          responsiveBoxSize = 0;
+          imageSizeAnimController.forward().then((value) {
+            setState(() {});
+          });
+        }
         return GestureDetector(
           onTap: () {
-            modalViewOpened
-                ? Navigator.pop(context)
-                : debugPrint('Modal not open');
+            if (modalViewOpened) {
+              Navigator.pop(context);
+              responsiveSpacerSize = rsc.rH(6);
+              responsiveBoxSize = rsc.rH(30);
+              imageSizeAnimController.forward().then((value) {
+                setState(() {});
+              });
+            }
             modalViewOpened = false;
           },
           child: Scaffold(
             backgroundColor: CustomColours.crokettYellow,
             body: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getDeviceType() == DeviceType.Phone
+                padding: EdgeInsets.fromLTRB(
+                    getDeviceType() == DeviceType.Phone
                         ? rsc.rW(10)
-                        : rsc.rW(24),
-                        vertical: rsc.rH(10)),
+                        : rsc.rW(24), // Left
+                    rsc.rH(4), // Top
+                    getDeviceType() == DeviceType.Phone
+                        ? rsc.rW(10)
+                        : rsc.rW(24), // Right
+                    rsc.rH(10)),// Bottom
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: rsc.rH(6)),
+                    AnimatedContainer(
+                      height: responsiveSpacerSize,
+                      duration: const Duration(milliseconds: 1),
+                    ),
                     Row(
                       children: [
                         const Spacer(),
-                        Container(
-                            height: rsc.rH(30),
-                            width: rsc.rH(30),
-                            color: Colors.white),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 1),
+                          height: responsiveBoxSize,
+                          width: rsc.rH(30),
+                          child: Container(color: Colors.white),
+                        ),
                         const Spacer(),
                       ],
                     ),
-                    SizedBox(height: rsc.rH(7)),
+                    AnimatedContainer(
+                      height: responsiveSpacerSize,
+                      duration: const Duration(milliseconds: 1),
+                    ),
                     Row(
                       children: [
                         const Spacer(),
@@ -184,8 +227,10 @@ class LoginButton extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(UIHelper.paddingBetweenElements),
-                        topLeft: Radius.circular(UIHelper.paddingBetweenElements),
+                        topRight:
+                            Radius.circular(UIHelper.paddingBetweenElements),
+                        topLeft:
+                            Radius.circular(UIHelper.paddingBetweenElements),
                       ),
                     ),
                     child: LoginBottomSheetWidget()));

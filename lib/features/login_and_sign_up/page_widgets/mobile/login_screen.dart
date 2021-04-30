@@ -177,7 +177,16 @@ class LoginButton extends StatelessWidget {
             context.read<LoginBloc>().add(LoginSelected());
             mainUIContext.read<LoginBloc>().add(LoginSelected());
             var sheetController = showBottomSheet(
-                context: context, builder: (context) => LoginBottomSheetWidget());
+                context: context,
+                builder: (context) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(UIHelper.paddingBetweenElements),
+                        topLeft: Radius.circular(UIHelper.paddingBetweenElements),
+                      ),
+                    ),
+                    child: LoginBottomSheetWidget()));
             modalViewOpened = true;
             sheetController.closed.then((value) {
               context.read<LoginBloc>().add(RemoveBottomSheet());

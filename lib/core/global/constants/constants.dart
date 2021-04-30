@@ -22,7 +22,7 @@ class Constants extends InheritedWidget {
   static const String signUp = 'Sign Up';
   static const String signInWithGoogle = 'Sign In with Google';
   static const String logIn = 'Log In';
-  static const String register = 'Register';
+  static const String notGotAccount = 'Not got an account with us yet?';
   static const String forgottenSigninDetails = 'Forgotten sign In details?';
   static const String emailAlreadyInUseTextFieldError = 'Email Already In Use';
 

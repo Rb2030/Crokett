@@ -22,7 +22,7 @@ final globalAppThemeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(color: Colors.white),
   backgroundColor: Colors.white,
-  canvasColor: Colors.white,
+  canvasColor: Colors.transparent,
   buttonColor: Colors.black,
   buttonBarTheme: const ButtonBarThemeData(alignment: MainAxisAlignment.center),
   elevatedButtonTheme: ElevatedButtonThemeData(

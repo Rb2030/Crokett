@@ -1,15 +1,14 @@
 
 class UIHelper {
   // Spacing constants.
-
+  static const double tinySpacer = 2;
   static const double smallSpacer = 20.0;
-
-  static const double lineCornerRadius = 5.0;
-  static const double lineHeight = 0.8;
   static const double paddingBetweenElements = 24.0;
   static const double iconSize = 25.0;
   static const double elevation = 8.0;
   static const double appBarHeight = 65.0;
+  static const double lineCornerRadius = 5.0;
+  static const double lineHeight = 0.8;
 
   /// TextField
 

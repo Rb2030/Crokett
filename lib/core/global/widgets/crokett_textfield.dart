@@ -50,7 +50,7 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
           keyboardType: widget.inputType,
           controller: widget.controller,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.fromLTRB(14, 17, 10, 17),
+            contentPadding: EdgeInsets.fromLTRB(14, 16, 10, 16),
             // floatingLabelBehavior: FloatingLabelBehavior.always,
             // labelText: widget.hint,
             // labelStyle: TextStyle(color: Colors.black),

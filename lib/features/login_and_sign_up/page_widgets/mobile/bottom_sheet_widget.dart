@@ -38,8 +38,19 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       if (state is LoginQueryReturn) {
         state.authFailureOrSuccessOption.fold(
-            () => AlertDialog(title: Text(Constants.failureNotAuthenticated)),
-            (_) => nextScreen(HOME));
+          () {},
+          (either) {
+            either.fold(
+              (failure) {
+                return AlertDialog(
+                    title: Text(Constants.failureNotAuthenticated));
+              },
+              (success) {
+                nextScreen(HOME);
+              },
+            );
+          },
+        );
       }
     }, builder: (context, state) {
       _emailTextViewController.selection = TextSelection.fromPosition(
@@ -48,7 +59,8 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
       _passwordTextViewController.selection = TextSelection.fromPosition(
           TextPosition(offset: _passwordTextViewController.text.length));
 
-      bool buttonEnabled = context.watch<LoginBloc>().bottomLoginButtonEnabled ? true : false;
+      bool buttonEnabled =
+          context.watch<LoginBloc>().bottomLoginButtonEnabled ? true : false;
 
       return Padding(
         padding: EdgeInsets.symmetric(
@@ -82,8 +94,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                       debugPrint(f
                           .errorMessage); // In here should be the yellow error box
                     },
-                    (_) {
-                    },
+                    (_) {},
                   );
                 },
               ),
@@ -109,8 +120,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                       debugPrint(f
                           .errorMessage); // In here should be the yellow error box
                     },
-                    (_) {
-                    },
+                    (_) {},
                   );
                 },
               ),

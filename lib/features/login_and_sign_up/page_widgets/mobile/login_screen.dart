@@ -75,134 +75,137 @@ class _LoginScreenState extends State<LoginScreen>
           child: Scaffold(
             backgroundColor: CustomColours.crokettYellow,
             body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(
-                    getDeviceType() == DeviceType.Phone
-                        ? rsc.rW(10)
-                        : rsc.rW(24), // Left
-                    rsc.rH(4), // Top
-                    getDeviceType() == DeviceType.Phone
-                        ? rsc.rW(10)
-                        : rsc.rW(24), // Right
-                    rsc.rH(10)), // Bottom
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    AnimatedContainer(
-                      height: responsiveSpacerSize,
-                      duration: const Duration(milliseconds: 1),
-                    ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 1),
-                          height: responsiveBoxSize,
-                          width: rsc.rH(30),
-                          child: Container(color: Colors.white),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    AnimatedContainer(
-                      height: responsiveSpacerSize,
-                      duration: const Duration(milliseconds: 1),
-                    ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'cr',
-                            style: Theme.of(context).textTheme.headline1,
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      getDeviceType() == DeviceType.Phone
+                          ? rsc.rW(10)
+                          : rsc.rW(24), // Left
+                      rsc.rH(4), // Top
+                      getDeviceType() == DeviceType.Phone
+                          ? rsc.rW(10)
+                          : rsc.rW(24), // Right
+                      rsc.rH(10)), // Bottom
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AnimatedContainer(
+                        height: responsiveSpacerSize,
+                        duration: const Duration(milliseconds: 1),
+                      ),
+                      Row(
+                        children: [
+                          const Spacer(),
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 1),
+                            height: responsiveBoxSize,
+                            width: rsc.rH(30),
+                            child: Container(color: Colors.white),
                           ),
-                        ),
-                        const SizedBox(width: 1),
-                        Column(
-                          children: [
-                            SizedBox(height: 16),
-                            Container(
-                              height: 32,
-                              width: 32,
-                              child: RotationTransition(
-                                turns: AlwaysStoppedAnimation(52 / 360),
-                                child: SvgPicture.asset(Images.imageHobPower2),
-                              ),
+                          const Spacer(),
+                        ],
+                      ),
+                      AnimatedContainer(
+                        height: responsiveSpacerSize,
+                        duration: const Duration(milliseconds: 1),
+                      ),
+                      Row(
+                        children: [
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            child: Text(
+                              'cr',
+                              style: Theme.of(context).textTheme.headline1,
                             ),
-                          ],
-                        ),
-                        const SizedBox(width: 1),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'kett',
-                            style: Theme.of(context).textTheme.headline1,
                           ),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    SizedBox(height: rsc.rH(7)),
-                    BlocProvider(
-                      lazy: false,
-                      create: (context) => getIt<LoginBloc>(),
-                      child: LoginButton(context, nextScreen),
-                    ),
-                    SizedBox(height: UIHelper.paddingBetweenElements),
-                    state is LoginStateInitial
-                        ? ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              onPrimary: Colors.black,
-                              primary: Colors.white,
-                            ),
-                            onPressed: () {
-                              debugPrint('SignUp pressed');
-                            },
-                            child: Text(Constants.signUp),
-                          )
-                        : Container(),
-                    SizedBox(height: UIHelper.paddingBetweenElements),
-                    state is LoginStateInitial
-                        ? Row(children: [
-                            const Spacer(),
-                            Container(
-                              height: 3,
-                              width: rsc.rW(12),
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                          const SizedBox(width: 1),
+                          Column(
+                            children: [
+                              SizedBox(height: 16),
+                              Container(
+                                height: 32,
+                                width: 32,
+                                child: RotationTransition(
+                                  turns: AlwaysStoppedAnimation(52 / 360),
+                                  child: SvgPicture.asset(Images.imageHobPower2),
+                                ),
                               ),
+                            ],
+                          ),
+                          const SizedBox(width: 1),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            child: Text(
+                              'kett',
+                              style: Theme.of(context).textTheme.headline1,
                             ),
-                            const Spacer()
-                          ])
-                        : Container(),
-                    SizedBox(height: UIHelper.paddingBetweenElements),
-                    state is LoginStateInitial
-                        ? ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              onPrimary: Colors.black,
-                              primary: Colors.white,
-                            ),
-                            onPressed: () {
-                              debugPrint('Sign In with Google pressed');
-                            },
-                            child: Row(
-                              children: [
-                                const Spacer(),
-                                Container(
-                                    height: UIHelper.iconSize,
-                                    width: UIHelper.iconSize,
-                                    child: SvgPicture.asset(Images.googleG)),
-                                SizedBox(width: UIHelper.buttonPadding),
-                                Text(Constants.signInWithGoogle),
-                                const Spacer(),
-                              ],
-                            ),
-                          )
-                        : Container(),
-                  ],
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                      SizedBox(height: rsc.rH(7)),
+                      BlocProvider(
+                        lazy: false,
+                        create: (context) => getIt<LoginBloc>(),
+                        child: LoginButton(context, nextScreen),
+                      ),
+                      SizedBox(height: UIHelper.paddingBetweenElements),
+                      state is LoginStateInitial
+                          ? ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.black,
+                                primary: Colors.white,
+                              ),
+                              onPressed: () {
+                                debugPrint('SignUp pressed');
+                              },
+                              child: Text(Constants.signUp),
+                            )
+                          : Container(),
+                      SizedBox(height: UIHelper.paddingBetweenElements),
+                      state is LoginStateInitial
+                          ? Row(children: [
+                              const Spacer(),
+                              Container(
+                                height: 3,
+                                width: rsc.rW(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(2)),
+                                ),
+                              ),
+                              const Spacer()
+                            ])
+                          : Container(),
+                      SizedBox(height: UIHelper.paddingBetweenElements),
+                      state is LoginStateInitial
+                          ? ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.black,
+                                primary: Colors.white,
+                              ),
+                              onPressed: () {
+                                debugPrint('Sign In with Google pressed');
+                              },
+                              child: Row(
+                                children: [
+                                  const Spacer(),
+                                  Container(
+                                      height: UIHelper.iconSize,
+                                      width: UIHelper.iconSize,
+                                      child: SvgPicture.asset(Images.googleG)),
+                                  SizedBox(width: UIHelper.buttonPadding),
+                                  Text(Constants.signInWithGoogle),
+                                  const Spacer(),
+                                ],
+                              ),
+                            )
+                          : Container(),
+                          state is CheckingCredentials ? Container(height: rsc.rHP(100), width: rsc.rW(100), color: Colors.white.withOpacity(0.1)) : Container(),
+                    ],
+                  ),
                 ),
               ),
             ),

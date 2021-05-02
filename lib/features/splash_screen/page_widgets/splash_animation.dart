@@ -120,7 +120,7 @@ class _SplashAnimationState extends State<SplashAnimation>
             height: rsc.rH(100),
             child: Column(
               children: [
-                SizedBox(height: rsc.rH(53)),
+                SizedBox(height: rsc.rH(52)),
                 Row(
                   children: [
                     const Spacer(),

@@ -2,6 +2,7 @@ import 'package:crokett/core/global/errors/failures.dart';
 import 'package:crokett/core/global/value_objects/value_object.dart';
 import 'package:crokett/core/global/value_objects/value_validators.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 class EmailAddress extends ValueObject<String> {
   @override

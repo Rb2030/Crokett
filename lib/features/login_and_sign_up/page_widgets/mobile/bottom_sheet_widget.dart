@@ -4,34 +4,52 @@ import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/core/global/widgets/crokett_textfield.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
+import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBottomSheetWidget extends StatefulWidget {
-  const LoginBottomSheetWidget({Key? key}) : super(key: key);
+  final Function(String) nextScreen;
+
+  const LoginBottomSheetWidget({Key? key, required this.nextScreen})
+      : super(key: key);
 
   @override
   _LoginBottomSheetWidgetState createState() => _LoginBottomSheetWidgetState();
 }
 
 class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
+  late Function(String) nextScreen;
+
+  @override
+  void initState() {
+    super.initState();
+    nextScreen = widget.nextScreen;
+  }
+
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
+    final _emailTextViewController = TextEditingController(
+        text: context.read<LoginBloc>().emailAddressString);
+    final _passwordTextViewController =
+        TextEditingController(text: context.read<LoginBloc>().passwordString);
 
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
-      // if (state is LoggedIn) {
-      //     nextScreen(HOME);
-      // }
+      if (state is LoginQueryReturn) {
+        state.authFailureOrSuccessOption.fold(
+            () => AlertDialog(title: Text(Constants.failureNotAuthenticated)),
+            (_) => nextScreen(HOME));
+      }
     }, builder: (context, state) {
-      final _emailTextViewController = TextEditingController(
-          text: context.read<LoginBloc>().emailAddressString);
       _emailTextViewController.selection = TextSelection.fromPosition(
           TextPosition(offset: _emailTextViewController.text.length));
-      final _passwordTextViewController =
-          TextEditingController(text: context.read<LoginBloc>().passwordString);
+
       _passwordTextViewController.selection = TextSelection.fromPosition(
           TextPosition(offset: _passwordTextViewController.text.length));
+
+      bool buttonEnabled = context.watch<LoginBloc>().bottomLoginButtonEnabled ? true : false;
+
       return Padding(
         padding: EdgeInsets.symmetric(
             horizontal:
@@ -52,13 +70,21 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                       TextSelection.fromPosition(TextPosition(
                           offset: _emailTextViewController.text
                               .length)); // Puts the cursor at the end of the text
+                  context
+                      .read<LoginBloc>()
+                      .add(EmailChanged(emailString: value));
                 },
                 inputType: TextInputType.emailAddress,
                 obscureText: false,
                 validator: (text) {
-                  context
-                      .read<LoginBloc>()
-                      .add(EmailChanged(emailString: text));
+                  context.watch<LoginBloc>().emailAddress.value.fold(
+                    (f) {
+                      debugPrint(f
+                          .errorMessage); // In here should be the yellow error box
+                    },
+                    (_) {
+                    },
+                  );
                 },
               ),
               SizedBox(height: UIHelper.paddingBetweenElements),
@@ -71,21 +97,34 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                       TextSelection.fromPosition(TextPosition(
                           offset: _passwordTextViewController.text
                               .length)); // Puts the cursor at the end of the text
+                  context
+                      .read<LoginBloc>()
+                      .add(PasswordChanged(passwordString: value));
                 },
                 inputType: TextInputType.text,
                 obscureText: true,
                 validator: (text) {
-                  context
-                      .read<LoginBloc>()
-                      .add(PasswordChanged(passwordString: text));
+                  context.watch<LoginBloc>().password.value.fold(
+                    (f) {
+                      debugPrint(f
+                          .errorMessage); // In here should be the yellow error box
+                    },
+                    (_) {
+                    },
+                  );
                 },
               ),
               SizedBox(height: UIHelper.paddingBetweenElements),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
+                  primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
                 ),
                 onPressed: () {
+                  if (buttonEnabled) {
+                    context.read<LoginBloc>().add(LoginWithEmailAndPassword(
+                        emailString: _emailTextViewController.text,
+                        passwordString: _passwordTextViewController.text));
+                  }
                   debugPrint('Login pressed');
                 },
                 child: Text(Constants.logIn),
@@ -112,51 +151,5 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
         ),
       );
     });
-  }
-}
-
-class SheetButton extends StatefulWidget {
-  SheetButton({Key? key}) : super(key: key);
-
-  _SheetButtonState createState() => _SheetButtonState();
-}
-
-class _SheetButtonState extends State<SheetButton> {
-  bool checkingFlight = false;
-  bool success = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return !checkingFlight
-        ? MaterialButton(
-            color: Colors.grey[800],
-            onPressed: () async {
-              setState(() {
-                checkingFlight = true;
-              });
-
-              await Future.delayed(Duration(seconds: 1));
-
-              setState(() {
-                success = true;
-              });
-
-              await Future.delayed(Duration(milliseconds: 500));
-
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Check Flight',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          )
-        : !success
-            ? CircularProgressIndicator()
-            : Icon(
-                Icons.check,
-                color: Colors.green,
-              );
   }
 }

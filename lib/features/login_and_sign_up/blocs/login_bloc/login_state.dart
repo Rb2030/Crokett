@@ -18,7 +18,7 @@ class SelectedSignUpState extends LoginState {}
 class EmailTextFieldChanged extends LoginState {
   final EmailAddress emailAddress;
 
-  EmailTextFieldChanged(this.emailAddress);
+  EmailTextFieldChanged({required this.emailAddress});
 
   @override
   List<Object> get props => [emailAddress];
@@ -27,10 +27,28 @@ class EmailTextFieldChanged extends LoginState {
 class PasswordTextFieldChanged extends LoginState {
   final Password password;
 
-  PasswordTextFieldChanged(this.password);
+  PasswordTextFieldChanged({required this.password});
 
   @override
   List<Object> get props => [password];
 }
 
-class CheckingCredentials extends LoginState {}
+class CheckingCredentials extends LoginState {
+  final EmailAddress emailAddress;
+  final Password password;
+
+  CheckingCredentials(this.emailAddress, this.password);
+
+  @override
+  List<Object> get props => [emailAddress, password];
+}
+
+class LoginQueryReturn extends LoginState {
+  final Option<Either<Failure, Unit>> authFailureOrSuccessOption;
+
+
+  LoginQueryReturn(this.authFailureOrSuccessOption);
+
+  @override
+  List<Object> get props => [authFailureOrSuccessOption];
+}

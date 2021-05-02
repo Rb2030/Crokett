@@ -22,7 +22,7 @@ class LoginPage extends Page {
           child: BlocProvider(
           lazy: false,
           create: (context) => getIt<LoginBloc>(),            
-          child: LoginScreen(),
+          child: LoginScreen(nextScreen: nextScreen),
           ),
         );
       },

@@ -9,7 +9,8 @@ abstract class LoginEvent extends Equatable {
 
 class LoginSelected extends LoginEvent {}
 
-class RemoveBottomSheet extends LoginEvent {}
+class RemoveBottomSheet extends LoginEvent {
+}
 
 class GoogleSignInSelected extends LoginEvent {}
 

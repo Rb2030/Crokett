@@ -15,17 +15,23 @@ import 'package:crokett/core/global/globals/globals.dart' as globals;
 bool modalViewOpened = false;
 
 class LoginScreen extends StatefulWidget {
+  final Function(String) nextScreen;
+
+  LoginScreen({required this.nextScreen}) : super();
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
+  late Function(String) nextScreen;
   late AnimationController imageSizeAnimController;
 
   @override
   void initState() {
     super.initState();
+    nextScreen = widget.nextScreen;
     imageSizeAnimController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
@@ -45,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen>
       //     nextScreen(SIGN_UP);
       // }
     }, builder: (context, state) {
-      if (state is! GoogleSignInSelected || state is! SignUpSelected) {
-        if (state is! LoginStateInitial) {
+      if (state is !GoogleSignInSelected || state is !SignUpSelected) {
+        if (state is !LoginStateInitial) {
           responsiveSpacerSize = 0;
           responsiveBoxSize = 0;
           imageSizeAnimController.forward().then((value) {
@@ -56,9 +62,10 @@ class _LoginScreenState extends State<LoginScreen>
         return GestureDetector(
           onTap: () {
             if (modalViewOpened) {
+              context.read<LoginBloc>().add(RemoveBottomSheet());
               Navigator.pop(context);
               responsiveSpacerSize = rsc.rH(6);
-              responsiveBoxSize = rsc.rH(30);
+              responsiveBoxSize = rsc.rH(36);
               imageSizeAnimController.forward().then((value) {
                 setState(() {});
               });
@@ -77,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen>
                     getDeviceType() == DeviceType.Phone
                         ? rsc.rW(10)
                         : rsc.rW(24), // Right
-                    rsc.rH(10)),// Bottom
+                    rsc.rH(10)), // Bottom
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -140,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen>
                     BlocProvider(
                       lazy: false,
                       create: (context) => getIt<LoginBloc>(),
-                      child: LoginButton(context),
+                      child: LoginButton(context, nextScreen),
                     ),
                     SizedBox(height: UIHelper.paddingBetweenElements),
                     state is LoginStateInitial
@@ -210,8 +217,9 @@ class _LoginScreenState extends State<LoginScreen>
 
 class LoginButton extends StatelessWidget {
   final BuildContext mainUIContext;
+  final Function(String) nextScreen;
 
-  LoginButton(this.mainUIContext);
+  LoginButton(this.mainUIContext, this.nextScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -233,7 +241,7 @@ class LoginButton extends StatelessWidget {
                             Radius.circular(UIHelper.paddingBetweenElements),
                       ),
                     ),
-                    child: LoginBottomSheetWidget()));
+                    child: LoginBottomSheetWidget(nextScreen: nextScreen)));
             modalViewOpened = true;
             sheetController.closed.then((value) {
               context.read<LoginBloc>().add(RemoveBottomSheet());

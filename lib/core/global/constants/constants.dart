@@ -22,8 +22,8 @@ class Constants extends InheritedWidget {
   static const String signUp = 'Sign Up';
   static const String signInWithGoogle = 'Sign In with Google';
   static const String logIn = 'Log In';
-  static const String notGotAccount = 'Not got an account with us yet?';
-  static const String forgottenSigninDetails = 'Forgotten sign In details?';
+  static const String notGotAccount = 'Not got an account with us';
+  static const String forgotPassword = 'Forgot Password?';
   static const String emailAlreadyInUseTextFieldError = 'Email Already In Use';
 
   static const String cancelledByUser = 'Cancelled by user';
@@ -40,7 +40,11 @@ class Constants extends InheritedWidget {
   static const String emailInformation =
       'Please ensure that you do not leave any blank spaces and your email is in the correct format e.g crokett@mail.com.';
   static const String passwordInformation =
-      'Please ensure that the password has at least one capital letter, one number, one special character, no blank spaces and is at least 6 characters long.';
+      '''Please ensure that the password has at least.. 
+      \n• one capital letter, 
+      \n• one number, 
+      \n• one special character, 
+      \n• no blank spaces and is at least 6 characters long.''';
   static const String usernameInformation =
       "Please select a username which is unique. This will be linked to your account so please refrain from using any profanity.";
   static const String unableToRegister = "Unable to register";

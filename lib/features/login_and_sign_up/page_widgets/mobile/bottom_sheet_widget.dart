@@ -35,6 +35,9 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
     final _passwordTextViewController =
         TextEditingController(text: context.read<LoginBloc>().passwordString);
 
+    bool showEmailErrorMessage = false;
+    bool showPasswordErrorMessage = false;
+
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       if (state is LoginQueryReturn) {
         state.authFailureOrSuccessOption.fold(
@@ -67,13 +70,13 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
             horizontal:
                 getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(24),
             vertical: UIHelper.paddingBetweenElements),
-        child: Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              SizedBox(height: UIHelper.paddingBetweenElements),
-              CrokettTextField(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            SizedBox(height: UIHelper.paddingBetweenElements),
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: CrokettTextField(
                 hint: Constants.email,
                 controller: _emailTextViewController,
                 onChanged: (value) {
@@ -88,19 +91,29 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                 },
                 inputType: TextInputType.emailAddress,
                 obscureText: false,
-                validator: (text) {
+                validator: (_) {
                   context.watch<LoginBloc>().emailAddress.value.fold(
                     (f) {
-                      debugPrint(f
-                          .errorMessage); // In here should be the yellow error box
+                      showEmailErrorMessage = true;
                     },
-                    (_) {},
+                    (_) {
+                      showEmailErrorMessage = false;
+                    },
                   );
                 },
+                showErrorMessage: showEmailErrorMessage,
+                errorMessage: Constants.emailInformation,
               ),
-              SizedBox(height: UIHelper.paddingBetweenElements),
-              CrokettTextField(
+            ),
+            SizedBox(height: UIHelper.paddingBetweenElements),
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: CrokettTextField(
                 hint: Constants.password,
+                secondHint: Constants.forgotPassword,
+                secondHintFunction: () {
+                  debugPrint('Forgotten Password');
+                },
                 controller: _passwordTextViewController,
                 onChanged: (value) {
                   _passwordTextViewController.text = value;
@@ -114,50 +127,53 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                 },
                 inputType: TextInputType.text,
                 obscureText: true,
-                validator: (text) {
+                validator: (_) {
                   context.watch<LoginBloc>().password.value.fold(
                     (f) {
-                      debugPrint(f
-                          .errorMessage); // In here should be the yellow error box
+                      showPasswordErrorMessage = true;
                     },
-                    (_) {},
+                    (_) {
+                      showPasswordErrorMessage = false;
+                    },
                   );
                 },
+                showErrorMessage: showPasswordErrorMessage,
+                errorMessage: Constants.passwordInformation,
               ),
-              SizedBox(height: UIHelper.paddingBetweenElements),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
-                ),
-                onPressed: () {
-                  if (buttonEnabled) {
-                    context.read<LoginBloc>().add(LoginWithEmailAndPassword(
-                        emailString: _emailTextViewController.text,
-                        passwordString: _passwordTextViewController.text));
-                  }
-                  debugPrint('Login pressed');
-                },
-                child: Text(Constants.logIn),
+            ),
+            SizedBox(height: UIHelper.paddingBetweenElements),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
               ),
-              SizedBox(height: UIHelper.paddingBetweenElements),
-              Text(
-                Constants.notGotAccount,
+              onPressed: () {
+                if (buttonEnabled) {
+                  context.read<LoginBloc>().add(LoginWithEmailAndPassword(
+                      emailString: _emailTextViewController.text,
+                      passwordString: _passwordTextViewController.text));
+                }
+                debugPrint('Login pressed');
+              },
+              child: Text(Constants.logIn),
+            ),
+            SizedBox(height: UIHelper.paddingBetweenElements),
+            Text(
+              Constants.notGotAccount,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                Constants.signUp,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
               ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  Constants.signUp,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       );
     });

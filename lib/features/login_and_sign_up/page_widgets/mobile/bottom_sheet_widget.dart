@@ -65,115 +65,117 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
       bool buttonEnabled =
           context.watch<LoginBloc>().bottomLoginButtonEnabled ? true : false;
 
-      return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal:
-                getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(24),
-            vertical: UIHelper.paddingBetweenElements),
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            SizedBox(height: UIHelper.paddingBetweenElements),
-            Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: CrokettTextField(
-                hint: Constants.email,
-                controller: _emailTextViewController,
-                onChanged: (value) {
-                  _emailTextViewController.text = value;
-                  _emailTextViewController.selection =
-                      TextSelection.fromPosition(TextPosition(
-                          offset: _emailTextViewController.text
-                              .length)); // Puts the cursor at the end of the text
-                  context
-                      .read<LoginBloc>()
-                      .add(EmailChanged(emailString: value));
-                },
-                inputType: TextInputType.emailAddress,
-                obscureText: false,
-                validator: (_) {
-                  context.watch<LoginBloc>().emailAddress.value.fold(
-                    (f) {
-                      showEmailErrorMessage = true;
-                    },
-                    (_) {
-                      showEmailErrorMessage = false;
-                    },
-                  );
-                },
-                showErrorMessage: showEmailErrorMessage,
-                errorMessage: Constants.emailInformation,
+      return SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal:
+                  getDeviceType() == DeviceType.Phone ? rsc.rW(10) : rsc.rW(24),
+              vertical: UIHelper.paddingBetweenElements),
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: CrokettTextField(
+                  hint: Constants.email,
+                  controller: _emailTextViewController,
+                  onChanged: (value) {
+                    _emailTextViewController.text = value;
+                    _emailTextViewController.selection =
+                        TextSelection.fromPosition(TextPosition(
+                            offset: _emailTextViewController.text
+                                .length)); // Puts the cursor at the end of the text
+                    context
+                        .read<LoginBloc>()
+                        .add(EmailChanged(emailString: value));
+                  },
+                  inputType: TextInputType.emailAddress,
+                  obscureText: false,
+                  validator: (_) {
+                    context.watch<LoginBloc>().emailAddress.value.fold(
+                      (f) {
+                        showEmailErrorMessage = true;
+                      },
+                      (_) {
+                        showEmailErrorMessage = false;
+                      },
+                    );
+                  },
+                  showErrorMessage: showEmailErrorMessage,
+                  errorMessage: Constants.emailInformation,
+                ),
               ),
-            ),
-            SizedBox(height: UIHelper.paddingBetweenElements),
-            Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: CrokettTextField(
-                hint: Constants.password,
-                secondHint: Constants.forgotPassword,
-                secondHintFunction: () {
-                  debugPrint('Forgotten Password');
-                },
-                controller: _passwordTextViewController,
-                onChanged: (value) {
-                  _passwordTextViewController.text = value;
-                  _passwordTextViewController.selection =
-                      TextSelection.fromPosition(TextPosition(
-                          offset: _passwordTextViewController.text
-                              .length)); // Puts the cursor at the end of the text
-                  context
-                      .read<LoginBloc>()
-                      .add(PasswordChanged(passwordString: value));
-                },
-                inputType: TextInputType.text,
-                obscureText: true,
-                validator: (_) {
-                  context.watch<LoginBloc>().password.value.fold(
-                    (f) {
-                      showPasswordErrorMessage = true;
-                    },
-                    (_) {
-                      showPasswordErrorMessage = false;
-                    },
-                  );
-                },
-                showErrorMessage: showPasswordErrorMessage,
-                errorMessage: Constants.passwordInformation,
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: CrokettTextField(
+                  hint: Constants.password,
+                  secondHint: Constants.forgotPassword,
+                  secondHintFunction: () {
+                    debugPrint('Forgotten Password');
+                  },
+                  controller: _passwordTextViewController,
+                  onChanged: (value) {
+                    _passwordTextViewController.text = value;
+                    _passwordTextViewController.selection =
+                        TextSelection.fromPosition(TextPosition(
+                            offset: _passwordTextViewController.text
+                                .length)); // Puts the cursor at the end of the text
+                    context
+                        .read<LoginBloc>()
+                        .add(PasswordChanged(passwordString: value));
+                  },
+                  inputType: TextInputType.text,
+                  obscureText: true,
+                  validator: (_) {
+                    context.watch<LoginBloc>().password.value.fold(
+                      (f) {
+                        showPasswordErrorMessage = true;
+                      },
+                      (_) {
+                        showPasswordErrorMessage = false;
+                      },
+                    );
+                  },
+                  showErrorMessage: showPasswordErrorMessage,
+                  errorMessage: Constants.passwordInformation,
+                ),
               ),
-            ),
-            SizedBox(height: UIHelper.paddingBetweenElements),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
+                ),
+                onPressed: () {
+                  if (buttonEnabled) {
+                    context.read<LoginBloc>().add(LoginWithEmailAndPassword(
+                        emailString: _emailTextViewController.text,
+                        passwordString: _passwordTextViewController.text));
+                  }
+                  debugPrint('Login pressed');
+                },
+                child: Text(Constants.logIn),
               ),
-              onPressed: () {
-                if (buttonEnabled) {
-                  context.read<LoginBloc>().add(LoginWithEmailAndPassword(
-                      emailString: _emailTextViewController.text,
-                      passwordString: _passwordTextViewController.text));
-                }
-                debugPrint('Login pressed');
-              },
-              child: Text(Constants.logIn),
-            ),
-            SizedBox(height: UIHelper.paddingBetweenElements),
-            Text(
-              Constants.notGotAccount,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                Constants.signUp,
+              SizedBox(height: UIHelper.paddingBetweenElements),
+              Text(
+                Constants.notGotAccount,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
               ),
-            )
-          ],
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  Constants.signUp,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                ),
+              )
+            ],
+          ),
         ),
       );
     });

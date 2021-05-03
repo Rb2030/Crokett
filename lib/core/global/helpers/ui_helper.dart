@@ -24,5 +24,5 @@ class UIHelper {
   static const double buttonMinHeight = 58;
   static const double buttonMinWidth = 90;
   static const double maxButtonWidth = 200;
-  static const double buttonPadding = 12;
+  static const double buttonPadding = 14;
 }

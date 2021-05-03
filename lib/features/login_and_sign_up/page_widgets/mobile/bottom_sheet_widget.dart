@@ -95,6 +95,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   validator: (_) {
                     context.watch<LoginBloc>().emailAddress.value.fold(
                       (f) {
+                        buttonEnabled = false;
                         showEmailErrorMessage = true;
                       },
                       (_) {
@@ -131,6 +132,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   validator: (_) {
                     context.watch<LoginBloc>().password.value.fold(
                       (f) {
+                        buttonEnabled = false;
                         showPasswordErrorMessage = true;
                       },
                       (_) {
@@ -145,7 +147,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
               SizedBox(height: UIHelper.paddingBetweenElements),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
+                  primary: buttonEnabled ? Colors.grey[800] : Colors.grey.shade200,
                 ),
                 onPressed: () {
                   if (buttonEnabled) {
@@ -155,7 +157,9 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   }
                   debugPrint('Login pressed');
                 },
-                child: Text(Constants.logIn),
+                child: Text(Constants.logIn,
+                    style: TextStyle(
+                        color: buttonEnabled ? Colors.white : Colors.black)),
               ),
               SizedBox(height: UIHelper.paddingBetweenElements),
               Text(

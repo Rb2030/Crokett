@@ -1,3 +1,4 @@
+import 'package:crokett/core/global/widgets/triangle_shape.dart';
 import 'package:flutter/material.dart';
 
 import 'package:crokett/core/global/colors/custom_colours.dart';
@@ -73,8 +74,7 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
                   },
                   onChanged: (text) {
                     widget.onChanged(text);
-                    setState(() {
-                    });
+                    setState(() {});
                   },
                   keyboardType: widget.inputType,
                   controller: widget.controller,
@@ -115,11 +115,24 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
               child: Visibility(
                 visible: widget.showErrorMessage,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 75),
+                    SizedBox(height: 28), // Height of text field
+                    Row(children: [
+                      SizedBox(width: 15),
+                      CustomPaint(
+                          size: Size(30, 45),
+                          painter: TriangleShape(color: CustomColours.crokettYellow)),
+                      const Spacer()
+                    ]),
                     Container(
                       width: 300,
-                      color: CustomColours.crokettYellow,
+                      decoration: BoxDecoration(
+                          color: CustomColours.crokettYellow,
+                          border: Border.all(
+                            color: CustomColours.crokettYellow,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
                       child: Padding(
                           padding: EdgeInsets.all(UIHelper.buttonPadding),
                           child: Text(widget.errorMessage,

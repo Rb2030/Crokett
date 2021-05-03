@@ -62,71 +62,70 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
         ]),
         const SizedBox(height: 4),
         Stack(
-          fit: StackFit.loose,
           children: [
             Positioned(
-              bottom: 20,
-              left: 5,
-              child: Visibility(
-                visible: widget.showErrorMessage,
-                child: Container(
-                  width: 300,
-                  color: CustomColours.crokettYellow,
-                  child: Padding(
-                      padding: EdgeInsets.all(UIHelper.buttonPadding),
-                      child: Text(widget.errorMessage,
-                          style: TextStyle().copyWith(fontSize: 14))),
+              child: Container(
+                child: TextFormField(
+                  obscureText: widget.obscureText,
+                  validator: (text) {
+                    widget.validator(text);
+                    setState(() {});
+                  },
+                  onChanged: (text) {
+                    widget.onChanged(text);
+                    setState(() {
+                    });
+                  },
+                  keyboardType: widget.inputType,
+                  controller: widget.controller,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.fromLTRB(14, 16, 10, 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: BorderSide(style: BorderStyle.none),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(style: BorderStyle.none),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(style: BorderStyle.none),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(style: BorderStyle.none),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: const BorderSide(style: BorderStyle.none),
+                    ),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
+                    hintText: widget.hint,
+                  ),
                 ),
               ),
             ),
-            Container(
-              height: widget.showErrorMessage ? 220 : 60,
-              child: TextFormField(
-                obscureText: widget.obscureText,
-                validator: (text) {
-                  widget.validator(text);
-                  setState(() {});
-                },
-                onChanged: (text) {
-                  widget.onChanged(text);
-                  // setState(() {
-                  // });
-                },
-                keyboardType: widget.inputType,
-                controller: widget.controller,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(14, 16, 10, 16),
-                  // floatingLabelBehavior: FloatingLabelBehavior.always,
-                  // labelText: widget.hint,
-                  // labelStyle: TextStyle(color: Colors.black),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(style: BorderStyle.none),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(style: BorderStyle.none),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(style: BorderStyle.none),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(style: BorderStyle.none),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: const BorderSide(style: BorderStyle.none),
-                  ),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    // fontFamily: "OpenSans",
-                    // fontWeight: FontWeight.w300,
-                  ),
-                  hintText: widget.hint,
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Visibility(
+                visible: widget.showErrorMessage,
+                child: Column(
+                  children: [
+                    SizedBox(height: 75),
+                    Container(
+                      width: 300,
+                      color: CustomColours.crokettYellow,
+                      child: Padding(
+                          padding: EdgeInsets.all(UIHelper.buttonPadding),
+                          child: Text(widget.errorMessage,
+                              style: TextStyle().copyWith(fontSize: 14))),
+                    ),
+                  ],
                 ),
               ),
             ),

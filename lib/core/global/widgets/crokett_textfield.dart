@@ -6,7 +6,7 @@ import 'package:crokett/core/global/helpers/ui_helper.dart';
 
 class CrokettTextField extends StatefulWidget {
   final String hint;
-  String? secondHint;
+  String? secondHint;  // E.g forgotten Password
   VoidCallback? secondHintFunction; // E.g forgotten Password
   final TextEditingController controller;
   final Function onChanged;

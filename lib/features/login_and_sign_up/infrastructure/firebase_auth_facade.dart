@@ -103,6 +103,24 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
+  Future<Either<Failure, Unit>> sendPasswordResetEmail({
+    @required EmailAddress? emailAddress,
+  }) async {
+    final emailAddressString = emailAddress!.getOrCrash();
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(
+          email: emailAddressString);
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'error-user-not-found') {
+        return left(InvalidEmailAndPasswordCombination());
+      } else {
+        return left(ServerFailure());
+      }
+    }
+  }
+
+  @override
   Future<void> signOut() async {
     await _googleSignIn.signOut();
     await _firebaseAuth.signOut();

@@ -22,10 +22,10 @@ class Constants extends InheritedWidget {
   static const String signUp = 'Sign Up';
   static const String signInWithGoogle = 'Sign In with Google';
   static const String logIn = 'Log In';
+  static const String backToLogin = 'Back to Login';
   static const String notGotAccount = 'Not got an account with us';
   static const String forgotPassword = 'Forgot Password?';
   static const String emailAlreadyInUseTextFieldError = 'Email Already In Use';
-
   static const String cancelledByUser = 'Cancelled by user';
   static const String emailAlreadyInUse =
       'Email already registered. Please sign in by pressing back, or if you wish to reset your password press "Forgotten sign in details?".';
@@ -34,6 +34,10 @@ class Constants extends InheritedWidget {
   static const String pleaseTryAgain = 'Please try again';
   static const String usernameTaken =
       'This username has already been taken, please choose another unique one';
+  static const String enterEmailToResetPassword = 'Please enter your email address, you will be sent a link which will enable you to create a new password.';
+  static const String passwordResetSentToEmail = 'Please check your email for a link to reset your password.';
+  static const String errorSendingEmail = 'There was an error when attempting to send you an email.';
+
 
 // Register Screen
 

@@ -11,6 +11,7 @@ import 'package:crokett/features/home/page_structures/home_featured_page.dart';
 import 'package:crokett/features/home/page_structures/home_page.dart';
 import 'package:crokett/features/home/page_structures/home_selected_for_you_page.dart';
 import 'package:crokett/features/home/page_structures/home_upcoming_box_page.dart';
+import 'package:crokett/features/login_and_sign_up/page_structures/forgot_password_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/google_sign_in_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/login_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/sign_up_page.dart';
@@ -77,6 +78,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       return CrokettConfiguration.splash();
     } else if (currentPage == LOGIN) {
       return CrokettConfiguration.login();
+    } else if (currentPage == FORGOT_PASSWORD) {
+      return CrokettConfiguration.forgotPassword();
     } else if (currentPage == SIGN_UP) {
       return CrokettConfiguration.signUp();
     } else if (currentPage == GOOGLE_SIGN_IN) {
@@ -137,6 +140,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       stack = _splashStack;
     } else if (currentPage == LOGIN) {
       stack = _loginStack;
+    } else if (currentPage == FORGOT_PASSWORD) {
+      stack = _forgotPasswordStack;
     } else if (currentPage == SIGN_UP) {
       stack = _signUpStack;
     } else if (currentPage == GOOGLE_SIGN_IN) {
@@ -211,6 +216,17 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
   List<Page> get _loginStack => [
     LoginPage(nextScreen: (String selectedPage) {
       currentPage = selectedPage;
+    })
+  ];
+
+  // Forgot Password
+  List<Page> get _forgotPasswordStack => [
+    LoginPage(nextScreen: (String selectedPage) {
+      currentPage = selectedPage;
+    }),
+    if (currentPage == FORGOT_PASSWORD)
+      ForgotPasswordPage(nextScreen: (String selectedPage) {
+        currentPage = selectedPage;
     })
   ];
 

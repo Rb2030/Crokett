@@ -22,6 +22,8 @@ abstract class IAuthFacade {
 
   Future<Option<CurrentUser>> getSignedInUser();
 
+  Future<Either<Failure, Unit>> sendPasswordResetEmail({@required EmailAddress emailAddress});
+
   Future<Either<Failure, Unit>> uniqueUsernameCheck({  // Unit is the same as void
     @required Username username,
   });

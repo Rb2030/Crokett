@@ -2,6 +2,7 @@
 const String UNKNOWN = "unknown";
 const String SPLASH = "splash";
 const String LOGIN = "/";
+const String FORGOT_PASSWORD = "forgot_password";
 const String SIGN_UP = "sign_up";
 const String GOOGLE_SIGN_IN = "google_sign_in";
 const String ONBOARDING = "on_boarding";
@@ -54,6 +55,13 @@ class CrokettConfiguration {
         splashPageFinished = true,
         loggedIn = false,
         screen = LOGIN,
+        selectedItemId = '';
+
+  CrokettConfiguration.forgotPassword()
+      : unknown = false,
+        splashPageFinished = true,
+        loggedIn = false,
+        screen = FORGOT_PASSWORD,
         selectedItemId = '';
 
   CrokettConfiguration.signUp()
@@ -230,6 +238,13 @@ class CrokettConfiguration {
 
   bool get isLoginPage =>
       unknown == false && loggedIn == false && splashPageFinished == true;
+
+  bool get isForgotPassword =>
+      unknown == false &&
+      loggedIn == false &&
+      splashPageFinished == true &&
+      screen == FORGOT_PASSWORD &&
+      selectedItemId == '';
 
   bool get isSignUpPage =>
       unknown == false &&

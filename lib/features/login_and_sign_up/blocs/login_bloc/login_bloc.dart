@@ -25,7 +25,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final IAuthFacade _authFacade;
   bool bottomLoginButtonEnabled = false;
 
-
   LoginBloc(this._authFacade) : super(LoginStateInitial());
 
   @override

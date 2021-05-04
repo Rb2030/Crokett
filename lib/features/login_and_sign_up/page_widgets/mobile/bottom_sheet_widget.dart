@@ -114,6 +114,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   hint: Constants.password,
                   secondHint: Constants.forgotPassword,
                   secondHintFunction: () {
+                    nextScreen(FORGOT_PASSWORD);
                     debugPrint('Forgotten Password');
                   },
                   controller: _passwordTextViewController,
@@ -147,7 +148,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
               SizedBox(height: UIHelper.paddingBetweenElements),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: buttonEnabled ? Colors.grey[800] : Colors.grey.shade200,
+                  primary: buttonEnabled ? Colors.black : Colors.grey.shade200,
                 ),
                 onPressed: () {
                   if (buttonEnabled) {
@@ -159,7 +160,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                 },
                 child: Text(Constants.logIn,
                     style: TextStyle(
-                        color: buttonEnabled ? Colors.white : Colors.black)),
+                        color: buttonEnabled ? Colors.white : Colors.grey)),
               ),
               SizedBox(height: UIHelper.paddingBetweenElements),
               Text(
@@ -168,7 +169,9 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  nextScreen(SIGN_UP);
+                },
                 child: Text(
                   Constants.signUp,
                   textAlign: TextAlign.center,

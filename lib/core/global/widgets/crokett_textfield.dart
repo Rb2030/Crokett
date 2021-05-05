@@ -70,11 +70,11 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
                   obscureText: widget.obscureText,
                   validator: (text) {
                     widget.validator(text);
-                    setState(() {});
+                 //   setState(() {});
                   },
                   onChanged: (text) {
                     widget.onChanged(text);
-                    setState(() {});
+                 //   setState(() {});
                   },
                   keyboardType: widget.inputType,
                   controller: widget.controller,

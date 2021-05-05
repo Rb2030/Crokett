@@ -37,9 +37,6 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
     final _passwordTextViewController =
         TextEditingController(text: context.read<LoginBloc>().passwordString);
 
-    bool showEmailErrorMessage = false;
-    bool showPasswordErrorMessage = false;
-
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
       if (state is LoginQueryReturn) {
         state.authFailureOrSuccessOption.fold(
@@ -65,8 +62,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
       _passwordTextViewController.selection = TextSelection.fromPosition(
           TextPosition(offset: _passwordTextViewController.text.length));
 
-      bool buttonEnabled =
-          context.watch<LoginBloc>().bottomLoginButtonEnabled ? true : false;
+      bool buttonEnabled = context.watch<LoginBloc>().bottomLoginButtonEnabled;
 
       return SingleChildScrollView(
         child: Padding(
@@ -95,17 +91,8 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   inputType: TextInputType.emailAddress,
                   obscureText: false,
                   validator: (_) {
-                    context.watch<LoginBloc>().emailAddress.value.fold(
-                      (f) {
-                        buttonEnabled = false;
-                        showEmailErrorMessage = true;
-                      },
-                      (_) {
-                        showEmailErrorMessage = false;
-                      },
-                    );
                   },
-                  showErrorMessage: showEmailErrorMessage,
+                  showErrorMessage: context.watch<LoginBloc>().showEmailError,
                   errorMessage: Constants.emailInformation,
                 ),
               ),
@@ -132,17 +119,8 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   inputType: TextInputType.text,
                   obscureText: true,
                   validator: (_) {
-                    context.watch<LoginBloc>().password.value.fold(
-                      (f) {
-                        buttonEnabled = false;
-                        showPasswordErrorMessage = true;
-                      },
-                      (_) {
-                        showPasswordErrorMessage = false;
-                      },
-                    );
                   },
-                  showErrorMessage: showPasswordErrorMessage,
+                  showErrorMessage: context.watch<LoginBloc>().showPasswordError,
                   errorMessage: Constants.passwordInformation,
                 ),
               ),

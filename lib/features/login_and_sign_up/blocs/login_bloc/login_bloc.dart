@@ -24,8 +24,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Password password = Password('');
   final IAuthFacade _authFacade;
   bool bottomLoginButtonEnabled = false;
+  bool showEmailError = false;
+  bool showPasswordError = false;
 
-  LoginBloc(this._authFacade) : super(LoginStateInitial());
+  LoginBloc(this._authFacade)
+      : super(LoginStateInitial(
+            emailAddress: EmailAddress(''), password: Password('')));
 
   @override
   Stream<LoginState> mapEventToState(
@@ -33,17 +37,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async* {
     if (event is LoginSelected) {
       displayBottomSheet = true;
-      yield SelectedLoginState();
+      yield SelectedLoginState(emailAddress: emailAddress, password: password);
     }
     if (event is RemoveBottomSheet) {
       displayBottomSheet = false;
-      yield LoginStateInitial();
+      yield LoginStateInitial(emailAddress: emailAddress, password: password);
     }
     if (event is EmailChanged) {
       emailAddressString = event.emailString;
       emailAddress = EmailAddress(event.emailString);
-      yield EmailTextFieldChanged(emailAddress: emailAddress);
-      emailAddress.value.fold((fail) => null, (success) {
+      yield EmailTextFieldChanged(
+          emailAddress: emailAddress, password: password);
+      emailAddress.value.fold((fail) => showEmailError = true, (success) {
+        showEmailError = false;
         password.value.fold((fail) => null, (success) {
           bottomLoginButtonEnabled = true;
         });
@@ -52,8 +58,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is PasswordChanged) {
       passwordString = event.passwordString;
       password = Password(event.passwordString);
-      yield PasswordTextFieldChanged(password: password);
-      password.value.fold((fail) => null, (success) {
+      yield PasswordTextFieldChanged(
+          emailAddress: emailAddress, password: password);
+      password.value.fold((fail) => showPasswordError = true, (success) {
+        showPasswordError = false;
         emailAddress.value.fold((fail) => null, (success) {
           bottomLoginButtonEnabled = true;
         });
@@ -62,7 +70,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoginWithEmailAndPassword) {
       // This event can only be called if login button is enabled (which it won't be unless the Email and Password are in the correct validated format)
       yield CheckingCredentials(
-          EmailAddress(emailAddressString), Password(passwordString));
+          emailAddress: EmailAddress(emailAddressString),
+          password: Password(passwordString));
       yield* _performActionOnAuthFacadeWithEmailAndPassword(
         _authFacade.loginWithEmailAndPassword,
       );
@@ -83,7 +92,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emailAddress: EmailAddress(emailAddressString),
           password: Password(passwordString));
 
-      yield LoginQueryReturn(optionOf(failureOrSuccess));
+      yield LoginQueryReturn(
+          optionOf(failureOrSuccess), emailAddress, password);
     }
   }
 }

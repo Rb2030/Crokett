@@ -72,7 +72,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   @override
   CrokettConfiguration get currentConfiguration {
-    if (currentPage == UNKNOWN) {
+    if (currentPage == UNKNOWN || currentPage == '') {
       return CrokettConfiguration.unknown();
     } else if (currentPage == SPLASH) {
       return CrokettConfiguration.splash();
@@ -196,7 +196,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       onPopPage: (route, result) {
         if (!route.didPop(result)) return false;
         selectedItemCode = '';
-        _currentPage = '';
+  //      _currentPage = '';
         return true;
       },
     );
@@ -227,6 +227,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     if (currentPage == FORGOT_PASSWORD)
       ForgotPasswordPage(nextScreen: (String selectedPage) {
         currentPage = selectedPage;
+    }, previousScreen: (String pageToReturnTo) {  
+        currentPage = pageToReturnTo;
     })
   ];
 

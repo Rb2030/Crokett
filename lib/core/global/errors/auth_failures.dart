@@ -33,7 +33,7 @@ class UsernameAlreadyInUse extends AuthFailure {
 
 class InvalidEmailAndPasswordCombination extends AuthFailure {
 
-  InvalidEmailAndPasswordCombination() : super(Constants.failureExceedingLength);
+  InvalidEmailAndPasswordCombination() : super(Constants.failureInvalidEmailAndPasswordCombination);
 }
 
 //

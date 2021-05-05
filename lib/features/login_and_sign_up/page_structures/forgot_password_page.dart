@@ -7,8 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForgotPasswordPage extends Page {
   final Function(String) nextScreen;
+  final Function(String) previousScreen;
 
-  ForgotPasswordPage({required this.nextScreen})
+  ForgotPasswordPage({required this.nextScreen, required this.previousScreen})
       : super(key: ValueKey(GOOGLE_SIGN_IN));
 
   @override
@@ -19,7 +20,7 @@ class ForgotPasswordPage extends Page {
         return BlocProvider(
           lazy: false,
           create: (context) => getIt<ForgotPasswordBloc>(),
-          child: ForgotPasswordScreen(nextScreen: nextScreen),
+          child: ForgotPasswordScreen(nextScreen: nextScreen, previousScreen: previousScreen),
         );
       },
     );

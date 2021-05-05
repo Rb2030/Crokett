@@ -79,6 +79,8 @@ class Constants extends InheritedWidget {
 
   static const String failureServer =
       'There was an error with the server. Please try again later';
+  static const String noEmailFound =
+      'We could not find an account with that email. Please try registering again, or contact our help team for more info.';
   static const String failureCache =
       'There was an error with the local storage. Please try again later';
   static const String failureInvalidEmail = 'Invalid email format.';

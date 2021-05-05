@@ -1,3 +1,4 @@
+import 'package:crokett/core/global/colors/custom_colours.dart';
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../helpers/ui_helper.dart';
@@ -36,6 +37,14 @@ final globalAppThemeData = ThemeData(
         onSurface: Colors.grey),
   ),
   iconTheme: const IconThemeData(color: Colors.black),
+ snackBarTheme: SnackBarThemeData(
+      backgroundColor: CustomColours.crokettYellow,
+      actionTextColor: Colors.black,
+      disabledActionTextColor: Colors.black,
+      contentTextStyle: TextStyle(color: Colors.black),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
+      behavior: SnackBarBehavior.floating,
+    ),
   textTheme:
       textTheme().apply(displayColor: Colors.black, bodyColor: Colors.black),
 );

@@ -15,6 +15,13 @@ class ServerFailure extends Failure {
 
 //
 
+class NoEmailFoundFailure extends Failure {
+
+  NoEmailFoundFailure() : super(Constants.noEmailFound);
+}
+
+//
+
 class CacheFailure extends Failure {
 
   CacheFailure() : super(Constants.failureCache);

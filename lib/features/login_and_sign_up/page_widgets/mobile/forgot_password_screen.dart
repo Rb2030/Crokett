@@ -4,6 +4,8 @@ import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/device_type_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
+import 'package:crokett/core/global/widgets/app_bar_title.dart';
+import 'package:crokett/core/global/widgets/crokett_app_bar.dart';
 import 'package:crokett/core/global/widgets/crokett_textfield.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
@@ -13,20 +15,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   final Function(String) nextScreen;
+  final Function(String) previousScreen;
 
-  ForgotPasswordScreen({required this.nextScreen}) : super();
+  ForgotPasswordScreen({required this.nextScreen, required this.previousScreen})
+      : super();
 
   @override
   _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  late Function(String) nextScreen; // Will be needed to go back to login screen
+  late Function(String) nextScreen;
+  late Function(String) previousScreen; // Needed to go back to login screen
 
   @override
   void initState() {
     super.initState();
     nextScreen = widget.nextScreen;
+    previousScreen = widget.previousScreen;
   }
 
   @override
@@ -52,6 +58,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       if (state is ForgotPasswordStateInitial ||
           state is EmailTextFieldChanged) {
         return Scaffold(
+          appBar: AppBar(
+              elevation: 0,
+              leading: AppBarBackButton(
+                color: Colors.black,
+                previousScreen: () {
+                  previousScreen(LOGIN);
+                },
+              ),
+              title: AppBarTitle()),
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Container(
@@ -68,41 +83,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Row(
-                      children: [
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'cr',
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
-                        ),
-                        const SizedBox(width: 1),
-                        Column(
-                          children: [
-                            SizedBox(height: 16),
-                            Container(
-                              height: 32,
-                              width: 32,
-                              child: RotationTransition(
-                                turns: AlwaysStoppedAnimation(52 / 360),
-                                child: SvgPicture.asset(Images.imageHobPower2),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 1),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                          child: Text(
-                            'kett',
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
                     SizedBox(height: rsc.rH(20)),
                     Text(Constants.enterEmailToResetPassword),
                     SizedBox(height: UIHelper.paddingBetweenElements),
@@ -183,30 +163,48 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               (failure) {
                 return Scaffold(
                   backgroundColor: Colors.white,
-                  body: Container(
-                    height: rsc.rHP(100),
-                    width: rsc.rW(100),
-                    child: Center(
-                          child: Column(
-                        children: [
-                          Text(Constants.errorSendingEmail),
-                          SizedBox(height: UIHelper.paddingBetweenElements),
-                          Text(failure.errorMessage),
-                          SizedBox(height: UIHelper.paddingBetweenElements),
-                          TextButton(
-                            onPressed: () {
-                              nextScreen(LOGIN);
-                            },
-                            child: Text(
-                              Constants.backToLogin,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                          )
-                        ],
+                  appBar: AppBar(
+                      elevation: 0,
+                      leading: AppBarBackButton(
+                          color: Colors.black,
+                          previousScreen: () {
+                            previousScreen(LOGIN);
+                          }),
+                      title: AppBarTitle()),
+                  body: SingleChildScrollView(
+                    child: Container(
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            getDeviceType() == DeviceType.Phone
+                                ? rsc.rW(10)
+                                : rsc.rW(24), // Left
+                            rsc.rH(4), // Top
+                            getDeviceType() == DeviceType.Phone
+                                ? rsc.rW(10)
+                                : rsc.rW(24), // Right
+                            rsc.rH(10)),
+                        child: Column(
+                          children: [
+                            SizedBox(height: rsc.rH(20)),
+                            Text(Constants.errorSendingEmail),
+                            SizedBox(height: UIHelper.paddingBetweenElements),
+                            Text(failure.errorMessage),
+                            SizedBox(height: UIHelper.paddingBetweenElements),
+                            TextButton(
+                              onPressed: () {
+                                previousScreen(LOGIN);
+                              },
+                              child: Text(
+                                Constants.backToLogin,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -220,12 +218,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     width: rsc.rW(100),
                     child: Align(
                       child: Center(
-                          child: Column(
-                        children: [
-                          Text(Constants.passwordResetSentToEmail),
-                          SizedBox(height: UIHelper.paddingBetweenElements),
-                        ],
-                      )),
+                        child: Text(Constants.passwordResetSentToEmail),
+                      ),
                     ),
                   ),
                 );

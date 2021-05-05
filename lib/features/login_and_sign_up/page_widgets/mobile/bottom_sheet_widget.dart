@@ -2,6 +2,7 @@ import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/device_type_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
+import 'package:crokett/core/global/widgets/crokett_snackbar.dart';
 import 'package:crokett/core/global/widgets/crokett_textfield.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
@@ -11,7 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginBottomSheetWidget extends StatefulWidget {
   final Function(String) nextScreen;
 
-  const LoginBottomSheetWidget({Key? key, required this.nextScreen})
+  const LoginBottomSheetWidget(
+      {Key? key, required this.nextScreen})
       : super(key: key);
 
   @override
@@ -45,8 +47,9 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
           (either) {
             either.fold(
               (failure) {
-                return AlertDialog(
-                    title: Text(Constants.failureNotAuthenticated));
+                return ScaffoldMessenger.of(context).showSnackBar(CrokettSnackbar(
+                    text: failure
+                        .errorMessage, buttonLabel: Constants.forgotPassword, onPressed: () {nextScreen(FORGOT_PASSWORD);})); //AlertDialog(title: Text(failure.errorMessage));
               },
               (success) {
                 nextScreen(HOME);
@@ -86,8 +89,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                         TextSelection.fromPosition(TextPosition(
                             offset: _emailTextViewController.text
                                 .length)); // Puts the cursor at the end of the text
-                    context
-                        .read<LoginBloc>()
+                        context.read<LoginBloc>()
                         .add(EmailChanged(emailString: value));
                   },
                   inputType: TextInputType.emailAddress,
@@ -124,8 +126,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                         TextSelection.fromPosition(TextPosition(
                             offset: _passwordTextViewController.text
                                 .length)); // Puts the cursor at the end of the text
-                    context
-                        .read<LoginBloc>()
+                        context.read<LoginBloc>()
                         .add(PasswordChanged(passwordString: value));
                   },
                   inputType: TextInputType.text,

@@ -37,6 +37,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
+    final GlobalKey _dropdownButtonKey = GlobalKey();
+
     final _emailTextViewController = TextEditingController(
         text: context.read<SignUpBloc>().emailAddressString);
 
@@ -170,6 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: UIHelper.paddingBetweenElements),
                       // Country
                       CrokettDropDownButton(
+                        dropdownButtonKey: _dropdownButtonKey,
                         errorMessage: Constants.countryInformation,
                         hint: Constants.country,
                         showErrorMessage:

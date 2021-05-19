@@ -17,8 +17,7 @@ class EmailChanged extends SignUpEvent {
   @override
   List<Object> get props => [emailString];
   @override
-  String toString() =>
-  'EmailChanged {emailString: $emailString}';
+  String toString() => 'EmailChanged {emailString: $emailString}';
 }
 
 // Password
@@ -31,8 +30,7 @@ class PasswordChanged extends SignUpEvent {
   @override
   List<Object> get props => [passwordString];
   @override
-  String toString() =>
-  'PasswordChanged {passwordString: $passwordString}';
+  String toString() => 'PasswordChanged {passwordString: $passwordString}';
 }
 
 // Password Confirmation
@@ -46,5 +44,36 @@ class PasswordConfirmationChanged extends SignUpEvent {
   List<Object> get props => [passwordConfirmationString];
   @override
   String toString() =>
-  'PasswordConfirmationChanged {passwordConfirmationString: $passwordConfirmationString}';
+      'PasswordConfirmationChanged {passwordConfirmationString: $passwordConfirmationString}';
 }
+
+// Country
+
+class CountryDropDownChanged extends SignUpEvent {
+  final String countryString;
+
+  const CountryDropDownChanged({required this.countryString});
+
+  @override
+  List<Object> get props => [countryString];
+  @override
+  String toString() =>
+      'CountryDropDownChanged {countryDropDownChanged: $countryString}';
+}
+
+// PostalCode
+
+class PostalCodeChanged extends SignUpEvent {
+  final String postalCode;
+
+  const PostalCodeChanged({required this.postalCode});
+
+  @override
+  List<Object> get props => [postalCode];
+  @override
+  String toString() => 'PostalCodeChanged {postalCodeChanged: $postalCode}';
+}
+
+// SignUp
+
+class SignUpNewUser extends SignUpEvent {}

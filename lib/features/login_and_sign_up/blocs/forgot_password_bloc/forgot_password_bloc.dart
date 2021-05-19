@@ -12,24 +12,26 @@ part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
 
 @injectable
-class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
+class ForgotPasswordBloc
+    extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   String emailAddressString = '';
   EmailAddress emailAddress = EmailAddress('');
+  bool showEmailError = false;
   bool bottomLoginButtonEnabled = false;
   final IAuthFacade _authFacade;
   ForgotPasswordBloc(this._authFacade) : super(ForgotPasswordStateInitial());
-  
+
   @override
   Stream<ForgotPasswordState> mapEventToState(
     ForgotPasswordEvent event,
   ) async* {
-
     if (event is EmailChanged) {
       emailAddressString = event.emailString;
       emailAddress = EmailAddress(event.emailString);
       yield EmailTextFieldChanged(emailAddress: emailAddress);
-      emailAddress.value.fold((fail) => null, (success) {
-          bottomLoginButtonEnabled = true;
+      emailAddress.value.fold((fail) => showEmailError = true, (success) {
+        showEmailError = false;
+        bottomLoginButtonEnabled = true;
       });
     }
 
@@ -43,17 +45,15 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState> 
   }
 
   Stream<ForgotPasswordState> _sendPasswordChangeLinkToEmail(
-    Future<Either<Failure, Unit>> Function(
-            {required EmailAddress emailAddress})
+    Future<Either<Failure, Unit>> Function({required EmailAddress emailAddress})
         forwardedCall,
   ) async* {
     Either<Failure, Unit> failureOrSuccess;
     final isEmailValid = EmailAddress(emailAddressString).isValid();
 
     if (isEmailValid) {
-
-      failureOrSuccess = await forwardedCall(
-          emailAddress: EmailAddress(emailAddressString));
+      failureOrSuccess =
+          await forwardedCall(emailAddress: EmailAddress(emailAddressString));
 
       yield EmailSentConfirmation(optionOf(failureOrSuccess));
     }

@@ -38,22 +38,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-    bool showEmailErrorMessage = false;
     final _emailTextViewController = TextEditingController(
         text: context.read<ForgotPasswordBloc>().emailAddressString);
-    return BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
-        listener: (context, state) {
-      // if (state is GoogleSignInSelected) {
-      //     nextScreen(GOOGLE_SIGN_IN);
-      //   }
-      // if (state is GoBackToLoginScreen) {
-      //     nextScreen(SIGN_UP);
-      // }
-    }, builder: (context, state) {
+    return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+     builder: (context, state) {
       bool buttonEnabled =
-          context.watch<ForgotPasswordBloc>().bottomLoginButtonEnabled
-              ? true
-              : false;
+          context.watch<ForgotPasswordBloc>().bottomLoginButtonEnabled;
+      bool showError = context.watch<ForgotPasswordBloc>().showEmailError;
 
       if (state is ForgotPasswordStateInitial ||
           state is EmailTextFieldChanged) {
@@ -103,21 +94,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         },
                         inputType: TextInputType.emailAddress,
                         obscureText: false,
-                        validator: (_) {
-                          context
-                              .watch<ForgotPasswordBloc>()
-                              .emailAddress
-                              .value
-                              .fold(
-                            (f) {
-                              showEmailErrorMessage = true;
-                            },
-                            (_) {
-                              showEmailErrorMessage = false;
-                            },
-                          );
-                        },
-                        showErrorMessage: showEmailErrorMessage,
+                        showErrorMessage: showError,
                         errorMessage: Constants.emailInformation,
                       ),
                     ),

@@ -11,7 +11,10 @@ abstract class AuthEvent extends Equatable {
 class AppStarted extends AuthEvent {}
 
 //
+class SplashAnimationFinished extends AuthEvent {}
+
+//
 class AuthEventLoggedOut extends AuthEvent {}
 
 //
-class SplashAnimationFinished extends AuthEvent {}
+class AuthEventLoggedIn extends AuthEvent {}

@@ -1,83 +1,38 @@
 part of 'login_bloc.dart';
 
 abstract class LoginState extends Equatable {
-  final EmailAddress emailAddress;
-  final Password password;
-
-  const LoginState({required this.emailAddress, required this.password});
+  const LoginState();
 
   @override
-  List<Object> get props => [emailAddress, password];
+  List<Object> get props => [];
 }
 
-class LoginStateInitial extends LoginState {
-  final EmailAddress emailAddress;
-  final Password password;
+class LoginStateInitial extends LoginState {}
 
-  const LoginStateInitial({required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
+class SelectedLoginState extends LoginState {}
 
-  @override
-  List<Object> get props => [emailAddress, password];
-}
+class SelectedGoogleSignInState extends LoginState {}
 
-class SelectedLoginState extends LoginState {
-  final EmailAddress emailAddress;
-  final Password password;
+class SelectedAppleSignInState extends LoginState {}
 
-  const SelectedLoginState({required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
-
-  @override
-  List<Object> get props => [emailAddress, password];
-}
-
-class SelectedGoogleSignInState extends LoginState {
-  final EmailAddress emailAddress;
-  final Password password;
-
-  const SelectedGoogleSignInState(
-      {required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
-
-  @override
-  List<Object> get props => [emailAddress, password];
-}
-
-class SelectedSignUpState extends LoginState {
-  final EmailAddress emailAddress;
-  final Password password;
-
-  const SelectedSignUpState(
-      {required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
-
-  @override
-  List<Object> get props => [emailAddress, password];
-}
+class SelectedSignUpState extends LoginState {}
 
 class EmailTextFieldChanged extends LoginState {
   final EmailAddress emailAddress;
-  final Password password;
 
-  const EmailTextFieldChanged(
-      {required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
+  const EmailTextFieldChanged({required this.emailAddress});
 
   @override
-  List<Object> get props => [emailAddress, password];
+  List<Object> get props => [emailAddress];
 }
 
 class PasswordTextFieldChanged extends LoginState {
-  final EmailAddress emailAddress;
   final Password password;
 
-  const PasswordTextFieldChanged(
-      {required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
+  const PasswordTextFieldChanged(this.password);
 
   @override
-  List<Object> get props => [emailAddress, password];
+  List<Object> get props => [password];
 }
 
 class CheckingCredentials extends LoginState {
@@ -85,21 +40,17 @@ class CheckingCredentials extends LoginState {
   final Password password;
 
   const CheckingCredentials(
-      {required this.emailAddress, required this.password})
-      : super(emailAddress: emailAddress, password: password);
+      {required this.emailAddress, required this.password});
 
   @override
   List<Object> get props => [emailAddress, password];
 }
 
 class LoginQueryReturn extends LoginState {
-  final EmailAddress emailAddress;
-  final Password password;
   final Option<Either<Failure, Unit>> authFailureOrSuccessOption;
 
   LoginQueryReturn(
-      this.authFailureOrSuccessOption, this.emailAddress, this.password)
-      : super(emailAddress: emailAddress, password: password);
+      this.authFailureOrSuccessOption);
 
   @override
   List<Object> get props => [authFailureOrSuccessOption];

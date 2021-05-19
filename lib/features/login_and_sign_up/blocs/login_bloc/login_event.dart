@@ -14,6 +14,8 @@ class RemoveBottomSheet extends LoginEvent {
 
 class GoogleSignInSelected extends LoginEvent {}
 
+class AppleSignInSelected extends LoginEvent {}
+
 class SignUpSelected extends LoginEvent {}
 
 // Email

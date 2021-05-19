@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:crokett/core/global/errors/auth_failures.dart';
 import 'package:crokett/core/global/errors/failures.dart';
+import 'package:crokett/features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart';
 import 'package:crokett/features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart';
 import 'package:crokett/features/login_and_sign_up/domain/entities/email_address.dart';
 import 'package:crokett/features/login_and_sign_up/domain/entities/password.dart';
@@ -15,39 +15,32 @@ part 'login_state.dart';
 
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  bool displayBottomSheet = false;
-  String emailAddressString =
-      ''; // These are both used to keep the string after minimising the login bottom sheet
-  String passwordString =
-      ''; // These are both used to keep the string after minimising the login bottom sheet
+  String emailAddressString = ''; // Needed for textEditingController
+  String passwordString = ''; // Needed for textEditingController
   EmailAddress emailAddress = EmailAddress('');
   Password password = Password('');
   final IAuthFacade _authFacade;
+  final AuthBloc _authBloc;
   bool bottomLoginButtonEnabled = false;
   bool showEmailError = false;
   bool showPasswordError = false;
 
-  LoginBloc(this._authFacade)
-      : super(LoginStateInitial(
-            emailAddress: EmailAddress(''), password: Password('')));
+  LoginBloc(this._authFacade, this._authBloc) : super(LoginStateInitial());
 
   @override
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
     if (event is LoginSelected) {
-      displayBottomSheet = true;
-      yield SelectedLoginState(emailAddress: emailAddress, password: password);
+      yield SelectedLoginState();
     }
     if (event is RemoveBottomSheet) {
-      displayBottomSheet = false;
-      yield LoginStateInitial(emailAddress: emailAddress, password: password);
+      yield LoginStateInitial();
     }
     if (event is EmailChanged) {
       emailAddressString = event.emailString;
       emailAddress = EmailAddress(event.emailString);
-      yield EmailTextFieldChanged(
-          emailAddress: emailAddress, password: password);
+      yield EmailTextFieldChanged(emailAddress: emailAddress);
       emailAddress.value.fold((fail) => showEmailError = true, (success) {
         showEmailError = false;
         password.value.fold((fail) => null, (success) {
@@ -58,8 +51,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is PasswordChanged) {
       passwordString = event.passwordString;
       password = Password(event.passwordString);
-      yield PasswordTextFieldChanged(
-          emailAddress: emailAddress, password: password);
+      yield PasswordTextFieldChanged(password);
       password.value.fold((fail) => showPasswordError = true, (success) {
         showPasswordError = false;
         emailAddress.value.fold((fail) => null, (success) {
@@ -68,7 +60,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       });
     }
     if (event is LoginWithEmailAndPassword) {
-      // This event can only be called if login button is enabled (which it won't be unless the Email and Password are in the correct validated format)
       yield CheckingCredentials(
           emailAddress: EmailAddress(emailAddressString),
           password: Password(passwordString));
@@ -76,6 +67,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         _authFacade.loginWithEmailAndPassword,
       );
     }
+    if (event is GoogleSignInSelected) {
+      yield SelectedGoogleSignInState();
+      _authFacade.signInWithGoogle();
+    }
+    if (event is AppleSignInSelected) {}
   }
 
   Stream<LoginState> _performActionOnAuthFacadeWithEmailAndPassword(
@@ -92,8 +88,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emailAddress: EmailAddress(emailAddressString),
           password: Password(passwordString));
 
-      yield LoginQueryReturn(
-          optionOf(failureOrSuccess), emailAddress, password);
+      failureOrSuccess.fold(
+        (failure) {
+          _authBloc.add(AuthEventLoggedOut());
+        },
+        (success) {
+          _authBloc.add(AuthEventLoggedIn());
+        },
+      );
+
+      yield LoginQueryReturn(optionOf(failureOrSuccess));
     }
   }
 }

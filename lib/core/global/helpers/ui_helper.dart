@@ -20,8 +20,9 @@ class UIHelper {
 
   /// Button
 
-  static const double buttonCornerRadius = 6;
+  static const double buttonCornerRadius = 5;
   static const double buttonMinHeight = 58;
+  static const double dropDownHeight = 66;
   static const double buttonMinWidth = 90;
   static const double maxButtonWidth = 200;
   static const double buttonPadding = 14;

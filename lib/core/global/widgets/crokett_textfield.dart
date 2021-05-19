@@ -12,7 +12,6 @@ class CrokettTextField extends StatefulWidget {
   final Function onChanged;
   final TextInputType inputType;
   final bool obscureText;
-  final Function validator;
   bool showErrorMessage;
   final String errorMessage;
 
@@ -25,7 +24,6 @@ class CrokettTextField extends StatefulWidget {
     required this.onChanged,
     required this.inputType,
     required this.obscureText,
-    required this.validator,
     required this.showErrorMessage,
     required this.errorMessage,
   }) : super(key: key);
@@ -68,10 +66,6 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
               child: Container(
                 child: TextFormField(
                   obscureText: widget.obscureText,
-                  validator: (text) {
-                    widget.validator(text);
-                 //   setState(() {});
-                  },
                   onChanged: (text) {
                     widget.onChanged(text);
                  //   setState(() {});
@@ -81,23 +75,23 @@ class _CrokettTextFieldState extends State<CrokettTextField> {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(14, 16, 10, 16),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
                       borderSide: BorderSide(style: BorderStyle.none),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
                       borderSide: const BorderSide(style: BorderStyle.none),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
                       borderSide: const BorderSide(style: BorderStyle.none),
                     ),
                     disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
                       borderSide: const BorderSide(style: BorderStyle.none),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(UIHelper.buttonCornerRadius),
                       borderSide: const BorderSide(style: BorderStyle.none),
                     ),
                     fillColor: Colors.grey.shade200,

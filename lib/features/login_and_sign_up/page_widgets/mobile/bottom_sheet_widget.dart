@@ -90,8 +90,6 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   },
                   inputType: TextInputType.emailAddress,
                   obscureText: false,
-                  validator: (_) {
-                  },
                   showErrorMessage: context.watch<LoginBloc>().showEmailError,
                   errorMessage: Constants.emailInformation,
                 ),
@@ -118,8 +116,6 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                   },
                   inputType: TextInputType.text,
                   obscureText: true,
-                  validator: (_) {
-                  },
                   showErrorMessage: context.watch<LoginBloc>().showPasswordError,
                   errorMessage: Constants.passwordInformation,
                 ),

@@ -7,6 +7,8 @@ import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/bottom_sheet_widget.dart';
 import 'package:crokett/injection.dart';
+import 'package:crokett/routes/crokett_configuration.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -51,8 +53,9 @@ class _LoginScreenState extends State<LoginScreen>
       //     nextScreen(SIGN_UP);
       // }
     }, builder: (context, state) {
-      if (state is !GoogleSignInSelected || state is !SignUpSelected) {
-        if (state is !LoginStateInitial) {
+      if (state is! SignUpSelected) {
+        if (state is! LoginStateInitial &&
+            state is! SelectedGoogleSignInState) {
           responsiveSpacerSize = 0;
           responsiveBoxSize = 0;
           imageSizeAnimController.forward().then((value) {
@@ -128,7 +131,8 @@ class _LoginScreenState extends State<LoginScreen>
                                 width: 32,
                                 child: RotationTransition(
                                   turns: AlwaysStoppedAnimation(52 / 360),
-                                  child: SvgPicture.asset(Images.imageHobPower2),
+                                  child:
+                                      SvgPicture.asset(Images.imageHobPower2),
                                 ),
                               ),
                             ],
@@ -151,20 +155,22 @@ class _LoginScreenState extends State<LoginScreen>
                         child: LoginButton(context, nextScreen),
                       ),
                       SizedBox(height: UIHelper.paddingBetweenElements),
-                      state is LoginStateInitial
+                      state is LoginStateInitial ||
+                              state is SelectedGoogleSignInState
                           ? ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 onPrimary: Colors.black,
                                 primary: Colors.white,
                               ),
                               onPressed: () {
-                                debugPrint('SignUp pressed');
+                                nextScreen(SIGN_UP);
                               },
                               child: Text(Constants.signUp),
                             )
                           : Container(),
                       SizedBox(height: UIHelper.paddingBetweenElements),
-                      state is LoginStateInitial
+                      state is LoginStateInitial ||
+                              state is SelectedGoogleSignInState
                           ? Row(children: [
                               const Spacer(),
                               Container(
@@ -180,13 +186,17 @@ class _LoginScreenState extends State<LoginScreen>
                             ])
                           : Container(),
                       SizedBox(height: UIHelper.paddingBetweenElements),
-                      state is LoginStateInitial
+                      state is LoginStateInitial ||
+                              state is SelectedGoogleSignInState
                           ? ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 onPrimary: Colors.black,
                                 primary: Colors.white,
                               ),
                               onPressed: () {
+                                context
+                                    .read<LoginBloc>()
+                                    .add(GoogleSignInSelected());
                                 debugPrint('Sign In with Google pressed');
                               },
                               child: Row(
@@ -203,7 +213,12 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                             )
                           : Container(),
-                          state is CheckingCredentials ? Container(height: rsc.rHP(100), width: rsc.rW(100), color: Colors.white.withOpacity(0.1)) : Container(),
+                      state is CheckingCredentials
+                          ? Container(
+                              height: rsc.rHP(100),
+                              width: rsc.rW(100),
+                              color: Colors.white.withOpacity(0.1))
+                          : Container(),
                     ],
                   ),
                 ),

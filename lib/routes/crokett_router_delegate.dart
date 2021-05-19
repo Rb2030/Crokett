@@ -86,10 +86,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       return CrokettConfiguration.googleSignIn();
     } else if (currentPage == ONBOARDING) {
       return CrokettConfiguration.onBoarding();
-    } else if (currentPage == DO_WE_DELIVER) {
-      return CrokettConfiguration.doWeDeliver();
-    } else if (currentPage == FOOD_PREFERENCES) {
-      return CrokettConfiguration.foodPreferences();
+    // } else if (currentPage == DO_WE_DELIVER) {
+    //   return CrokettConfiguration.doWeDeliver();
+    // } else if (currentPage == FOOD_PREFERENCES) {
+    //   return CrokettConfiguration.foodPreferences();
     } else if (currentPage == PROFILE) {
       return CrokettConfiguration.profile();
     } else if (currentPage == HOME) {
@@ -148,10 +148,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       stack = _googleSignInStack;
     } else if (currentPage == ONBOARDING) {
       stack = _onBoardingStack;
-    } else if (currentPage == DO_WE_DELIVER) {
-      stack = _doWeDeliverStack;
-    } else if (currentPage == FOOD_PREFERENCES) {
-      stack = _foodPreferencesStack;
+    // } else if (currentPage == DO_WE_DELIVER) {
+    //   stack = _doWeDeliverStack;
+    // } else if (currentPage == FOOD_PREFERENCES) {
+    //   stack = _foodPreferencesStack;
     } else if (currentPage == PROFILE) {
       stack = _profileStack;
     } else if (currentPage == HOME) {
@@ -240,6 +240,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     if (currentPage == SIGN_UP)
       SignUpPage(nextScreen: (String selectedPage) {
         currentPage = selectedPage;
+    }, previousScreen: (String pageToReturnTo) {  
+        currentPage = pageToReturnTo;
     })
   ];
 
@@ -261,22 +263,22 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     })
   ];
 
-  // Do We Deliver
-  List<Page> get _doWeDeliverStack => [
-    DoWeDeliverPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+  // // Do We Deliver
+  // List<Page> get _doWeDeliverStack => [
+  //   DoWeDeliverPage(nextScreen: (String selectedPage) {
+  //     currentPage = selectedPage;
+  //   })
+  // ];
 
-  // Food Preferences
-  List<Page> get _foodPreferencesStack => [
-    DoWeDeliverPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-    FoodPreferencesPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+  // // Food Preferences
+  // List<Page> get _foodPreferencesStack => [
+  //   DoWeDeliverPage(nextScreen: (String selectedPage) {
+  //     currentPage = selectedPage;
+  //   }),
+  //   FoodPreferencesPage(nextScreen: (String selectedPage) {
+  //     currentPage = selectedPage;
+  //   })
+  // ];
 
   // Profile
   List<Page> get _profileStack => [ProfilePage()];

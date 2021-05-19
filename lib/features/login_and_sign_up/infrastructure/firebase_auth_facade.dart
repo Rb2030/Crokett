@@ -73,8 +73,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           email: emailAddressString, password: passwordString);
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' ||
-          e.code == 'user-not-found') {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         return left(InvalidEmailAndPasswordCombination());
       } else {
         return left(ServerFailure());
@@ -89,14 +88,21 @@ class FirebaseAuthFacade implements IAuthFacade {
       if (googleUser == null) {
         CancelledByUser();
       }
-      final googleAuthentication = await googleUser!.authentication;
-      final authCredential = GoogleAuthProvider.credential(
-        idToken: googleAuthentication.idToken,
-        accessToken: googleAuthentication.accessToken,
-      );
-      return _firebaseAuth
-          .signInWithCredential(authCredential)
-          .then((r) => right(unit));
+      final googleAuthentication = await googleUser?.authentication;
+      var authCredential;
+      if (googleAuthentication != null) {
+        authCredential = GoogleAuthProvider.credential(
+          idToken: googleAuthentication.idToken,
+          accessToken: googleAuthentication.accessToken,
+        );
+      }
+      if (authCredential != null) {
+        return _firebaseAuth
+            .signInWithCredential(authCredential)
+            .then((r) => right(unit));
+      } else {
+        return left(CancelledByUser());
+      }
     } on PlatformException catch (_) {
       return left(ServerFailure());
     }
@@ -108,8 +114,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     final emailAddressString = emailAddress!.getOrCrash();
     try {
-      await _firebaseAuth.sendPasswordResetEmail(
-          email: emailAddressString);
+      await _firebaseAuth.sendPasswordResetEmail(email: emailAddressString);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

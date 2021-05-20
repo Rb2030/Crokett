@@ -62,10 +62,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<Failure, Unit>> loginWithEmailAndPassword({
-    @required EmailAddress? emailAddress,
-    @required Password? password,
-  }) async {
+  Future<Either<Failure, Unit>> loginWithEmailAndPassword(
+    EmailAddress? emailAddress,
+    Password? password,
+  ) async {
     final emailAddressString = emailAddress!.getOrCrash();
     final passwordString = password!.getOrCrash();
     try {
@@ -82,7 +82,10 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<Failure, Unit>> signInWithGoogle() async {
+  Future<Either<Failure, Unit>> signInWithGoogle(
+    EmailAddress? emailAddress, //  aren't actually needed except for making bloc function work
+    Password? password, // aren't actually needed except for making bloc function work
+  ) async {
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {

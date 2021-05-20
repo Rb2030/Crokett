@@ -4,6 +4,7 @@ import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/device_type_helper.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
+import 'package:crokett/core/global/widgets/crokett_snackbar.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
 import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/bottom_sheet_widget.dart';
 import 'package:crokett/injection.dart';
@@ -46,12 +47,27 @@ class _LoginScreenState extends State<LoginScreen>
     double responsiveSpacerSize = rsc.rH(6);
     double responsiveBoxSize = rsc.rH(36);
     return BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
-      // if (state is GoogleSignInSelected) {
-      //     nextScreen(GOOGLE_SIGN_IN);
-      //   }
-      // if (state is SignUpSelected) {
-      //     nextScreen(SIGN_UP);
-      // }
+      if (state is LoginQueryReturn) {
+        state.authFailureOrSuccessOption.fold(
+          () {},
+          (either) {
+            either.fold(
+              (failure) {
+                return ScaffoldMessenger.of(context)
+                    .showSnackBar(CrokettSnackbar(
+                        text: failure.errorMessage,
+                        buttonLabel: Constants.forgotPassword,
+                        onPressed: () {
+                          nextScreen(FORGOT_PASSWORD);
+                        })); //AlertDialog(title: Text(failure.errorMessage));
+              },
+              (success) {
+                nextScreen(HOME);
+              },
+            );
+          },
+        );
+      }
     }, builder: (context, state) {
       if (state is! SignUpSelected) {
         if (state is! LoginStateInitial &&

@@ -12,11 +12,8 @@ import 'package:crokett/features/home/page_structures/home_page.dart';
 import 'package:crokett/features/home/page_structures/home_selected_for_you_page.dart';
 import 'package:crokett/features/home/page_structures/home_upcoming_box_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/forgot_password_page.dart';
-import 'package:crokett/features/login_and_sign_up/page_structures/google_sign_in_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/login_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/sign_up_page.dart';
-import 'package:crokett/features/on_boarding/page_structures/do_we_deliver_page.dart';
-import 'package:crokett/features/on_boarding/page_structures/food_preferences_page.dart';
 import 'package:crokett/features/on_boarding/page_structures/onboarding_page.dart';
 import 'package:crokett/features/profile/page_structures/profile_page.dart';
 import 'package:crokett/features/recipes/page_structures/recipe_type_page.dart';
@@ -82,8 +79,6 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       return CrokettConfiguration.forgotPassword();
     } else if (currentPage == SIGN_UP) {
       return CrokettConfiguration.signUp();
-    } else if (currentPage == GOOGLE_SIGN_IN) {
-      return CrokettConfiguration.googleSignIn();
     } else if (currentPage == ONBOARDING) {
       return CrokettConfiguration.onBoarding();
     // } else if (currentPage == DO_WE_DELIVER) {
@@ -144,8 +139,6 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       stack = _forgotPasswordStack;
     } else if (currentPage == SIGN_UP) {
       stack = _signUpStack;
-    } else if (currentPage == GOOGLE_SIGN_IN) {
-      stack = _googleSignInStack;
     } else if (currentPage == ONBOARDING) {
       stack = _onBoardingStack;
     // } else if (currentPage == DO_WE_DELIVER) {
@@ -242,17 +235,6 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
         currentPage = selectedPage;
     }, previousScreen: (String pageToReturnTo) {  
         currentPage = pageToReturnTo;
-    })
-  ];
-
-  // Google Sign In
-  List<Page> get _googleSignInStack => [
-    LoginPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-    if (currentPage == GOOGLE_SIGN_IN)
-      GoogleSignInPage(nextScreen: (String selectedPage) {
-        currentPage = selectedPage;
     })
   ];
 
@@ -451,9 +433,6 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSignUpPage) {
       currentPage = SIGN_UP;
-      selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isGoogleSignInPage) {
-      currentPage = GOOGLE_SIGN_IN;
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isOnboardingPage) {
       currentPage = ONBOARDING;

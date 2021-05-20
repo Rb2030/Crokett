@@ -4,7 +4,6 @@ const String SPLASH = "splash";
 const String LOGIN = "/";
 const String FORGOT_PASSWORD = "forgot_password";
 const String SIGN_UP = "sign_up";
-const String GOOGLE_SIGN_IN = "google_sign_in";
 const String ONBOARDING = "on_boarding";
 const String DO_WE_DELIVER = "do_we_deliver";
 const String FOOD_PREFERENCES = "food_preferences";
@@ -69,13 +68,6 @@ class CrokettConfiguration {
         splashPageFinished = true,
         loggedIn = false,
         screen = SIGN_UP,
-        selectedItemId = '';
-
-  CrokettConfiguration.googleSignIn()
-      : unknown = false,
-        splashPageFinished = true,
-        loggedIn = false,
-        screen = GOOGLE_SIGN_IN,
         selectedItemId = '';
 
   CrokettConfiguration.onBoarding()
@@ -251,13 +243,6 @@ class CrokettConfiguration {
       loggedIn == false &&
       splashPageFinished == true &&
       screen == SIGN_UP &&
-      selectedItemId == '';
-
-  bool get isGoogleSignInPage =>
-      unknown == false &&
-      loggedIn == false &&
-      splashPageFinished == true &&
-      screen == GOOGLE_SIGN_IN &&
       selectedItemId == '';
 
   bool get isOnboardingPage =>

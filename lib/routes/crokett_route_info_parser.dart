@@ -17,8 +17,6 @@ class CrokettRouteInformationParser
         return CrokettConfiguration.signUp();
       } else if (first == FORGOT_PASSWORD) {
         return CrokettConfiguration.forgotPassword();
-      } else if (first == GOOGLE_SIGN_IN) {
-        return CrokettConfiguration.googleSignIn();
       } else if (first == DO_WE_DELIVER) {
         return CrokettConfiguration.home();
       } else if (first == FOOD_PREFERENCES) {
@@ -79,8 +77,6 @@ class CrokettRouteInformationParser
       return RouteInformation(location: '/forgot_password');
     } else if (configuration.isSignUpPage) {
       return RouteInformation(location: '/sign_up');
-    } else if (configuration.isGoogleSignInPage) {
-      return RouteInformation(location: '/google_sign_in');
     } else if (configuration.isDoWeDeliverPage) {
       return RouteInformation(location: '/do_we_deliver');
     } else if (configuration.isFoodPreferencesPage) {

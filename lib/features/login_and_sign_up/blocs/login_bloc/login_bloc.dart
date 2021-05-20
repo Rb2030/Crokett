@@ -24,6 +24,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   bool bottomLoginButtonEnabled = false;
   bool showEmailError = false;
   bool showPasswordError = false;
+  bool usingGoogleToSignIn = false;
 
   LoginBloc(this._authFacade, this._authBloc) : super(LoginStateInitial());
 
@@ -60,6 +61,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       });
     }
     if (event is LoginWithEmailAndPassword) {
+      usingGoogleToSignIn = false;
+
       yield CheckingCredentials(
           emailAddress: EmailAddress(emailAddressString),
           password: Password(passwordString));
@@ -68,25 +71,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     }
     if (event is GoogleSignInSelected) {
+      usingGoogleToSignIn = true;
       yield SelectedGoogleSignInState();
-      _authFacade.signInWithGoogle();
+      yield* _performActionOnAuthFacadeWithEmailAndPassword(
+        _authFacade.signInWithGoogle,
+      );
     }
-    if (event is AppleSignInSelected) {}
+    if (event is AppleSignInSelected) {
+      usingGoogleToSignIn = false;
+    }
   }
 
   Stream<LoginState> _performActionOnAuthFacadeWithEmailAndPassword(
     Future<Either<Failure, Unit>> Function(
-            {@required EmailAddress emailAddress, @required Password password})
+            EmailAddress emailAddress, Password password)
         forwardedCall,
   ) async* {
     Either<Failure, Unit> failureOrSuccess;
     final isEmailValid = EmailAddress(emailAddressString).isValid();
     final isPasswordValid = Password(passwordString).isValid();
 
-    if (isEmailValid && isPasswordValid) {
+    if (isEmailValid && isPasswordValid || usingGoogleToSignIn == true) {
       failureOrSuccess = await forwardedCall(
-          emailAddress: EmailAddress(emailAddressString),
-          password: Password(passwordString));
+          EmailAddress(emailAddressString), Password(passwordString));
 
       failureOrSuccess.fold(
         (failure) {
@@ -94,6 +101,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
         (success) {
           _authBloc.add(AuthEventLoggedIn());
+          usingGoogleToSignIn = false;
         },
       );
 

@@ -8,17 +8,17 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class IAuthFacade {
-  Future<Either<Failure, Unit>> loginWithEmailAndPassword({ // Unit is the same as void
-    @required EmailAddress emailAddress,
-    @required Password password
-  });
+  Future<Either<Failure, Unit>> loginWithEmailAndPassword( // Unit is the same as void
+    EmailAddress emailAddress,
+    Password password
+  );
 
   Future<Either<Failure, Unit>> signUpWithEmailAndPassword({ // Unit is the same as void
     @required EmailAddress emailAddress,
     @required Password password
   });
 
-  Future<Either<Failure, Unit>> signInWithGoogle(); // Unit is the same as void
+  Future<Either<Failure, Unit>> signInWithGoogle(EmailAddress emailAddress, Password password /* Params, not used, just for bloc fun call*/); // Unit is the same as void
 
   Future<Option<CurrentUser>> getSignedInUser();
 

@@ -10,7 +10,7 @@ class ForgotPasswordPage extends Page {
   final Function(String) previousScreen;
 
   ForgotPasswordPage({required this.nextScreen, required this.previousScreen})
-      : super(key: ValueKey(GOOGLE_SIGN_IN));
+      : super(key: ValueKey(FORGOT_PASSWORD));
 
   @override
   Route createRoute(BuildContext context) {

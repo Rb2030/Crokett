@@ -6,7 +6,7 @@ import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/core/global/widgets/crokett_snackbar.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/login_bloc/login_bloc.dart';
-import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/bottom_sheet_widget.dart';
+import 'package:crokett/features/login_and_sign_up/page_widgets/mobile/login_bottom_sheet_widget.dart';
 import 'package:crokett/injection.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -16,7 +16,7 @@ class TipsAndTricksPage extends Page {
         return Container( // This will be BOXESscreen instead of container passing next screen func with provider
           height: 20,
           width: 20,
-          color: Colors.green,
+          color: Colors.teal,
         );
       },
     );

@@ -36,7 +36,7 @@ class _AppShellState extends State<AppShell> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-    CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
+   // CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
 
     toggleDrawer() async {
       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -51,14 +51,16 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: Center(child: _routerDelegate.build(context)),
+     // body: Center(child: _routerDelegate.build(context)),
       drawer: InkWell(
         onTap: () {
           toggleDrawer();
         },
         child: Container(
           width: rsc.rW(70),
+          color: Colors.white,
           child: Drawer(
+            elevation: 0,
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[

@@ -81,10 +81,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       return CrokettConfiguration.signUp();
     } else if (currentPage == ONBOARDING) {
       return CrokettConfiguration.onBoarding();
-    // } else if (currentPage == DO_WE_DELIVER) {
-    //   return CrokettConfiguration.doWeDeliver();
-    // } else if (currentPage == FOOD_PREFERENCES) {
-    //   return CrokettConfiguration.foodPreferences();
+      // } else if (currentPage == DO_WE_DELIVER) {
+      //   return CrokettConfiguration.doWeDeliver();
+      // } else if (currentPage == FOOD_PREFERENCES) {
+      //   return CrokettConfiguration.foodPreferences();
     } else if (currentPage == PROFILE) {
       return CrokettConfiguration.profile();
     } else if (currentPage == HOME) {
@@ -141,10 +141,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       stack = _signUpStack;
     } else if (currentPage == ONBOARDING) {
       stack = _onBoardingStack;
-    // } else if (currentPage == DO_WE_DELIVER) {
-    //   stack = _doWeDeliverStack;
-    // } else if (currentPage == FOOD_PREFERENCES) {
-    //   stack = _foodPreferencesStack;
+      // } else if (currentPage == DO_WE_DELIVER) {
+      //   stack = _doWeDeliverStack;
+      // } else if (currentPage == FOOD_PREFERENCES) {
+      //   stack = _foodPreferencesStack;
     } else if (currentPage == PROFILE) {
       stack = _profileStack;
     } else if (currentPage == HOME) {
@@ -189,7 +189,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       onPopPage: (route, result) {
         if (!route.didPop(result)) return false;
         selectedItemCode = '';
-  //      _currentPage = '';
+        //      _currentPage = '';
         return true;
       },
     );
@@ -200,50 +200,50 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Splash
   List<Page> get _splashStack => [
-    SplashPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        SplashPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Login
   List<Page> get _loginStack => [
-    LoginPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        LoginPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // Forgot Password
   List<Page> get _forgotPasswordStack => [
-    LoginPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-    if (currentPage == FORGOT_PASSWORD)
-      ForgotPasswordPage(nextScreen: (String selectedPage) {
-        currentPage = selectedPage;
-    }, previousScreen: (String pageToReturnTo) {  
-        currentPage = pageToReturnTo;
-    })
-  ];
+        LoginPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        if (currentPage == FORGOT_PASSWORD)
+          ForgotPasswordPage(nextScreen: (String selectedPage) {
+            currentPage = selectedPage;
+          }, previousScreen: (String pageToReturnTo) {
+            currentPage = pageToReturnTo;
+          })
+      ];
 
   // Sign Up
   List<Page> get _signUpStack => [
-    LoginPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-    if (currentPage == SIGN_UP)
-      SignUpPage(nextScreen: (String selectedPage) {
-        currentPage = selectedPage;
-    }, previousScreen: (String pageToReturnTo) {  
-        currentPage = pageToReturnTo;
-    })
-  ];
+        LoginPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        if (currentPage == SIGN_UP)
+          SignUpPage(nextScreen: (String selectedPage) {
+            currentPage = selectedPage;
+          }, previousScreen: (String pageToReturnTo) {
+            currentPage = pageToReturnTo;
+          })
+      ];
 
   // On Boarding
   List<Page> get _onBoardingStack => [
-    OnBoardingPage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    })
-  ];
+        OnBoardingPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
   // // Do We Deliver
   // List<Page> get _doWeDeliverStack => [
@@ -267,10 +267,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Home
   List<Page> get _homeStack => [
-    HomePage(nextScreen: (String selectedPage) {
-      currentPage = selectedPage;
-    }),
-  ];
+        HomePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   // Home Featured
   List<Page> get _homeFeaturedStack => [

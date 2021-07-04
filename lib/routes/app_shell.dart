@@ -10,22 +10,24 @@ import 'package:flutter_svg/svg.dart';
 import 'crokett_configuration.dart';
 
 class AppShell extends StatefulWidget {
-  final Function(String) chosenScreen;
+  final StatefulWidget? currentPage;
+  final Function(String) nextScreen;
 
-  AppShell(this.chosenScreen);
+  AppShell(this.currentPage, this.nextScreen);
 
   @override
   _AppShellState createState() => _AppShellState();
 }
 
 class _AppShellState extends State<AppShell> {
-  Function(String)? chosenScreen;
+  StatefulWidget? currentPage;
+  Function(String)? nextScreen;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  Page? currentPage;
 
   void initState() {
     super.initState();
-    chosenScreen = widget.chosenScreen;
+    currentPage = widget.currentPage;
+    nextScreen = widget.nextScreen;
   }
 
   @override
@@ -36,7 +38,7 @@ class _AppShellState extends State<AppShell> {
   @override
   Widget build(BuildContext context) {
     final ResponsiveScreenConfig rsc = ResponsiveScreenConfig(context);
-   // CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
+    // CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
 
     toggleDrawer() async {
       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -51,7 +53,7 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         elevation: 0,
       ),
-     // body: Center(child: _routerDelegate.build(context)),
+     body: Center(child: currentPage),
       drawer: InkWell(
         onTap: () {
           toggleDrawer();
@@ -84,7 +86,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
-                        chosenScreen!(PROFILE);
+                        nextScreen!(PROFILE);
                       },
                     ),
                   ),
@@ -98,7 +100,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
-                    chosenScreen!(HOME);
+                    nextScreen!(HOME);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -110,7 +112,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
-                    chosenScreen!(BOXES);
+                    nextScreen!(BOXES);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -122,7 +124,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
-                    chosenScreen!(RECIPES);
+                    nextScreen!(RECIPES);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -134,7 +136,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
-                    chosenScreen!(COOKSHOP);
+                    nextScreen!(COOKSHOP);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -146,7 +148,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
-                    chosenScreen!(TIPS_AND_TRICKS);
+                    nextScreen!(TIPS_AND_TRICKS);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -158,7 +160,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
-                    chosenScreen!(HELP);
+                    nextScreen!(HELP);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -170,7 +172,7 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
-                    chosenScreen!(SETTINGS);
+                    nextScreen!(SETTINGS);
                   },
                 ),
               ],

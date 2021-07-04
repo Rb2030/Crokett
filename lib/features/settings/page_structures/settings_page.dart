@@ -14,7 +14,7 @@ class SettingsPage extends Page {
     return MaterialPageRoute(
       settings: this,
       builder: (BuildContext context) {
-        return AppShell(nextScreen);
+        return Container(); //AppShell(nextScreen);
       },
     );
   }

@@ -1,9 +1,8 @@
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:crokett/core/global/globals/globals.dart' as globals;
 
 class TipsAndTricksScreen extends StatefulWidget {
-  final Function(String) nextScreen;
+  final Function(String)? nextScreen;
 
   TipsAndTricksScreen({required this.nextScreen}) : super();
 
@@ -12,7 +11,7 @@ class TipsAndTricksScreen extends StatefulWidget {
 }
 
 class _TipsAndTricksScreenState extends State<TipsAndTricksScreen> with TickerProviderStateMixin {
-  late Function(String) nextScreen;
+  Function(String)? nextScreen;
 
   @override
   void initState() {
@@ -26,6 +25,7 @@ class _TipsAndTricksScreenState extends State<TipsAndTricksScreen> with TickerPr
 
     return Center(
         child: Container(
-            width: rsc.rH(20), height: rsc.rW(60), color: Colors.red));
+            width: rsc.rH(20), height: rsc.rW(60), color: Colors.teal));
   }
 }
+

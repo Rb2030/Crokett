@@ -2,16 +2,16 @@ import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:crokett/core/global/globals/globals.dart' as globals;
 
-class HomeScreen extends StatefulWidget {
-  Function(String)? nextScreen;
+class BoxesScreen extends StatefulWidget {
+  final Function(String)? nextScreen;
 
-  HomeScreen({required this.nextScreen}) : super();
+  BoxesScreen({required this.nextScreen}) : super();
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BoxesScreenState createState() => _BoxesScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _BoxesScreenState extends State<BoxesScreen> with TickerProviderStateMixin {
   Function(String)? nextScreen;
 
   @override
@@ -26,6 +26,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     return Center(
         child: Container(
-            width: rsc.rH(20), height: rsc.rW(60), color: Colors.purple));
+            width: rsc.rH(20), height: rsc.rW(60), color: Colors.green));
   }
 }

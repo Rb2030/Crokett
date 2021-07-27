@@ -1,14 +1,10 @@
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/widgets/unknown_page.dart';
-import 'package:crokett/features/boxes/page_structures/boxes_page.dart';
 import 'package:crokett/features/boxes/page_structures/selected_box_page.dart';
 import 'package:crokett/features/cookshop/page_structures/cookshop_categories_page.dart';
-import 'package:crokett/features/cookshop/page_structures/cookshop_page.dart';
 import 'package:crokett/features/cookshop/page_structures/selected_cookshop_item_page.dart';
-import 'package:crokett/features/help/page_structures/help_page.dart';
 import 'package:crokett/features/help/page_structures/selected_help_item_page.dart';
 import 'package:crokett/features/home/page_structures/home_featured_page.dart';
-import 'package:crokett/features/home/page_structures/home_page.dart';
 import 'package:crokett/features/home/page_structures/home_selected_for_you_page.dart';
 import 'package:crokett/features/home/page_structures/home_upcoming_box_page.dart';
 import 'package:crokett/features/login_and_sign_up/page_structures/forgot_password_page.dart';
@@ -17,12 +13,10 @@ import 'package:crokett/features/login_and_sign_up/page_structures/sign_up_page.
 import 'package:crokett/features/on_boarding/page_structures/onboarding_page.dart';
 import 'package:crokett/features/profile/page_structures/profile_page.dart';
 import 'package:crokett/features/recipes/page_structures/recipe_type_page.dart';
-import 'package:crokett/features/recipes/page_structures/recipes_page.dart';
 import 'package:crokett/features/recipes/page_structures/selected_recipe_page.dart';
-import 'package:crokett/features/settings/page_structures/settings_page.dart';
 import 'package:crokett/features/splash_screen/page_structures/splash_page.dart';
 import 'package:crokett/features/tips_and_tricks/page_structures/selected_tips_and_tricks_page.dart';
-import 'package:crokett/features/tips_and_tricks/page_structures/tips_and_tricks_page.dart';
+import 'package:crokett/routes/app_shell.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
 
@@ -81,46 +75,46 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       return CrokettConfiguration.signUp();
     } else if (currentPage == ONBOARDING) {
       return CrokettConfiguration.onBoarding();
-      // } else if (currentPage == DO_WE_DELIVER) {
-      //   return CrokettConfiguration.doWeDeliver();
-      // } else if (currentPage == FOOD_PREFERENCES) {
-      //   return CrokettConfiguration.foodPreferences();
+    } else if (currentPage == DO_WE_DELIVER) {
+      return CrokettConfiguration.doWeDeliver();
+    } else if (currentPage == FOOD_PREFERENCES) {
+      return CrokettConfiguration.foodPreferences();
     } else if (currentPage == PROFILE) {
       return CrokettConfiguration.profile();
-    } else if (currentPage == HOME) {
-      return CrokettConfiguration.home();
+    } else if (currentPage == APPSHELL) {
+      return CrokettConfiguration.appShell();
     } else if (currentPage == HOME_FEATURED) {
       return CrokettConfiguration.homeFeatured(_selectedItemCode);
     } else if (currentPage == HOME_UPCOMING_BOX) {
       return CrokettConfiguration.homeUpcomingBox(_selectedItemCode);
     } else if (currentPage == HOME_SELECTED_FOR_YOU) {
       return CrokettConfiguration.homeSelectedForYou(_selectedItemCode);
-    } else if (currentPage == BOXES) {
-      return CrokettConfiguration.boxes();
+      // } else if (currentPage == BOXES) {
+      //   return CrokettConfiguration.boxes();
     } else if (currentPage == SELECTED_BOX) {
       return CrokettConfiguration.selectedBox(_selectedItemCode);
-    } else if (currentPage == RECIPES) {
-      return CrokettConfiguration.recipes();
+      // } else if (currentPage == RECIPES) {
+      //   return CrokettConfiguration.recipes();
     } else if (currentPage == RECIPE_TYPE) {
       return CrokettConfiguration.recipeType(_selectedItemCode);
     } else if (currentPage == SELECTED_RECIPE) {
       return CrokettConfiguration.selectedRecipe(_selectedItemCode);
-    } else if (currentPage == COOKSHOP) {
-      return CrokettConfiguration.cookshop();
+      // } else if (currentPage == COOKSHOP) {
+      //   return CrokettConfiguration.cookshop();
     } else if (currentPage == COOKSHOP_CATEGORIES) {
       return CrokettConfiguration.cookshopCategories();
     } else if (currentPage == SELECTED_COOKSHOP_ITEM) {
       return CrokettConfiguration.selectedCookshopItem(_selectedItemCode);
-    } else if (currentPage == TIPS_AND_TRICKS) {
-      return CrokettConfiguration.tipsAndTricks();
+      // } else if (currentPage == TIPS_AND_TRICKS) {
+      //   return CrokettConfiguration.tipsAndTricks();
     } else if (currentPage == SELECTED_TIPS_AND_TRICKS) {
       return CrokettConfiguration.selectedTipsAndTricks(_selectedItemCode);
-    } else if (currentPage == HELP) {
-      return CrokettConfiguration.help();
+      // } else if (currentPage == HELP) {
+      //   return CrokettConfiguration.help();
     } else if (currentPage == SELECTED_HELP_ITEM) {
       return CrokettConfiguration.selectedHelpItem(_selectedItemCode);
-    } else if (currentPage == SETTINGS) {
-      return CrokettConfiguration.settings();
+      // } else if (currentPage == SETTINGS) {
+      //   return CrokettConfiguration.settings();
     } else {
       return CrokettConfiguration.unknown();
     }
@@ -147,40 +141,40 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       //   stack = _foodPreferencesStack;
     } else if (currentPage == PROFILE) {
       stack = _profileStack;
-    } else if (currentPage == HOME) {
-      stack = _homeStack;
+    } else if (currentPage == APPSHELL) { // This is home but encompasses all home routes as app shell wraps all of them
+      stack = _appShellDrawerStack;
     } else if (currentPage == HOME_FEATURED) {
       stack = _homeFeaturedStack;
     } else if (currentPage == HOME_UPCOMING_BOX) {
       stack = _homeUpcomingBoxStack;
     } else if (currentPage == HOME_SELECTED_FOR_YOU) {
       stack = _homeSelectedForYouStack;
-    } else if (currentPage == BOXES) {
-      stack = _boxesStack;
+      // } else if (currentPage == BOXES) {
+      //   stack = _boxesStack;
     } else if (currentPage == SELECTED_BOX) {
       stack = _selectedBoxStack;
-    } else if (currentPage == RECIPES) {
-      stack = _recipesStack;
+      // } else if (currentPage == RECIPES) {
+      //   stack = _recipesStack;
     } else if (currentPage == RECIPE_TYPE) {
       stack = _recipeTypeStack;
     } else if (currentPage == SELECTED_RECIPE) {
       stack = _selectedRecipeStack;
-    } else if (currentPage == COOKSHOP) {
-      stack = _cookshopStack;
+      // } else if (currentPage == COOKSHOP) {
+      //   stack = _cookshopStack;
     } else if (currentPage == COOKSHOP_CATEGORIES) {
       stack = _cookshopCategoriesStack;
     } else if (currentPage == SELECTED_COOKSHOP_ITEM) {
       stack = _selectedCookshopItemStack;
-    } else if (currentPage == TIPS_AND_TRICKS) {
-      stack = _tipsAndTricksStack;
+      // } else if (currentPage == TIPS_AND_TRICKS) {
+      //   stack = _tipsAndTricksStack;
     } else if (currentPage == SELECTED_TIPS_AND_TRICKS) {
       stack = _selectedTipsAndTricksStack;
-    } else if (currentPage == HELP) {
-      stack = _helpStack;
+      // } else if (currentPage == HELP) {
+      //   stack = _helpStack;
     } else if (currentPage == SELECTED_HELP_ITEM) {
       stack = _selectedHelpItemStack;
-    } else if (currentPage == SETTINGS) {
-      stack = _settingsStack;
+      // } else if (currentPage == SETTINGS) {
+      //   stack = _settingsStack;
     }
 
     return Navigator(
@@ -263,18 +257,32 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
   // ];
 
   // Profile
-  List<Page> get _profileStack => [ProfilePage()];
+  List<Page> get _profileStack => [
+        AppShell(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+        ProfilePage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        })
+      ];
 
-  // Home
-  List<Page> get _homeStack => [
-        HomePage(nextScreen: (String selectedPage) {
+  // // Home
+  // List<Page> get _homeStack => [
+  //       HomePage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
+
+  // AppShell
+  List<Page> get _appShellDrawerStack => [
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
       ];
 
   // Home Featured
   List<Page> get _homeFeaturedStack => [
-        HomePage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         HomeFeaturedPage(nextScreen: (String selectedPage) {
@@ -284,7 +292,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Home Up Coming Box
   List<Page> get _homeUpcomingBoxStack => [
-        HomePage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         HomeUpcomingBoxPage(nextScreen: (String selectedPage) {
@@ -294,7 +302,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Home Selected For You
   List<Page> get _homeSelectedForYouStack => [
-        HomePage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         HomeSelectedForYouPage(nextScreen: (String selectedPage) {
@@ -303,15 +311,15 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Boxes
-  List<Page> get _boxesStack => [
-        BoxesPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _boxesStack => [
+  //       BoxesPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   // Selected Box
   List<Page> get _selectedBoxStack => [
-        BoxesPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         SelectedBoxPage(nextScreen: (String selectedPage) {
@@ -320,15 +328,15 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Recipes
-  List<Page> get _recipesStack => [
-        RecipesPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _recipesStack => [
+  //       RecipesPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   // Recipe Type
   List<Page> get _recipeTypeStack => [
-        RecipesPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         RecipeTypePage(nextScreen: (String selectedPage) {
@@ -338,7 +346,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Selected Recipe
   List<Page> get _selectedRecipeStack => [
-        RecipesPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         RecipeTypePage(nextScreen: (String selectedPage) {
@@ -350,15 +358,15 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Cookshop
-  List<Page> get _cookshopStack => [
-        CookshopPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _cookshopStack => [
+  //       CookshopPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   // Cookshop Categories
   List<Page> get _cookshopCategoriesStack => [
-        CookshopPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         CookshopCategoriesPage(nextScreen: (String selectedPage) {
@@ -368,7 +376,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Selected Cookshop Item
   List<Page> get _selectedCookshopItemStack => [
-        CookshopPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         CookshopCategoriesPage(nextScreen: (String selectedPage) {
@@ -380,15 +388,15 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Tips & Tricks
-  List<Page> get _tipsAndTricksStack => [
-        TipsAndTricksPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _tipsAndTricksStack => [
+  //       TipsAndTricksPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   // Selected Tips & Tricks
   List<Page> get _selectedTipsAndTricksStack => [
-        TipsAndTricksPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         SelectedTipsAndTricksPage(nextScreen: (String selectedPage) {
@@ -397,15 +405,15 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Help
-  List<Page> get _helpStack => [
-        HelpPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _helpStack => [
+  //       HelpPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   // Selected Tips & Tricks
   List<Page> get _selectedHelpItemStack => [
-        HelpPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
         SelectedHelpItemPage(nextScreen: (String selectedPage) {
@@ -414,11 +422,11 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Settings
-  List<Page> get _settingsStack => [
-        SettingsPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }),
-      ];
+  // List<Page> get _settingsStack => [
+  //       SettingsPage(nextScreen: (String selectedPage) {
+  //         currentPage = selectedPage;
+  //       }),
+  //     ];
 
   @override
   Future<void> setNewRoutePath(CrokettConfiguration configuration) async {
@@ -446,23 +454,17 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     } else if (configuration.isProfilePage) {
       currentPage = PROFILE;
       selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isHomePage) {
-      currentPage = HOME;
-      selectedItemCode = configuration.selectedItemId;
+    } else if (configuration.isAppShellPage) {
+      currentPage = APPSHELL;
+    //  selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isHomeUpcomingBoxPage) {
       currentPage = HOME_UPCOMING_BOX;
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isHomeSelectedForYouPage) {
       currentPage = HOME_SELECTED_FOR_YOU;
       selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isBoxesPage) {
-      currentPage = BOXES;
-      selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSelectedBoxPage) {
       currentPage = SELECTED_BOX;
-      selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isSelectedBoxPage) {
-      currentPage = RECIPES;
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSelectedRecipeType) {
       currentPage = RECIPE_TYPE;
@@ -470,27 +472,21 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
     } else if (configuration.isSelectedRecipePage) {
       currentPage = SELECTED_RECIPE;
       selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isCookshopPage) {
-      currentPage = COOKSHOP;
-      selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSelectedCookshopCategoriesPage) {
       currentPage = COOKSHOP_CATEGORIES;
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSelectedCookshopItemPage) {
       currentPage = SELECTED_COOKSHOP_ITEM;
       selectedItemCode = configuration.selectedItemId;
-    } else if (configuration.isTipsAndTricksPage) {
-      currentPage = TIPS_AND_TRICKS;
-      selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSelectedTipsAndTricksPage) {
       currentPage = SELECTED_TIPS_AND_TRICKS;
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isHelpPage) {
       currentPage = HELP;
-      selectedItemCode = configuration.selectedItemId;
+   //   selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSettingsPage) {
       currentPage = SETTINGS;
-      selectedItemCode = configuration.selectedItemId;
+    //  selectedItemCode = configuration.selectedItemId;
     } else {
       print(Constants.failureCouldNotSetRoute);
     }

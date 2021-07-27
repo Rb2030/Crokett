@@ -18,21 +18,13 @@ class CrokettRouteInformationParser
       } else if (first == FORGOT_PASSWORD) {
         return CrokettConfiguration.forgotPassword();
       } else if (first == DO_WE_DELIVER) {
-        return CrokettConfiguration.home();
+        return CrokettConfiguration.doWeDeliver();
       } else if (first == FOOD_PREFERENCES) {
         return CrokettConfiguration.foodPreferences();
       } else if (first == PROFILE) {
         return CrokettConfiguration.profile();
-      } else if (first == HOME) {
-        return CrokettConfiguration.home();
-      } else if (first == BOXES) {
-        return CrokettConfiguration.boxes();
-      } else if (first == RECIPES) {
-        return CrokettConfiguration.recipes();
-      } else if (first == COOKSHOP) {
-        return CrokettConfiguration.cookshop();
-      } else if (first == TIPS_AND_TRICKS) {
-        return CrokettConfiguration.tipsAndTricks();
+      } else if (first == APPSHELL) {
+        return CrokettConfiguration.appShell();
       } else if (first == HELP) {
         return CrokettConfiguration.help();
       } else if (first == SETTINGS) {
@@ -83,7 +75,7 @@ class CrokettRouteInformationParser
       return RouteInformation(location: '/food_preferences');
     } else if (configuration.isProfilePage) {
       return RouteInformation(location: '/profile');
-    } else if (configuration.isHomePage) {
+    } else if (configuration.isAppShellPage) {
       return RouteInformation(location: '/home');
     } else if (configuration.isHomeFeaturedPage) {
       return RouteInformation(location: '/home/${configuration.selectedItemId}');
@@ -91,20 +83,12 @@ class CrokettRouteInformationParser
       return RouteInformation(location: '/home/${configuration.selectedItemId}');
     } else if (configuration.isHomeSelectedForYouPage) {
       return RouteInformation(location: '/home/${configuration.selectedItemId}');
-    } else if (configuration.isBoxesPage) {
-      return RouteInformation(location: '/boxes');
     } else if (configuration.isSelectedBoxPage) {
       return RouteInformation(location: '/boxes/${configuration.selectedItemId}');
-    } else if (configuration.isRecipesPage) {
-      return RouteInformation(location: '/recipes');
     } else if (configuration.isSelectedRecipePage) {
       return RouteInformation(location: '/recipes/${configuration.selectedItemId}');
-    } else if (configuration.isCookshopPage) {
-      return RouteInformation(location: '/cookshop');
     } else if (configuration.isSelectedCookshopItemPage) {
       return RouteInformation(location: '/cookshop/${configuration.selectedItemId}');
-    } else if (configuration.isTipsAndTricksPage) {
-      return RouteInformation(location: '/tips_and_tricks');
     } else if (configuration.isSelectedTipsAndTricksPage) {
       return RouteInformation(location: '/tips_and_tricks/${configuration.selectedItemId}');
     } else if (configuration.isHelpPage) {

@@ -103,7 +103,7 @@ class _SplashAnimationState extends State<SplashAnimation>
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
       if (state is AuthStateSplashAnimationFinished) {
         if (state.loggedIn == true) {
-          nextScreen(HOME);
+          nextScreen(APPSHELL);
         } else {
           nextScreen(LOGIN);
         }

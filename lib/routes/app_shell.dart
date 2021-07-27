@@ -2,32 +2,55 @@ import 'package:crokett/core/global/asset_names.dart/images_and_sounds.dart';
 import 'package:crokett/core/global/constants/constants.dart';
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
-import 'package:crokett/features/splash_screen/page_structures/splash_page.dart';
-import 'package:crokett/routes/crokett_router_delegate.dart';
+import 'package:crokett/features/boxes/page_widgets/mobile/boxes_screen.dart';
+import 'package:crokett/features/cookshop/page_widgets/mobile/cookshop_screen.dart';
+import 'package:crokett/features/home/page_widgets/mobile/home_screen.dart';
+import 'package:crokett/features/recipes/page_widgets/mobile/recipes_screen.dart';
+import 'package:crokett/features/tips_and_tricks/page_widgets/mobile/tips_and_tricks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'crokett_configuration.dart';
 
-class AppShell extends StatefulWidget {
-  final StatefulWidget? currentPage;
+class AppShell extends Page {
+//  final StatefulWidget? currentPage;
   final Function(String) nextScreen;
 
-  AppShell(this.currentPage, this.nextScreen);
+  AppShell({/*this.currentPage,*/ required this.nextScreen})
+      : super(key: ValueKey(APPSHELL));
+
+  @override
+  Route createRoute(BuildContext context) {
+    return MaterialPageRoute(
+      settings: this,
+      builder: (BuildContext context) {
+        return AppShellWidget(
+            /*currentPage: currentPage,*/
+            nextScreen: nextScreen); //AppShell(nextScreen);
+      },
+    );
+  }
+}
+
+class AppShellWidget extends StatefulWidget {
+  //final StatefulWidget? currentPage;
+  final Function(String) nextScreen;
+
+  AppShellWidget({/*this.currentPage,*/ required this.nextScreen});
 
   @override
   _AppShellState createState() => _AppShellState();
 }
 
-class _AppShellState extends State<AppShell> {
+class _AppShellState extends State<AppShellWidget> {
   StatefulWidget? currentPage;
   Function(String)? nextScreen;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void initState() {
     super.initState();
-    currentPage = widget.currentPage;
     nextScreen = widget.nextScreen;
+    currentPage = HomeScreen(nextScreen: nextScreen);
   }
 
   @override
@@ -41,11 +64,13 @@ class _AppShellState extends State<AppShell> {
     // CrokettRouterDelegate _routerDelegate = CrokettRouterDelegate();
 
     toggleDrawer() async {
-      if (_scaffoldKey.currentState!.isDrawerOpen) {
-        _scaffoldKey.currentState!.openEndDrawer();
-      } else {
-        _scaffoldKey.currentState!.openDrawer();
-      }
+      setState(() {
+        if (_scaffoldKey.currentState!.isDrawerOpen) {
+          _scaffoldKey.currentState!.openEndDrawer();
+        } else {
+          _scaffoldKey.currentState!.openDrawer();
+        }
+      });
     }
 
     return Scaffold(
@@ -53,7 +78,7 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         elevation: 0,
       ),
-     body: Center(child: currentPage),
+      body: Center(child: currentPage),
       drawer: InkWell(
         onTap: () {
           toggleDrawer();
@@ -100,7 +125,8 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.home),
                   onTap: () {
-                    nextScreen!(HOME);
+                    currentPage = HomeScreen(nextScreen: nextScreen);
+                    toggleDrawer();
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -112,7 +138,8 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.boxes),
                   onTap: () {
-                    nextScreen!(BOXES);
+                    currentPage = BoxesScreen(nextScreen: nextScreen);
+                    toggleDrawer();
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -124,7 +151,8 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.recipes),
                   onTap: () {
-                    nextScreen!(RECIPES);
+                    currentPage = RecipesScreen(nextScreen: nextScreen);
+                    toggleDrawer();
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -136,7 +164,8 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.cookshop),
                   onTap: () {
-                    nextScreen!(COOKSHOP);
+                    currentPage = CookShopScreen(nextScreen: nextScreen);
+                    toggleDrawer();
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -148,7 +177,8 @@ class _AppShellState extends State<AppShell> {
                   ),
                   title: Text(Constants.tipsAndTricks),
                   onTap: () {
-                    nextScreen!(TIPS_AND_TRICKS);
+                    currentPage = TipsAndTricksScreen(nextScreen: nextScreen);
+                    toggleDrawer();
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),

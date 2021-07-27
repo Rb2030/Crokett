@@ -49,7 +49,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                         .errorMessage, buttonLabel: Constants.forgotPassword, onPressed: () {nextScreen(FORGOT_PASSWORD);})); //AlertDialog(title: Text(failure.errorMessage));
               },
               (success) {
-                nextScreen(HOME);
+                nextScreen(APPSHELL);
               },
             );
           },

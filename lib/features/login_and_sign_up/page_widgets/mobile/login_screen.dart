@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen>
                         })); //AlertDialog(title: Text(failure.errorMessage));
               },
               (success) {
-                nextScreen(HOME);
+                nextScreen(APPSHELL);
               },
             );
           },

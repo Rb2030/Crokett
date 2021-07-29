@@ -1,9 +1,8 @@
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:crokett/core/global/globals/globals.dart' as globals;
 
 class HomeScreen extends StatefulWidget {
-  Function(String)? nextScreen;
+  final Function(String) nextScreen;
 
   HomeScreen({required this.nextScreen}) : super();
 
@@ -12,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  Function(String)? nextScreen;
+  late Function(String) nextScreen;
 
   @override
   void initState() {

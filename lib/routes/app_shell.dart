@@ -44,7 +44,7 @@ class AppShellWidget extends StatefulWidget {
 
 class _AppShellState extends State<AppShellWidget> {
   StatefulWidget? currentPage;
-  Function(String)? nextScreen;
+  late Function(String) nextScreen;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void initState() {
@@ -111,7 +111,7 @@ class _AppShellState extends State<AppShellWidget> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
-                        nextScreen!(PROFILE);
+                        nextScreen(PROFILE);
                       },
                     ),
                   ),
@@ -190,7 +190,7 @@ class _AppShellState extends State<AppShellWidget> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
-                    nextScreen!(HELP);
+                    nextScreen(HELP);
                   },
                 ),
                 const SizedBox(height: UIHelper.paddingBetweenElements / 2),
@@ -202,7 +202,7 @@ class _AppShellState extends State<AppShellWidget> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
-                    nextScreen!(SETTINGS);
+                    nextScreen(SETTINGS);
                   },
                 ),
               ],

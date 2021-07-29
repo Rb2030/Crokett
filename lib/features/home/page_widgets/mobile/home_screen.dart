@@ -1,7 +1,7 @@
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {  // This does not need a material page route as it is part of home
   final Function(String) nextScreen;
 
   HomeScreen({required this.nextScreen}) : super();
@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> {
   late Function(String) nextScreen;
 
   @override

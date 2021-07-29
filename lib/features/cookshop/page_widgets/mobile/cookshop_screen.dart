@@ -1,7 +1,7 @@
 import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:flutter/material.dart';
 
-class CookShopScreen extends StatefulWidget {
+class CookShopScreen extends StatefulWidget { // This does not need a material page route as it is part of home
   final Function(String)? nextScreen;
 
   CookShopScreen({required this.nextScreen}) : super();
@@ -10,7 +10,7 @@ class CookShopScreen extends StatefulWidget {
   _CookShopScreenState createState() => _CookShopScreenState();
 }
 
-class _CookShopScreenState extends State<CookShopScreen> with TickerProviderStateMixin {
+class _CookShopScreenState extends State<CookShopScreen> {
   Function(String)? nextScreen;
 
   @override

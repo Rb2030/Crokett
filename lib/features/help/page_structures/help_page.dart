@@ -13,12 +13,13 @@ class HelpPage extends Page {
     return MaterialPageRoute(
       settings: this,
       builder: (BuildContext context) {
-        return Container( // This will be BOXESscreen instead of container passing next screen func with provider
+        return Container( // This will be helpscreen
           height: 20,
           width: 20,
-          color: Colors.green,
+          color: Colors.yellow,
+          child: Center(child: Text('HELP', style: TextStyle(color: Colors.white),))
         );
-      },
+      }, //AppShell(nextScreen);
     );
   }
 }

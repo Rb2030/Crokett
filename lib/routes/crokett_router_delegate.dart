@@ -3,6 +3,7 @@ import 'package:crokett/core/global/widgets/unknown_page.dart';
 import 'package:crokett/features/boxes/page_structures/selected_box_page.dart';
 import 'package:crokett/features/cookshop/page_structures/cookshop_categories_page.dart';
 import 'package:crokett/features/cookshop/page_structures/selected_cookshop_item_page.dart';
+import 'package:crokett/features/help/page_structures/help_page.dart';
 import 'package:crokett/features/help/page_structures/selected_help_item_page.dart';
 import 'package:crokett/features/home/page_structures/home_featured_page.dart';
 import 'package:crokett/features/home/page_structures/home_selected_for_you_page.dart';
@@ -14,6 +15,7 @@ import 'package:crokett/features/on_boarding/page_structures/onboarding_page.dar
 import 'package:crokett/features/profile/page_structures/profile_page.dart';
 import 'package:crokett/features/recipes/page_structures/recipe_type_page.dart';
 import 'package:crokett/features/recipes/page_structures/selected_recipe_page.dart';
+import 'package:crokett/features/settings/page_structures/settings_page.dart';
 import 'package:crokett/features/splash_screen/page_structures/splash_page.dart';
 import 'package:crokett/features/tips_and_tricks/page_structures/selected_tips_and_tricks_page.dart';
 import 'package:crokett/routes/app_shell.dart';
@@ -141,7 +143,8 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       //   stack = _foodPreferencesStack;
     } else if (currentPage == PROFILE) {
       stack = _profileStack;
-    } else if (currentPage == APPSHELL) { // This is home but encompasses all home routes as app shell wraps all of them
+    } else if (currentPage == APPSHELL) {
+      // This is home but encompasses all home routes as app shell wraps all of them
       stack = _appShellDrawerStack;
     } else if (currentPage == HOME_FEATURED) {
       stack = _homeFeaturedStack;
@@ -169,12 +172,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       //   stack = _tipsAndTricksStack;
     } else if (currentPage == SELECTED_TIPS_AND_TRICKS) {
       stack = _selectedTipsAndTricksStack;
-      // } else if (currentPage == HELP) {
-      //   stack = _helpStack;
-    } else if (currentPage == SELECTED_HELP_ITEM) {
-      stack = _selectedHelpItemStack;
-      // } else if (currentPage == SETTINGS) {
-      //   stack = _settingsStack;
+    } else if (currentPage == HELP) {
+      stack = _helpStack;
+    } else if (currentPage == SETTINGS) {
+      stack = _settingsStack;
     }
 
     return Navigator(
@@ -405,28 +406,18 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       ];
 
   // Help
-  // List<Page> get _helpStack => [
-  //       HelpPage(nextScreen: (String selectedPage) {
-  //         currentPage = selectedPage;
-  //       }),
-  //     ];
-
-  // Selected Tips & Tricks
-  List<Page> get _selectedHelpItemStack => [
-        AppShell(nextScreen: (String selectedPage) {
+  List<Page> get _helpStack => [
+        HelpPage(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
-        SelectedHelpItemPage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        })
       ];
 
   // Settings
-  // List<Page> get _settingsStack => [
-  //       SettingsPage(nextScreen: (String selectedPage) {
-  //         currentPage = selectedPage;
-  //       }),
-  //     ];
+  List<Page> get _settingsStack => [
+        SettingsPage(nextScreen: (String selectedPage) {
+          currentPage = selectedPage;
+        }),
+      ];
 
   @override
   Future<void> setNewRoutePath(CrokettConfiguration configuration) async {
@@ -456,7 +447,7 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isAppShellPage) {
       currentPage = APPSHELL;
-    //  selectedItemCode = configuration.selectedItemId;
+      //  selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isHomeUpcomingBoxPage) {
       currentPage = HOME_UPCOMING_BOX;
       selectedItemCode = configuration.selectedItemId;
@@ -483,10 +474,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
       selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isHelpPage) {
       currentPage = HELP;
-   //   selectedItemCode = configuration.selectedItemId;
+      //   selectedItemCode = configuration.selectedItemId;
     } else if (configuration.isSettingsPage) {
       currentPage = SETTINGS;
-    //  selectedItemCode = configuration.selectedItemId;
+      //  selectedItemCode = configuration.selectedItemId;
     } else {
       print(Constants.failureCouldNotSetRoute);
     }

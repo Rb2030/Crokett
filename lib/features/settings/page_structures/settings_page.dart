@@ -14,8 +14,13 @@ class SettingsPage extends Page {
     return MaterialPageRoute(
       settings: this,
       builder: (BuildContext context) {
-        return Container(); //AppShell(nextScreen);
-      },
+        return Container( // This will be settingsscreen
+          height: 20,
+          width: 20,
+          color: Colors.pink,
+          child: Center(child: Text('SETTINGS', style: TextStyle(color: Colors.white),))
+        );
+      }, //AppShell(nextScreen);
     );
   }
 }

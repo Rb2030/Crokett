@@ -15,6 +15,7 @@ class ProfilePage extends Page {
           height: 20,
           width: 20,
           color: Colors.green,
+          child: Center(child: Text('PROFILE', style: TextStyle(color: Colors.white),))
         );
       },
     );

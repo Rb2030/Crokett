@@ -264,7 +264,9 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
         }),
         ProfilePage(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
-        })
+        }) previousScreen: (String pageToReturnTo) {
+            currentPage = pageToReturnTo;
+          })
       ];
 
   // // Home
@@ -409,14 +411,18 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
   List<Page> get _helpStack => [
         HelpPage(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
-        }),
+        }), previousScreen: (String pageToReturnTo) {
+            currentPage = pageToReturnTo;
+          })
       ];
 
   // Settings
   List<Page> get _settingsStack => [
         SettingsPage(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
-        }),
+        }), previousScreen: (String pageToReturnTo) {
+            currentPage = pageToReturnTo;
+          })
       ];
 
   @override

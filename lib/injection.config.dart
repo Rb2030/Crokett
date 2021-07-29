@@ -10,17 +10,19 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'core/global/firebase/firebase_injectable_module.dart' as _i13;
-import 'core/global/hive/hive_helper.dart' as _i6;
-import 'features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart' as _i10;
+import 'core/global/firebase/firebase_injectable_module.dart' as _i14;
+import 'core/global/hive/hive_helper.dart' as _i7;
+import 'features/help/blocs/help_bloc/help_bloc.dart' as _i6;
+import 'features/login_and_sign_up/blocs/auth_bloc/auth_bloc.dart' as _i11;
 import 'features/login_and_sign_up/blocs/forgot_password_bloc/forgot_password_bloc.dart'
-    as _i11;
-import 'features/login_and_sign_up/blocs/login_bloc/login_bloc.dart' as _i12;
-import 'features/login_and_sign_up/blocs/sign_up_bloc/sign_up_bloc.dart' as _i9;
+    as _i12;
+import 'features/login_and_sign_up/blocs/login_bloc/login_bloc.dart' as _i13;
+import 'features/login_and_sign_up/blocs/sign_up_bloc/sign_up_bloc.dart'
+    as _i10;
 import 'features/login_and_sign_up/domain/auth_facade/i_auth_facade.dart'
-    as _i7;
+    as _i8;
 import 'features/login_and_sign_up/infrastructure/firebase_auth_facade.dart'
-    as _i8; // ignore_for_file: unnecessary_lambdas
+    as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -34,16 +36,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => firebaseInjectableModule.firestore);
   gh.lazySingleton<_i5.GoogleSignIn>(
       () => firebaseInjectableModule.googleSignIn);
-  gh.factory<_i6.HiveHelper>(() => _i6.HiveHelper());
-  gh.lazySingleton<_i7.IAuthFacade>(() =>
-      _i8.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i5.GoogleSignIn>()));
-  gh.factory<_i9.SignUpBloc>(() => _i9.SignUpBloc(get<_i7.IAuthFacade>()));
-  gh.factory<_i10.AuthBloc>(() => _i10.AuthBloc(get<_i7.IAuthFacade>()));
-  gh.factory<_i11.ForgotPasswordBloc>(
-      () => _i11.ForgotPasswordBloc(get<_i7.IAuthFacade>()));
-  gh.factory<_i12.LoginBloc>(
-      () => _i12.LoginBloc(get<_i7.IAuthFacade>(), get<_i10.AuthBloc>()));
+  gh.factory<_i6.HelpBloc>(() => _i6.HelpBloc());
+  gh.factory<_i7.HiveHelper>(() => _i7.HiveHelper());
+  gh.lazySingleton<_i8.IAuthFacade>(() =>
+      _i9.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i5.GoogleSignIn>()));
+  gh.factory<_i10.SignUpBloc>(() => _i10.SignUpBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i11.AuthBloc>(() => _i11.AuthBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i12.ForgotPasswordBloc>(
+      () => _i12.ForgotPasswordBloc(get<_i8.IAuthFacade>()));
+  gh.factory<_i13.LoginBloc>(
+      () => _i13.LoginBloc(get<_i8.IAuthFacade>(), get<_i11.AuthBloc>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i13.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i14.FirebaseInjectableModule {}

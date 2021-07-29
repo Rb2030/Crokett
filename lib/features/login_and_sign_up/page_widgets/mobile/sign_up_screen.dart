@@ -4,7 +4,7 @@ import 'package:crokett/core/global/helpers/responsive_screen_helper.dart';
 import 'package:crokett/core/global/helpers/ui_helper.dart';
 import 'package:crokett/core/global/value_objects/countries.dart';
 import 'package:crokett/core/global/widgets/app_bar_title.dart';
-import 'package:crokett/core/global/widgets/crokett_app_bar.dart';
+import 'package:crokett/core/global/widgets/app_bar_back_button.dart';
 import 'package:crokett/core/global/widgets/crokett_drop_down_button.dart';
 import 'package:crokett/core/global/widgets/crokett_textfield.dart';
 import 'package:crokett/features/login_and_sign_up/blocs/sign_up_bloc/sign_up_bloc.dart';

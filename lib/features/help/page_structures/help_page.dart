@@ -1,3 +1,5 @@
+import 'package:crokett/features/help/blocs/help_bloc/help_bloc.dart';
+import 'package:crokett/features/help/page_widgets/mobile/help_screen.dart';
 import 'package:crokett/injection.dart';
 import 'package:crokett/routes/crokett_configuration.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +14,13 @@ class HelpPage extends Page {
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
-      builder: (BuildContext context) {
-        return Container( // This will be helpscreen
-          height: 20,
-          width: 20,
-          color: Colors.yellow,
-          child: Center(child: Text('HELP', style: TextStyle(color: Colors.white),))
+        builder: (BuildContext context) {
+        return BlocProvider(
+          lazy: false,
+          create: (context) => getIt<HelpBloc>(),
+          child: HelpScreen(nextScreen: nextScreen),
         );
-      }, //AppShell(nextScreen);
+      },
     );
   }
 }

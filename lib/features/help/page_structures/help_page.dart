@@ -7,8 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HelpPage extends Page {
   final Function(String) nextScreen;
+  final Function(String) previousScreen;
 
-  HelpPage({required this.nextScreen}) : super(key: ValueKey(HELP));  
+  HelpPage({required this.nextScreen, required this.previousScreen}) : super(key: ValueKey(HELP));  
 
   @override
   Route createRoute(BuildContext context) {
@@ -18,7 +19,7 @@ class HelpPage extends Page {
         return BlocProvider(
           lazy: false,
           create: (context) => getIt<HelpBloc>(),
-          child: HelpScreen(nextScreen: nextScreen),
+          child: HelpScreen(nextScreen: nextScreen, previousScreen: previousScreen),
         );
       },
     );

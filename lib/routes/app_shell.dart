@@ -111,6 +111,7 @@ class _AppShellState extends State<AppShellWidget> {
                       ),
                       title: Text('Joe'),
                       onTap: () {
+                        toggleDrawer();
                         nextScreen(PROFILE);
                       },
                     ),
@@ -190,6 +191,7 @@ class _AppShellState extends State<AppShellWidget> {
                   ),
                   title: Text(Constants.help),
                   onTap: () {
+                    toggleDrawer();
                     nextScreen(HELP);
                   },
                 ),
@@ -202,6 +204,7 @@ class _AppShellState extends State<AppShellWidget> {
                   ),
                   title: Text(Constants.settings),
                   onTap: () {
+                    toggleDrawer();
                     nextScreen(SETTINGS);
                   },
                 ),

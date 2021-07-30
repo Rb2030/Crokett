@@ -262,9 +262,10 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
         AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
         }),
-        ProfilePage(nextScreen: (String selectedPage) {
-          currentPage = selectedPage;
-        }) previousScreen: (String pageToReturnTo) {
+        if (currentPage == PROFILE)
+          ProfilePage(nextScreen: (String selectedPage) {
+            currentPage = selectedPage;
+          }, previousScreen: (String pageToReturnTo) {
             currentPage = pageToReturnTo;
           })
       ];
@@ -409,18 +410,26 @@ class CrokettRouterDelegate extends RouterDelegate<CrokettConfiguration>
 
   // Help
   List<Page> get _helpStack => [
-        HelpPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
-        }), previousScreen: (String pageToReturnTo) {
+        }),
+        if (currentPage == HELP)
+          HelpPage(nextScreen: (String selectedPage) {
+            currentPage = selectedPage;
+          }, previousScreen: (String pageToReturnTo) {
             currentPage = pageToReturnTo;
           })
       ];
 
   // Settings
   List<Page> get _settingsStack => [
-        SettingsPage(nextScreen: (String selectedPage) {
+        AppShell(nextScreen: (String selectedPage) {
           currentPage = selectedPage;
-        }), previousScreen: (String pageToReturnTo) {
+        }),
+        if (currentPage == SETTINGS)
+          SettingsPage(nextScreen: (String selectedPage) {
+            currentPage = selectedPage;
+          }, previousScreen: (String pageToReturnTo) {
             currentPage = pageToReturnTo;
           })
       ];
